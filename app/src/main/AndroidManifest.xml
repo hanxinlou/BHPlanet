@@ -1,11 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.a12525.bhplanet">
+    package="com.example.yy.mee">
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" />
+        android:theme="@style/AppTheme">
+        <activity android:name=".fensi" />
+        <activity android:name=".anquanActivity" />
+        <activity android:name=".dongtaiActivity" />
+        <activity android:name=".guanzhuActivity" />
+        <activity android:name=".kongjianActivity" />
+        <activity android:name=".lishiActivity" />
+        <activity android:name=".loginActivity" />
+        <activity android:name=".registActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:label="Main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".shoucangActivity" />
+        <activity android:name=".tdongtaiActivity" />
+        <activity android:name=".xiazaiActivity" />
+        <activity android:name=".zdongtaiActivity" />
+        <activity android:name=".zhongxinActivity" />
+        <activity android:name=".ziliaoActivity" />
+        <activity android:name=".settingsActivity"></activity>
+    </application>
+
 </manifest>

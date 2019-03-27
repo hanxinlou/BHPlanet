@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/imagebutton1"
+            android:layout_width="40dp"
+            android:layout_height="43dp"
+            android:src="@drawable/fanhui"
+            android:contentDescription="@string/app_name"/>
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/text_view_style"
+
+            android:text="                   脑洞星球"
+            android:textColor="#090808"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <VideoView
+        android:id="@+id/video1"
+        android:layout_width="match_parent"
+        android:layout_height="170dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/imagebutton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_view_style"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/icon1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="出来挨骂"
+                    android:textColor="#090808"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ID 周哈哈"
+                    android:textColor="#505050"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+         </LinearLayout>
+
+     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/imagebutton3"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_view_style"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/dianzan" />
+
+        <TextView
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="1100"
+            android:textColor="#505050"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/imagebutton4"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_view_style"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/pinglun" />
+
+        <TextView
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="123"
+            android:textColor="#505050"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/imagebutton5"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_view_style"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/shoucang" />
+
+        <TextView
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="800"
+            android:textColor="#505050"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/imagebutton6"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_view_style"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/share" />
+
+        <TextView
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="800"
+            android:textColor="#505050"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="@drawable/set_button_bg"
+        android:text="" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imagebutton17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_view_style"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/icon2" />
+
+            <TextView
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="狂小鹿"
+                android:textColor="#505050"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="10分钟前"
+                android:textColor="#505050"
+                android:textSize="20sp" />
+
+         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:text="             哈哈哈哈笑死了！"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imagebutton8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_view_style"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/dianliang1" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="点亮(56)"
+                android:textColor="#505050"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="回复"
+                android:textColor="#505050"
+                android:textSize="20sp" />
+            <TextView
+                android:layout_width="146dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="查看回复"
+                android:textColor="#505050"
+                android:textSize="20sp" />
+
+         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/imagebutton7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_view_style"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/icon3" />
+
+                <TextView
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="吃了一个橙子"
+                    android:textColor="#505050"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="24分钟前"
+                    android:textColor="#505050"
+                    android:textSize="20sp" />
+
+             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:text="             过于真实233333"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/imagebutton9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_view_style"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/dianliang1" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="点亮(46)"
+                    android:textColor="#505050"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="回复"
+                    android:textColor="#505050"
+                    android:textSize="20sp" />
+                <TextView
+                    android:layout_width="146dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="查看回复(5)"
+                    android:textColor="#505050"
+                    android:textSize="20sp" />
+
+             </LinearLayout>
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:background="@drawable/set_button_bg"
+                android:text="" />
+
+         </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

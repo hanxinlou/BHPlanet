@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="#f2f2f2"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#fff176" >
+
+        <ImageButton
+            android:id="@+id/fanhui"
+            android:layout_marginBottom="1dp"
+            android:background="#fff176"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:srcCompat="@drawable/back1" />
+
+        <TextView
+            android:id="@+id/anquan"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="9dp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            android:text="安全隐私" />
+
+
+    </RelativeLayout>
+    <LinearLayout
+        android:background="#ffffff"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp">
+
+
+        <Switch
+            android:id="@+id/gongzuo"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="公开显示我的作品" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:background="#ffffff"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp">
+
+
+        <Switch
+            android:id="@+id/gongshou"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="公开显示我的收藏" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#ffffff"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp">
+
+        <Switch
+            android:id="@+id/gongguan"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="公开显示我的关注" />
+    </LinearLayout>
+
+
+</LinearLayout>

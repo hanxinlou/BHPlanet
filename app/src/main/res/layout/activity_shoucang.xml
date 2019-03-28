@@ -48,7 +48,7 @@
         android:text="默认收藏夹"
         android:textSize="18sp"
         android:gravity="center_vertical"
-        android:layout_height="100dp" />
+        android:layout_height="90dp" />
 
 
 </LinearLayout>

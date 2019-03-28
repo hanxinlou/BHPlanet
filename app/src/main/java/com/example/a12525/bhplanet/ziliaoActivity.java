@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import com.example.yy.mee.R;
+import com.example.a12525.bhplanet.R;
 
 public class ziliaoActivity extends AppCompatActivity {
 

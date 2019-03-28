@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.yy.mee">
+    package="com.example.a12525.bhplanet">
 
     <application
         android:allowBackup="false"
@@ -22,6 +22,7 @@
             android:label="Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -31,7 +32,8 @@
         <activity android:name=".zdongtaiActivity" />
         <activity android:name=".zhongxinActivity" />
         <activity android:name=".ziliaoActivity" />
-        <activity android:name=".settingsActivity"></activity>
+        <activity android:name=".settingsActivity" />
+        <activity android:name=".DaohangActivity"></activity>
     </application>
 
 </manifest>

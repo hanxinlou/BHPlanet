@@ -62,8 +62,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginLeft="140dp"
-        android:layout_marginStart="140dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginLeft="120dp"
         android:background="#f2f2f2"
         android:orientation="horizontal">
 
@@ -71,7 +71,7 @@
             android:id="@+id/imageButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="10dp"
             android:background="#f2f2f2"
             app:srcCompat="@drawable/weixin" />
 
@@ -79,10 +79,10 @@
             android:id="@+id/imageButton1"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
             android:background="#f2f2f2"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginStart="30dp"
             app:srcCompat="@drawable/qq" />
 
     </LinearLayout>

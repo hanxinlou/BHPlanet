@@ -57,8 +57,8 @@
             android:id="@+id/qqhao"
             android:text="1234534560"
             android:textColor="#000000"
-            android:layout_marginLeft="230dp"
-            android:layout_marginStart="230dp"
+            android:layout_marginLeft="178dp"
+            android:layout_marginStart="178dp"
             android:layout_gravity="center_vertical"
             android:layout_width="80dp"
             android:layout_height="wrap_content" />
@@ -106,8 +106,8 @@
             android:id="@+id/手机"
             android:text="更换手机"
             android:textColor="#000000"
-            android:layout_marginLeft="268dp"
-            android:layout_marginStart="268dp"
+            android:layout_marginLeft="217dp"
+            android:layout_marginStart="217dp"
             android:layout_gravity="center_vertical"
             android:layout_width="60dp"
             android:layout_height="wrap_content" />
@@ -123,7 +123,6 @@
     </LinearLayout>
     <LinearLayout
         android:background="#ffffff"
-        android:layout_marginTop="1dp"
         android:layout_width="fill_parent"
         android:layout_height="50dp">
         <TextView
@@ -137,8 +136,8 @@
             android:id="@+id/youxiang"
             android:text="1234534560@qq.com"
             android:textColor="#000000"
-            android:layout_marginLeft="178dp"
-            android:layout_marginStart="178dp"
+            android:layout_marginLeft="128dp"
+            android:layout_marginStart="128dp"
             android:layout_gravity="center_vertical"
             android:layout_width="150dp"
             android:layout_height="25dp" />

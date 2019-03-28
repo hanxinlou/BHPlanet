@@ -22,8 +22,8 @@
             android:textColor="#000000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="150dp"
-            android:layout_marginLeft="150dp"
+            android:layout_marginStart="135dp"
+            android:layout_marginLeft="135dp"
             android:layout_marginTop="9dp"
             android:textStyle="bold"
             android:textSize="25sp"
@@ -33,13 +33,12 @@
         android:orientation="horizontal"
         android:background="#ffffff"
         android:layout_width="fill_parent"
-        android:layout_height="100dp">
+        android:layout_height="90dp">
         <TextView
             android:id="@+id/tou"
             android:text="头像"
             android:textColor="#000000"
             android:layout_gravity="center_vertical"
-            android:textSize="18sp"
             android:layout_width="100dp"
             android:layout_height="25dp" />
 
@@ -48,7 +47,8 @@
             android:background="@drawable/head"
             android:layout_marginTop="10dp"
             android:layout_width="80dp"
-            android:layout_marginLeft="200dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginStart="150dp"
             android:layout_height="80dp" />
 
         <ImageButton
@@ -69,7 +69,6 @@
             android:text="昵称"
             android:textColor="#000000"
             android:layout_gravity="center_vertical"
-            android:textSize="18sp"
             android:layout_width="60dp"
             android:layout_height="25dp" />
 
@@ -79,10 +78,9 @@
             android:layout_width="wrap_content"
             android:layout_height="25dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="230dp"
-            android:layout_marginLeft="230dp"
-            android:text="一只小澄妹"
-            android:textSize="18sp" />
+            android:layout_marginStart="200dp"
+            android:layout_marginLeft="200dp"
+            android:text="一只小澄妹" />
         <ImageButton
             android:id="@+id/gainame"
             android:layout_width="30dp"
@@ -102,7 +100,6 @@
             android:text="ID"
             android:textColor="#000000"
             android:layout_gravity="center_vertical"
-            android:textSize="18sp"
             android:layout_width="60dp"
             android:layout_height="25dp" />
         <TextView
@@ -110,10 +107,9 @@
             android:text="10280638"
             android:textColor="#000000"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="220dp"
-            android:layout_marginStart="220dp"
-            android:textSize="18sp"
-            android:layout_width="100dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginStart="200dp"
+            android:layout_width="70dp"
             android:layout_height="25dp" />
         <ImageButton
             android:id="@+id/gaiid"
@@ -133,7 +129,6 @@
             android:text="性别"
             android:textColor="#000000"
             android:layout_gravity="center_vertical"
-            android:textSize="18sp"
             android:layout_width="60dp"
             android:layout_height="25dp" />
         <TextView
@@ -141,10 +136,9 @@
             android:text="保密"
             android:textColor="#000000"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="270dp"
-            android:layout_marginStart="270dp"
-            android:textSize="18sp"
-            android:layout_width="50dp"
+            android:layout_marginLeft="230dp"
+            android:layout_marginStart="230dp"
+            android:layout_width="40dp"
             android:layout_height="25dp" />
         <ImageButton
             android:id="@+id/gaisex"
@@ -164,7 +158,6 @@
             android:text="出生年月"
             android:textColor="#000000"
             android:layout_gravity="center_vertical"
-            android:textSize="18sp"
             android:layout_width="80dp"
             android:layout_height="25dp" />
         <TextView
@@ -172,10 +165,9 @@
             android:text="1990-01-10"
             android:textColor="#000000"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="200dp"
-            android:layout_marginStart="200dp"
-            android:textSize="18sp"
-            android:layout_width="100dp"
+            android:layout_marginLeft="170dp"
+            android:layout_marginStart="170dp"
+            android:layout_width="80dp"
             android:layout_height="25dp" />
         <ImageButton
             android:id="@+id/gaibirth"
@@ -195,16 +187,14 @@
             android:text="个性签名："
             android:textColor="#000000"
             android:layout_gravity="center_vertical"
-            android:textSize="18sp"
-            android:layout_width="100dp"
+            android:layout_width="70dp"
             android:layout_height="25dp" />
         <TextView
             android:id="@+id/qianmingg"
             android:text="呵呵"
             android:textColor="#000000"
             android:layout_gravity="center_vertical"
-            android:textSize="18sp"
-            android:layout_width="280dp"
+            android:layout_width="260dp"
             android:layout_height="25dp" />
         <ImageButton
             android:id="@+id/gaiqian"
@@ -216,9 +206,9 @@
     <Button
         android:id="@+id/exit"
         android:background="#ffffff"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="120dp"
         android:text="退出登录"
-        android:textSize="25dp"
+        android:textSize="20sp"
         android:layout_width="fill_parent"
-        android:layout_height="60dp" />
+        android:layout_height="50dp" />
 </LinearLayout>

@@ -11,7 +11,7 @@
         <ImageButton
             android:id="@+id/imagebutton1"
             android:layout_width="40dp"
-            android:layout_height="43dp"
+            android:layout_height="40dp"
             android:src="@drawable/fanhui"
             android:contentDescription="@string/app_name"/>
 
@@ -82,11 +82,10 @@
 
         <ImageButton
             android:id="@+id/imagebutton3"
-            android:layout_width="48dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_view_style"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/dianzan" />
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/unzan"
+            android:contentDescription="@string/app_name" />
 
         <TextView
             android:layout_width="48dp"
@@ -98,11 +97,10 @@
 
         <ImageButton
             android:id="@+id/imagebutton4"
-            android:layout_width="48dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_view_style"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/pinglun" />
+            android:background="@drawable/ping" />
 
         <TextView
             android:layout_width="48dp"
@@ -130,11 +128,10 @@
 
         <ImageButton
             android:id="@+id/imagebutton6"
-            android:layout_width="48dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_view_style"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/share" />
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/zhuan"
+            android:contentDescription="@string/app_name" />
 
         <TextView
             android:layout_width="48dp"

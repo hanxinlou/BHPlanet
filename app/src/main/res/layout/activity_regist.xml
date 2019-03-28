@@ -9,16 +9,16 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="60dp"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="50dp"
+            android:layout_width="45dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
             android:text="+86"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
 
         <EditText
@@ -83,7 +83,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="140dp"
+        android:layout_marginLeft="120dp"
         android:background="#f2f2f2"
         android:orientation="horizontal">
 
@@ -91,7 +91,7 @@
             android:id="@+id/imageButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="10dp"
             android:background="#f2f2f2"
             app:srcCompat="@drawable/weixin" />
 
@@ -100,8 +100,8 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="#f2f2f2"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
             app:srcCompat="@drawable/qq" />
 
     </LinearLayout>

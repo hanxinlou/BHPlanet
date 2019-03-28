@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.example.yy.mee.R;
+import com.example.a12525.bhplanet.R;
 
 public class zhongxinActivity extends AppCompatActivity {
 

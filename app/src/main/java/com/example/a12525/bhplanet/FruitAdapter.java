@@ -7,7 +7,11 @@ import android.widget.ArrayAdapter;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.a12525.bhplanet.R;
+
 import java.util.List;
+
 
 
 public class FruitAdapter extends ArrayAdapter<Fruit> {

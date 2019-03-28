@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="#ffffff"
+    android:background="#f2f2f2"
     android:orientation="vertical"
     android:layout_height="match_parent">
 
@@ -31,15 +31,21 @@
             android:textColor="#000000"
             android:textSize="25sp"
             android:textStyle="bold" />
-
     </LinearLayout>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="190dp">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/ubeijing"
             android:layout_width="fill_parent"
             android:layout_height="120dp"
@@ -52,7 +58,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="90dp"
-            android:background="@drawable/head" />
+            android:background="@drawable/head1" />
         <TextView
             android:id="@+id/gnumber"
             android:layout_marginTop="125dp"
@@ -107,22 +113,26 @@
             android:text="个性签名"
             android:textSize="18sp"
             android:layout_height="20sp" />
+
         <Switch
             android:id="@+id/guanzhu"
-            android:layout_marginTop="140dp"
-            android:layout_marginLeft="330dp"
-            android:layout_marginStart="330dp"
-            android:text="关注"
             android:layout_width="wrap_content"
-            android:layout_height="25dp" />
+            android:layout_height="25dp"
+            android:layout_marginStart="270dp"
+            android:layout_marginLeft="270dp"
+            android:layout_marginTop="150dp"
+            android:text="关注" />
     </RelativeLayout>
+
     <LinearLayout
         android:orientation="horizontal"
+        android:background="#ffffff"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="60dp">
         <ImageView
             android:id="@+id/toux"
-            android:background="@drawable/head"
+            android:background="@drawable/head1"
             android:layout_width="50dp"
             android:layout_height="50dp" />
         <LinearLayout
@@ -132,7 +142,7 @@
             <TextView
                 android:id="@+id/uidd"
                 android:textSize="18sp"
-                android:text="用户昵称"
+                android:text="nmsl"
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
             <LinearLayout
@@ -156,25 +166,29 @@
     </LinearLayout>
     <TextView
         android:id="@+id/content"
-        android:textSize="18sp"
+        android:textSize="15sp"
         android:textColor="#000000"
-        android:text="笑死人惹"
+        android:text="不想做了"
+        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="20dp" />
     <ImageView
-        android:src="@drawable/head"
+        android:src="@drawable/song1"
         android:id="@+id/szuopin"
+        android:background="#ffffff"
         android:layout_width="fill_parent"
         android:layout_height="140dp" />
     <TextView
         android:id="@+id/zuoname"
-        android:textSize="18sp"
+        android:textSize="15sp"
         android:textColor="#000000"
-        android:text="作品名字"
+        android:text="我的表情和儿子表情一样"
+        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="20dp" />
     <LinearLayout
         android:orientation="horizontal"
+        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="35dp">
         <Button
@@ -191,8 +205,8 @@
         <Button
             android:id="@+id/ping"
             android:background="@drawable/ping"
-            android:layout_marginStart="80dp"
-            android:layout_marginLeft="80dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
             android:layout_width="30dp"
             android:layout_height="30dp" />
         <TextView
@@ -203,9 +217,9 @@
             android:layout_height="20dp" />
         <Button
             android:id="@+id/zan"
-            android:background="@drawable/zan"
-            android:layout_marginStart="80dp"
-            android:layout_marginLeft="80dp"
+            android:background="@drawable/unzan"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
             android:layout_width="30dp"
             android:layout_height="30dp" />
         <TextView
@@ -215,5 +229,127 @@
             android:layout_width="70dp"
             android:layout_height="20dp" />
     </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <ImageView
+                android:id="@+id/toux1"
+                android:background="@drawable/head1"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <TextView
+                    android:id="@+id/uidd1"
+                    android:textSize="18sp"
+                    android:text="nmsl"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
+                    <TextView
+                        android:id="@+id/ftime1"
+                        android:textSize="15sp"
+                        android:text="2小时前"
+                        android:layout_width="60dp"
+                        android:layout_height="20dp" />
+                    <TextView
+
+                        android:textSize="15sp"
+                        android:text="上传了作品"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/content1"
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:text="真的不会做了"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+        <ImageView
+            android:src="@drawable/head"
+            android:id="@+id/szuopin1"
+            android:background="#ffffff"
+            android:layout_width="fill_parent"
+            android:layout_height="140dp" />
+        <TextView
+            android:id="@+id/zuoname1"
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:text="作品名字"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+            <Button
+                android:id="@+id/zhuan1"
+                android:background="@drawable/zhuan"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:id="@+id/nzhuan1"
+                android:text="2"
+                android:textSize="15sp"
+                android:layout_width="70dp"
+                android:layout_height="20dp" />
+            <Button
+                android:id="@+id/ping1"
+                android:background="@drawable/ping"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:id="@+id/nping1"
+                android:text="2"
+                android:textSize="15sp"
+                android:layout_width="70dp"
+                android:layout_height="20dp" />
+            <Button
+                android:id="@+id/zan1"
+                android:background="@drawable/unzan"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:id="@+id/nzan1"
+                android:text="2"
+                android:textSize="15sp"
+                android:layout_width="70dp"
+                android:layout_height="20dp" />
+
+
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+</ScrollView>
 </LinearLayout>

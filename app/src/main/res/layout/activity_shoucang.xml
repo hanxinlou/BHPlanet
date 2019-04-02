@@ -4,26 +4,27 @@
     android:background="#f2f2f2"
     android:orientation="vertical"
     android:layout_height="match_parent">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
         android:background="#fff176">
 
+
         <ImageButton
             android:id="@+id/fanhui"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="#fff176"
-            android:src="@drawable/back1" />
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/fanhui" />
 
         <TextView
             android:id="@+id/textViewG"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="140dp"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="5dp"
+           android:layout_centerInParent="true"
             android:text="收藏"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -32,13 +33,14 @@
             android:id="@+id/bianji"
             android:layout_width="50dp"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="125dp"
-            android:layout_marginStart="125dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
             android:background="#fff176"
             android:text="编辑"
             android:textSize="15sp" />
 
-    </LinearLayout>
+    </RelativeLayout>
     <Button
         android:id="@+id/moren"
         android:background="#ffffff"

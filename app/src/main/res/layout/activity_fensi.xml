@@ -8,15 +8,12 @@
         android:layout_height="50dp"
         android:background="#fff176" >
 
-
         <TextView
             android:id="@+id/anquan"
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="150dp"
-            android:layout_marginLeft="150dp"
-            android:layout_marginTop="9dp"
+            android:layout_centerInParent="true"
             android:textStyle="bold"
             android:textColor="#000000"
             android:textSize="25sp"

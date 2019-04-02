@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.a12525.bhplanet">
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
@@ -11,15 +11,24 @@
         android:theme="@style/AppTheme">
         <activity android:name=".fensi" />
         <activity android:name=".anquanActivity" />
-        <activity android:name=".dongtaiActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".guanzhuActivity" />
         <activity android:name=".kongjianActivity" />
         <activity android:name=".lishiActivity" />
         <activity android:name=".loginActivity" />
         <activity android:name=".registActivity" />
+        <provider
+            android:authorities="com.example.a12525.bhplanet.fileprovider"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
         <activity
-            android:name=".MainActivity"
-            android:label="Main">
+            android:name=".DaohangActivity"
+            android:label="脑洞星球">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,7 +42,17 @@
         <activity android:name=".zhongxinActivity" />
         <activity android:name=".ziliaoActivity" />
         <activity android:name=".settingsActivity" />
-        <activity android:name=".DaohangActivity"></activity>
+        <activity android:name=".tupianActivity" />
+        <activity android:name=".tiaoshiActivity" />
+        <activity android:name=".MyFragment1" />
+        <activity android:name=".MyFragment2" />
+        <activity android:name=".MyFragment3" />
+        <activity android:name=".MyFragment4" />
+        <activity android:name=".MyFragmentPagerAdapter" />
+        <activity android:name=".pinglunActivity" />
+        <activity android:name=".dongtaiActivity" />
+        <activity android:name=".dongtuActivity" />
+        <activity android:name=".manhuaActivity"></activity>
     </application>
 
 </manifest>

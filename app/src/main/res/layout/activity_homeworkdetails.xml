@@ -3,28 +3,29 @@
     android:orientation="vertical" 
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="43dp"
-        android:orientation="horizontal">
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="#fff176">
 
         <ImageButton
-            android:id="@+id/imagebutton1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/fanhui"
-            android:contentDescription="@string/app_name"/>
+            android:id="@+id/fanhui"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/fanhui" />
 
         <TextView
             android:id="@+id/text1"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/text_view_style"
-
-            android:text="                   脑洞星球"
+            android:layout_centerInParent="true"
+            android:text="脑洞星球"
             android:textColor="#090808"
             android:textSize="24sp" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <VideoView
         android:id="@+id/video1"
@@ -82,8 +83,8 @@
 
         <ImageButton
             android:id="@+id/imagebutton3"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:background="@drawable/unzan"
             android:contentDescription="@string/app_name" />
 
@@ -97,8 +98,8 @@
 
         <ImageButton
             android:id="@+id/imagebutton4"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:contentDescription="@string/app_name"
             android:background="@drawable/ping" />
 
@@ -112,11 +113,10 @@
 
         <ImageButton
             android:id="@+id/imagebutton5"
-            android:layout_width="48dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_view_style"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/shoucang" />
+            android:background="@drawable/unshoucang" />
 
         <TextView
             android:layout_width="48dp"
@@ -128,8 +128,8 @@
 
         <ImageButton
             android:id="@+id/imagebutton6"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:background="@drawable/zhuan"
             android:contentDescription="@string/app_name" />
 
@@ -182,7 +182,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="10分钟前"
                 android:textColor="#505050"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
          </LinearLayout>
 
@@ -201,11 +201,10 @@
 
             <ImageButton
                 android:id="@+id/imagebutton8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_view_style"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/dianliang1" />
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/undianliang"
+                android:contentDescription="@string/app_name" />
 
             <TextView
                 android:layout_width="100dp"
@@ -213,7 +212,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="点亮(56)"
                 android:textColor="#505050"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="100dp"
@@ -221,14 +220,14 @@
                 android:layout_gravity="center_vertical"
                 android:text="回复"
                 android:textColor="#505050"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
             <TextView
                 android:layout_width="146dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text="查看回复"
                 android:textColor="#505050"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
          </LinearLayout>
 
@@ -264,7 +263,7 @@
                     android:layout_gravity="center_vertical"
                     android:text="24分钟前"
                     android:textColor="#505050"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
              </LinearLayout>
 
@@ -283,11 +282,10 @@
 
                 <ImageButton
                     android:id="@+id/imagebutton9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_view_style"
-                    android:contentDescription="@string/app_name"
-                    android:src="@drawable/dianliang1" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/undianliang"
+                    android:contentDescription="@string/app_name" />
 
                 <TextView
                     android:layout_width="100dp"
@@ -295,7 +293,7 @@
                     android:layout_gravity="center_vertical"
                     android:text="点亮(46)"
                     android:textColor="#505050"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="100dp"
@@ -303,14 +301,14 @@
                     android:layout_gravity="center_vertical"
                     android:text="回复"
                     android:textColor="#505050"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
                 <TextView
                     android:layout_width="146dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="查看回复(5)"
                     android:textColor="#505050"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
              </LinearLayout>
             <Button

@@ -2,32 +2,38 @@ package com.example.a12525.bhplanet;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.a12525.bhplanet.R;
-
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
-public class ziliaoActivity extends AppCompatActivity {
+public class tupianActivity extends AppCompatActivity implements View.OnClickListener {
+    private Button btn_botton_dialog;
     public static final int TAKE_PHOTO=1;
     private ImageView picture;
     private Uri imageUri;
@@ -35,9 +41,12 @@ public class ziliaoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ziliao);
+        setContentView(R.layout.activity_tupian);
+        btn_botton_dialog = (Button) findViewById(R.id.wancheng);
+        btn_botton_dialog.setOnClickListener(this);
+
         picture=(ImageView) findViewById(R.id.picture);
-        ImageButton choose =(ImageButton)findViewById(R.id.gaitou);
+        Button choose =(Button)findViewById(R.id.chuantu);
         /*take.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,18 +72,58 @@ public class ziliaoActivity extends AppCompatActivity {
         choose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ContextCompat.checkSelfPermission(ziliaoActivity.this,
+                if(ContextCompat.checkSelfPermission(tupianActivity.this,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.
                         PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(ziliaoActivity.this, new
+                    ActivityCompat.requestPermissions(tupianActivity.this, new
                             String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                 }else{
                     openAlbum();
                 }
             }
         });
-
     }
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.wancheng:
+                setDialog();
+                break;
+            case R.id.btn_choose_img:
+                Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btn_open_camera:
+                Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btn_cancel:
+                Toast.makeText(this, "3", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+    private void setDialog(){
+        Dialog mCameraDialog = new Dialog(this, R.style.BottomDialog);
+        LinearLayout root = (LinearLayout) LayoutInflater.from(this).inflate(
+                R.layout.button_dialog1, null);
+        //初始化视图
+        root.findViewById(R.id.btn_choose_img).setOnClickListener(this);
+        root.findViewById(R.id.btn_open_camera).setOnClickListener(this);
+        root.findViewById(R.id.btn_cancel).setOnClickListener(this);
+        mCameraDialog.setContentView(root);
+        Window dialogWindow = mCameraDialog.getWindow();
+        dialogWindow.setGravity(Gravity.BOTTOM);
+//        dialogWindow.setWindowAnimations(R.style.dialogstyle); // 添加动画
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes(); // 获取对话框当前的参数值
+        lp.x = 0; // 新位置X坐标
+        lp.y = 0; // 新位置Y坐标
+        lp.width = (int) getResources().getDisplayMetrics().widthPixels; // 宽度
+        root.measure(0, 0);
+        lp.height = root.getMeasuredHeight();
+
+        lp.alpha = 9f; // 透明度
+        dialogWindow.setAttributes(lp);
+        mCameraDialog.show();
+    }
+
+
     private void openAlbum()
     {
         Intent intent = new Intent("android.intent.action.GET_CONTENT");
@@ -166,5 +215,4 @@ public class ziliaoActivity extends AppCompatActivity {
             Toast.makeText(this,"failed to get image",Toast.LENGTH_SHORT).show();
         }
     }
-
 }

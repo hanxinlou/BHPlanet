@@ -11,16 +11,16 @@ import android.view.ViewGroup;
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private final int PAGER_COUNT = 4;
-    private MyFragment1 myFragment1 = null;
-    private MyFragment2 myFragment2 = null;
+    private ShouyeFragment ShouyeFragment = null;
+    private ShequFragment ShequFragment = null;
     private MyFragment3 myFragment3 = null;
     private MyFragment4 myFragment4 = null;
 
 
     public MyFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
-        myFragment1 = new MyFragment1();
-        myFragment2 = new MyFragment2();
+        ShouyeFragment = new ShouyeFragment();
+        ShequFragment = new ShequFragment();
         myFragment3 = new MyFragment3();
         myFragment4= new MyFragment4();
     }
@@ -47,10 +47,10 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position) {
             case DaohangActivity.PAGE_ONE:
-                fragment = myFragment1;
+                fragment = ShouyeFragment;
                 break;
             case DaohangActivity.PAGE_TWO:
-                fragment = myFragment2;
+                fragment = ShequFragment;
                 break;
             case DaohangActivity.PAGE_THREE:
                 fragment = myFragment3;

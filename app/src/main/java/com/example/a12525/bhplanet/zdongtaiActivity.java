@@ -16,14 +16,6 @@ public class zdongtaiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zdongtai);
 
-        ImageButton fanhui=(ImageButton)findViewById(R.id.fanhui);
-        fanhui.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(zdongtaiActivity.this,MainActivity.class);
-                startActivity(intent);
-            }
-        });
         Button ping=(Button)findViewById(R.id.ping);
         ping.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,7 +24,13 @@ public class zdongtaiActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        ImageButton fanhui=(ImageButton)findViewById(R.id.fanhui);
+        fanhui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

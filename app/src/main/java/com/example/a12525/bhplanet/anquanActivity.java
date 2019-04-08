@@ -20,8 +20,7 @@ public class anquanActivity extends AppCompatActivity {
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(anquanActivity.this,settingsActivity.class);
-                startActivity(intent);
+               finish();
             }
         });
         Button zhongxin=(Button)findViewById(R.id.zhongxin);

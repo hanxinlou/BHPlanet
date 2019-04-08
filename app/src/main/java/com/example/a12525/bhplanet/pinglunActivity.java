@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.a12525.bhplanet.R;
@@ -22,7 +24,7 @@ public class pinglunActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pinglun);
 
-        ImageButton zuotou=(ImageButton)findViewById(R.id.zuotou);
+        ImageView zuotou=(ImageView)findViewById(R.id.zuotou);
         zuotou.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,7 +32,13 @@ public class pinglunActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        ImageButton fanhui=(ImageButton)findViewById(R.id.fanhui);
+        fanhui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         initPing();                 //初始化水果数据
         PingAdapter adapter=new PingAdapter(pinglunActivity.this,R.layout.pinglun_item,pinglunList);
@@ -52,6 +60,9 @@ public class pinglunActivity extends AppCompatActivity {
             pinglunList.add(nima);
         }
     }
+
+
+
 
 }
 

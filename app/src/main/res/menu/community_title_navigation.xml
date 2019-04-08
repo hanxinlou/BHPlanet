@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_title_board_list"
+        android:title="@string/community_title_board_list" />
+    <item
+        android:id="@+id/navigation_title_recommend"
+        android:title="@string/community_title_recommend" />
+</menu>

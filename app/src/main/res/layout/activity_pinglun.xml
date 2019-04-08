@@ -39,13 +39,13 @@
         android:layout_height="71dp"
         android:orientation="horizontal">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/zuotou"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@drawable/button_view_style"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/icon1" />
+            android:src="@drawable/head1" />
 
         <LinearLayout
             android:layout_width="match_parent"

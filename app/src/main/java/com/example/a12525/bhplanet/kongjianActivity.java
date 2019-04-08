@@ -19,8 +19,7 @@ public class kongjianActivity extends AppCompatActivity {
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(kongjianActivity.this, anquanActivity.class);
-                startActivity(intent);
+                finish();
             }
 
         });

@@ -67,6 +67,7 @@ public class DaohangActivity extends AppCompatActivity implements RadioGroup.OnC
         root.findViewById(R.id.btn_choose_img).setOnClickListener(this);
         root.findViewById(R.id.btn_open_camera).setOnClickListener(this);
         root.findViewById(R.id.btn_cancel).setOnClickListener(this);
+        root.findViewById(R.id.quxiao).setOnClickListener(this);
         mCameraDialog.setContentView(root);
         Window dialogWindow = mCameraDialog.getWindow();
         dialogWindow.setGravity(Gravity.BOTTOM);
@@ -134,6 +135,8 @@ public class DaohangActivity extends AppCompatActivity implements RadioGroup.OnC
                 break;
             case R.id.wo:
                 vpager.setCurrentItem(PAGE_FOUR);
+               // Intent intent = new Intent(DaohangActivity.this,MainActivity.class);
+                //startActivity(intent);
                 break;
         }
     }
@@ -152,7 +155,11 @@ public class DaohangActivity extends AppCompatActivity implements RadioGroup.OnC
                 startActivity(intent);
                 break;
             case R.id.btn_cancel:
-                Toast.makeText(this, "3", Toast.LENGTH_SHORT).show();
+                Intent intent2=new Intent(DaohangActivity.this,manhuaActivity.class);
+                startActivity(intent2);
+                break;
+            case R.id.quxiao:
+                finish();
                 break;
         }
     }

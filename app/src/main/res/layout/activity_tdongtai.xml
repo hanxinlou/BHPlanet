@@ -103,7 +103,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="150dp"
-            android:text="用户昵称"
+            android:text="周哈哈"
             android:textSize="18sp"
             android:layout_height="20sp" />
         <TextView
@@ -123,7 +123,11 @@
             android:layout_marginStart="270dp"
             android:layout_marginLeft="270dp"
             android:layout_marginTop="150dp"
-            android:text="关注" />
+            android:switchTextAppearance="@style/My.TextAppearance"
+            android:thumb="@drawable/switch_thumb"
+            android:track="@drawable/switch_track"
+            android:textOff="关注"
+            android:textOn="已关注" />
     </RelativeLayout>
 
     <LinearLayout
@@ -144,7 +148,7 @@
             <TextView
                 android:id="@+id/uidd"
                 android:textSize="18sp"
-                android:text="nmsl"
+                android:text="周哈哈"
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
             <LinearLayout
@@ -255,7 +259,7 @@
                 <TextView
                     android:id="@+id/uidd1"
                     android:textSize="18sp"
-                    android:text="nmsl"
+                    android:text="周哈哈"
                     android:layout_width="match_parent"
                     android:layout_height="20dp" />
                 <LinearLayout
@@ -281,7 +285,7 @@
             android:id="@+id/content1"
             android:textSize="15sp"
             android:textColor="#000000"
-            android:text="真的不会做了"
+            android:text="呵呵呵呵"
             android:background="#ffffff"
             android:layout_width="match_parent"
             android:layout_height="20dp" />

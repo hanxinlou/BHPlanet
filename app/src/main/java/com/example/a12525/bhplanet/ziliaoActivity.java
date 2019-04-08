@@ -33,11 +33,21 @@ public class ziliaoActivity extends AppCompatActivity {
     private Uri imageUri;
     public static final int CHOOSE_PHOTO=2;
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ziliao);
         picture=(ImageView) findViewById(R.id.picture);
         ImageButton choose =(ImageButton)findViewById(R.id.gaitou);
+
+        ImageButton fanhui=(ImageButton)findViewById(R.id.fanhui);
+        fanhui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         /*take.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,5 +176,6 @@ public class ziliaoActivity extends AppCompatActivity {
             Toast.makeText(this,"failed to get image",Toast.LENGTH_SHORT).show();
         }
     }
+
 
 }

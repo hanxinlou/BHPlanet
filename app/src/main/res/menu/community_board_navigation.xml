@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_board_myboard"
+        android:title="@string/community_board_myboard" />
+    <item
+        android:id="@+id/navigation_board_comic"
+        android:title="@string/community_board_comic" />
+    <item
+        android:id="@+id/navigation_board_doutu"
+        android:title="@string/community_board_doutu" />
+    <item
+        android:id="@+id/navigation_board_original"
+        android:title="@string/community_board_original" />
+    <item
+        android:id="@+id/navigation_board_movie_tv"
+        android:title="@string/community_board_movie_tv" />
+    <item
+        android:id="@+id/navigation_board_self_made"
+        android:title="@string/community_board_self_made" />
+</menu>

@@ -97,7 +97,6 @@
         <activity android:name=".zhongxinActivity" />
         <activity android:name=".ziliaoActivity" />
         <activity android:name=".tupianActivity" />
-        <activity android:name=".tiaoshiActivity" />
         <activity android:name=".DoutuFragment" />
         <activity android:name=".GundongAdapter" />
         <activity android:name=".ManhuaFragment" />
@@ -108,6 +107,8 @@
         <activity android:name=".MyFragment4" />
         <activity android:name=".MyFragmentPagerAdapter" />
         <activity android:name=".test" />
+        <activity android:name=".tiaoshiActivity"/>
+        <activity android:name=".guanliActivity"/>
         <activity android:name=".TieziNeirongActivity" />
         <activity android:name=".ShequTieziActivity" />
         <activity android:name=".dongtuActivity" />

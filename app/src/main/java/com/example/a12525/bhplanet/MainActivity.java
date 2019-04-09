@@ -43,6 +43,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        Button zuopin=(Button)findViewById(R.id.zuopin);
+        zuopin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,guanliActivity.class);
+                startActivity(intent);
+            }
+        });
         Button fensi=(Button)findViewById(R.id.fensi);
         fensi.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -62,13 +62,4 @@ public class ShequTieziActivity extends AppCompatActivity{
         postsList.add(post1);
         postsList.add(post2);
     }
-
-
-//    @Override
-//    public boolean onPrepareOptionsMenu(Menu menu) {
-//
-//        menu.findItem(R.id.new_posts).setVisible(true);
-//        menu.findItem(R.id.search).setVisible(false);
-//        return super.onPrepareOptionsMenu(menu);
-//    }
 }

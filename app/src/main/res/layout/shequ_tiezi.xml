@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:descendantFocusability="blocksDescendants">
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,10 +16,10 @@
             android:id="@+id/community_posts_board_img"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:adjustViewBounds="true"
             android:maxWidth="30dp"
             android:maxHeight="30dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -66,7 +67,8 @@
                 android:layout_height="30dp"
                 android:layout_weight="1"
                 android:contentDescription="@string/community_posts_share_num"
-                app:srcCompat="@android:drawable/arrow_up_float" />
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/fenxiang" />
 
             <TextView
                 android:id="@+id/community_posts_share_num"
@@ -81,7 +83,8 @@
                 android:layout_height="30dp"
                 android:layout_weight="1"
                 android:contentDescription="@string/community_posts_zan_num"
-                app:srcCompat="@android:drawable/btn_star_big_on" />
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/zan" />
 
             <TextView
                 android:id="@+id/community_posts_zan_num"
@@ -96,7 +99,8 @@
                 android:layout_height="30dp"
                 android:layout_weight="1"
                 android:contentDescription="@string/community_posts_comment_num"
-                app:srcCompat="@android:drawable/stat_notify_chat" />
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ping" />
 
             <TextView
                 android:id="@+id/community_posts_comment_num"
@@ -107,6 +111,4 @@
 
         </LinearLayout>
     </RelativeLayout>
-
-
 </LinearLayout>

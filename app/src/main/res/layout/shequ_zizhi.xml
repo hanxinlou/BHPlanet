@@ -24,5 +24,4 @@
         android:layout_margin="8dp"
         android:text="@string/community_board_self_made"
         android:textFontWeight="bold" />
-
 </LinearLayout>

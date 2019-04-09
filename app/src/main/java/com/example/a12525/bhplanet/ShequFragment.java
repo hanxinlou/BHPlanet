@@ -52,7 +52,7 @@ public class ShequFragment extends Fragment implements View.OnClickListener {
 
         bottomNavigationView = (BottomNavigationView)getActivity().findViewById(R.id.community_title_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
+        replaceBoardFragment(new WodeBankuaiFragment());
     }
     @Override
     public void onClick(View view){

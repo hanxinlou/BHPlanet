@@ -24,11 +24,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
-            android:layout_alignRight="@+id/bianji"
+            android:layout_alignRight="@+id/fabiao"
             android:layout_marginRight="50dp"
             android:background="@drawable/xuanqu" />
         <Button
-            android:id="@+id/bianji"
+            android:id="@+id/fabiao"
             android:text="模板"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"

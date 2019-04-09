@@ -34,7 +34,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/bianji"
+            android:id="@+id/fabiao"
             android:layout_width="50dp"
             android:layout_height="fill_parent"
             android:layout_alignParentEnd="true"

@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class zizhiFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class ZizhiFragment extends Fragment implements AdapterView.OnItemClickListener {
     private GridView gridView1;
     private List<Map<String, Object>> dataList1;
     private int img1[] = { R.drawable.img1 };

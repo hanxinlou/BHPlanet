@@ -1,9 +1,8 @@
 package com.example.a12525.bhplanet;
 
-
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -12,11 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class MyFragment2 extends Fragment implements View.OnClickListener{
-
+public class ShequBankuaiFragment extends Fragment implements View.OnClickListener {
+    private ShequBankuaiFragment shequBankuaiFragment;
+    private ShequTuijianFragment shequTuijianFragment;
+    private Fragment[] fragments;
+    private int lastfragment;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.activity_shequ, container, false);
+        View view = inflater.inflate(R.layout.shequ_bankuai, container, false);
         return view;
     }
 
@@ -35,55 +37,43 @@ public class MyFragment2 extends Fragment implements View.OnClickListener{
         button4.setOnClickListener(this);
         button5.setOnClickListener(this);
         button6.setOnClickListener(this);
-        replaceFragment(new WodeBankuaiFragment());
+
+        replaceBoardFragment(new WodeBankuaiFragment());
+
+        fragments = new Fragment[]{ shequBankuaiFragment, shequTuijianFragment };
+        lastfragment = 0;
     }
     @Override
     public void onClick(View view){
         int id = view.getId();
         switch (id){
             case R.id.button:
-                replaceFragment(new WodeBankuaiFragment());
+                replaceBoardFragment(new WodeBankuaiFragment());
                 break;
             case R.id.button2:
-                replaceFragment(new ManhuaFragment());
+                replaceBoardFragment(new ManhuaFragment());
                 break;
             case R.id.button3:
-                replaceFragment(new DoutuFragment());
+                replaceBoardFragment(new DoutuFragment());
                 break;
             case R.id.button4:
-                replaceFragment(new YuanchuangFragment());
+                replaceBoardFragment(new YuanchuangFragment());
                 break;
             case R.id.button5:
-                replaceFragment(new YingshiFragment());
+                replaceBoardFragment(new YingshiFragment());
                 break;
             case R.id.button6:
-                replaceFragment(new ZizhiFragment());
+                replaceBoardFragment(new ZizhiFragment());
                 break;
             default:
                 break;
         }
     }
 
-    private void replaceFragment(Fragment fragment){
+    private void replaceBoardFragment(Fragment fragment){
         FragmentManager fragmentManager = getChildFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.community_board_content, fragment);
         transaction.commit();
     }
-
-    /*private NavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new NavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_board_comic:
-
-                    return true;
-                case R.id.navigation_board_doutu:
-            }
-            return false;
-        }
-    };*/
 }
-

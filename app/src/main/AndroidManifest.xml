@@ -97,15 +97,25 @@
         <activity android:name=".zhongxinActivity" />
         <activity android:name=".ziliaoActivity" />
         <activity android:name=".tupianActivity" />
+        <activity android:name=".DoutuFragment" />
+        <activity android:name=".GundongAdapter" />
+        <activity android:name=".ManhuaFragment" />
+        <activity android:name=".ShouyeFragment" />
+        <activity android:name=".ShequFragment" />
+        <activity android:name=".Posts" />
+        <activity android:name=".MyFragment3" />
+        <activity android:name=".MyFragment4" />
+        <activity android:name=".MyFragmentPagerAdapter" />
+        <activity android:name=".test" />
         <activity android:name=".tiaoshiActivity"/>
         <activity android:name=".guanliActivity"/>
-
         <activity android:name=".TieziNeirongActivity" />
         <activity android:name=".ShequTieziActivity" />
         <activity android:name=".dongtuActivity" />
         <activity android:name=".manhuaActivity" />
         <activity android:name=".DaohangActivity" />
         <activity android:name=".nmslActivity"></activity>
+        <activity android:name=".FatieActivity" />
     </application>
 
 </manifest>

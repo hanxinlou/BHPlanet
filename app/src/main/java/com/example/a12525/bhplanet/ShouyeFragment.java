@@ -1,15 +1,17 @@
 package com.example.a12525.bhplanet;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -64,6 +66,13 @@ public class ShouyeFragment extends Fragment {
         int[] to = {R.id.img, R.id.img_text};
         SimpleAdapter adapter = new SimpleAdapter(getActivity(), dataList, R.layout.bankuai, from, to);
         gridView.setAdapter(adapter);
-
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("ndxq", "position=" + position + "  id = " + id);
+                Intent intent = new Intent(getActivity(), pinglunActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

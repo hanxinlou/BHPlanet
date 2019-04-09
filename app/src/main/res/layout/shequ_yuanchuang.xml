@@ -24,5 +24,4 @@
         android:layout_margin="8dp"
         android:text="@string/original_sub_board"
         android:textFontWeight="bold" />
-
 </LinearLayout>

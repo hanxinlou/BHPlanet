@@ -19,8 +19,7 @@ public class lishiActivity extends AppCompatActivity {
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(lishiActivity.this, MainActivity.class);
-                startActivity(intent);
+                finish();
             }
             });
     }

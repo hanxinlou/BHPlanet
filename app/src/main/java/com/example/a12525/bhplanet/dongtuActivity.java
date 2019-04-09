@@ -45,6 +45,13 @@ public class dongtuActivity extends AppCompatActivity implements View.OnClickLis
 
         picture=(ImageView) findViewById(R.id.picture);
         Button choose =(Button)findViewById(R.id.chuantu);
+        Button quxiao=(Button) findViewById(R.id.quxiao);
+        quxiao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         /*take.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +103,8 @@ public class dongtuActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.btn_cancel:
                 Toast.makeText(this, "3", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.quxiao1:
+                finish();
         }
     }
     private void setDialog(){
@@ -106,6 +115,7 @@ public class dongtuActivity extends AppCompatActivity implements View.OnClickLis
         root.findViewById(R.id.btn_choose_img).setOnClickListener(this);
         root.findViewById(R.id.btn_open_camera).setOnClickListener(this);
         root.findViewById(R.id.btn_cancel).setOnClickListener(this);
+        root.findViewById(R.id.quxiao1).setOnClickListener(this);
         mCameraDialog.setContentView(root);
         Window dialogWindow = mCameraDialog.getWindow();
         dialogWindow.setGravity(Gravity.BOTTOM);

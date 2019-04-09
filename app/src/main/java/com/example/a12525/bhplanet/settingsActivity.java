@@ -19,8 +19,8 @@ public class settingsActivity extends AppCompatActivity {
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(settingsActivity.this,MainActivity.class);
-                startActivity(intent);
+                finish();
+
             }
         });
 

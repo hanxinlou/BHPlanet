@@ -18,8 +18,7 @@ public class shoucangActivity extends AppCompatActivity {
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(shoucangActivity.this,MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 

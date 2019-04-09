@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">导航</string>
+    <string name="app_name">脑洞星球</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -10,5 +10,41 @@
     <string name="tab_menu_pay">动态</string>
     <string name="tab_menu_setting">我</string>
 
-
+    <string name="title_home">首页</string>
+    <string name="title_community">社区</string>
+    <string name="title_new">新建</string>
+    <string name="title_latest_msg">动态</string>
+    <string name="title_mypage">我</string>
+    <!-- Strings related to home -->
+    <string name="home_img">首页图片</string>
+    <string name="home_img_classification">类别</string>
+    <string name="home_img_text">图片描述</string>
+    <string name="home_img_movie_tv">影视</string>
+    <string name="home_img_anime">动画</string>
+    <string name="home_img_comic">漫画</string>
+    <!-- Strings related to community posts -->
+    <string name="community_posts_img">帖子列表左上角的板块图片</string>
+    <string name="community_posts_board_name">（帖子上的）版块名</string>
+    <string name="community_posts_title">帖子标题</string>
+    <string name="community_posts_user_id">po主id</string>
+    <string name="community_posts_share_num">分享数</string>
+    <string name="community_posts_zan_num">点赞数</string>
+    <string name="community_posts_comment_num">评论数</string>
+    <!-- Strings related to community menu -->
+    <string name="community_title_board_list">版块</string>
+    <string name="community_title_recommend">推荐</string>
+    <string name="community_board_myboard">我的版块</string>
+    <string name="community_board_comic">漫画区</string>
+    <string name="community_board_doutu">斗图区</string>
+    <string name="community_board_original">原创区</string>
+    <string name="community_board_movie_tv">影视区</string>
+    <string name="community_board_self_made">自制版块</string>
+    <string name="community_board_subtitle">版块分标题</string>
+    <string name="community_main_board">主版</string>
+    <string name="movie_tv_sub_board">影视分版</string>
+    <string name="original_sub_board">原创分版</string>
+    <string name="doutu_sub_board">斗图分版</string>
+    <string name="comic_sub_board">漫画分版</string>
+    <string name="comic_sub_popular_board">热门漫画版块</string>
+    <string name="movie_tv_popular_board">热门影视版块</string>
 </resources>

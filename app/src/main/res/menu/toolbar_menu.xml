@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/new_posts"
+        android:icon="@drawable/plus_circle"
+        android:orderInCategory="100"
+        android:title="发帖" />
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/search"
+        android:orderInCategory="100"
+        android:title="搜索" />
+
+</menu>

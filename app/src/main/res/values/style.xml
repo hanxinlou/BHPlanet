@@ -24,6 +24,13 @@
             <item name="android:windowEnterAnimation">@anim/dialog_in</item>
             <item name="android:windowExitAnimation">@anim/dialog_iout</item>
         </style>
+    <style name="My.TextAppearance" parent="@style/TextAppearance.AppCompat.Widget.Switch">
+
+        <item name="android:textSize">20dp</item>
+
+        <item name="android:textColor">#000</item>
+
+    </style>
 
 
 

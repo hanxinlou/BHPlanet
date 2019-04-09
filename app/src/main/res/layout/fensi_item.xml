@@ -2,16 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp">
     <ImageView
              android:id="@+id/fruit_image"
-             android:layout_width="wrap_content"
+        android:layout_centerVertical="true"
+             android:layout_width="50dp"
            android:layout_height="50dp" />
 
          <TextView
              android:id="@+id/fruit_name"
+             android:layout_centerVertical="true"
              android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+             android:layout_marginLeft="50dp"
+             android:layout_marginStart="50dp"
              android:layout_gravity="center_vertical"
-             android:layout_marginLeft="10dp"
              />
+    <Switch
+        android:id="@+id/guanfou"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:textOn="已关注"
+        android:textOff="关注"
+        android:track="@drawable/switch_track"
+        android:thumb="@drawable/switch_thumb"
+        android:switchTextAppearance="@style/My.TextAppearance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    </RelativeLayout>
 </LinearLayout>

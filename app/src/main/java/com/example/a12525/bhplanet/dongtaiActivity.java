@@ -26,7 +26,14 @@ public class dongtaiActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        ImageView tou=(ImageView) findViewById(R.id.tou);
+        tou.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(dongtaiActivity.this,tdongtaiActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }

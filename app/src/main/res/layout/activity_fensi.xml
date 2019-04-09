@@ -9,7 +9,7 @@
         android:background="#fff176" >
 
         <TextView
-            android:id="@+id/anquan"
+            android:id="@+id/fensi"
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

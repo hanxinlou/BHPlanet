@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="50dp">
+    <ImageView
+        android:id="@+id/gtou"
+        android:src="@drawable/head"
+        android:layout_width="50dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/button_view_style"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/gname"
+        android:text="江澄夫人"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Switch
+        android:id="@+id/guanfou"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:track="@drawable/switch_track"
+        android:thumb="@drawable/switch_thumb"
+        android:switchTextAppearance="@style/My.TextAppearance"
+        android:textOff="关注"
+        android:textOn="已关注" />
+
+</RelativeLayout>
+</LinearLayout>

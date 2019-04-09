@@ -24,5 +24,12 @@ public class tdongtaiActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        ImageButton fanhui=(ImageButton)findViewById(R.id.fanhui);
+        fanhui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

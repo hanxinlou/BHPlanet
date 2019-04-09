@@ -97,7 +97,8 @@
         <activity android:name=".zhongxinActivity" />
         <activity android:name=".ziliaoActivity" />
         <activity android:name=".tupianActivity" />
-        <activity android:name=".tiaoshiActivity" />
+        <activity android:name=".tiaoshiActivity"/>
+        <activity android:name=".guanliActivity"/>
 
         <activity android:name=".TieziNeirongActivity" />
         <activity android:name=".ShequTieziActivity" />

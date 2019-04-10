@@ -1,143 +1,109 @@
 package com.example.a12525.bhplanet;
 
-
-
-import android.support.v4.view.ViewPager;
+import android.app.Dialog;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-
-
-import java.util.ArrayList;
-
-
-
-import android.graphics.Color;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
-public class guanliActivity extends FragmentActivity implements OnClickListener,
-        OnPageChangeListener {
 
-    // 布局文件中自己的myvirwpager
-    private ViewPager myvirwpager;
-    // 选项卡中的三个Button
-    private Button one, two;
-    // 指示标签的ImageView
-    private ImageView huadong1;
-    // 指示标签的横坐标
-    private float cursorX = 0;
-    // 定义获取所有按钮的宽度数组
-    private int[] WidrhArgs;
-    // 定义所有标题按钮的数组
-    private Button[] ButtonArgs;
-    // fragment的集合
-    private ArrayList<Fragment> list;
-    // viewpage适配器
-    private guanlifragmentViewpagerAdapter adapter;
-    FragmentManager fm=getSupportFragmentManager();
+/**
+ * Created by Coder-pig on 2015/8/28 0028.
+ */
+public class guanliActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener,
+        ViewPager.OnPageChangeListener{
+    private Button btn_botton_dialog;
+    //UI Objects
+    private TextView txt_topbar;
+    private RadioGroup rg_tab_bar;
+    private RadioButton zuopinguan;
+    private RadioButton tiezi;
+    private ViewPager vpager;
+
+    private guanlifragmentViewpagerAdapter mAdapter;
+
+    //几个代表页面的常量
+    public static final int PAGE_ONE = 0;
+    public static final int PAGE_TWO = 1;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zuopinguanli);
-        Init();
+
+
+        mAdapter = new guanlifragmentViewpagerAdapter(getSupportFragmentManager());
+        bindViews();
+        zuopinguan.setChecked(true);
     }
 
-    private void Init() {
-        // 获取控件
-        myvirwpager = (ViewPager) findViewById(R.id.myviewpager);
-        one = (Button) findViewById(R.id.zuopin);
-        two = (Button) findViewById(R.id.tiezi );
-        // 初始化按钮数组
-        ButtonArgs = new Button[] { one, two };
-        // 设置指示标签颜色为红色
-        // 按钮单机事件
-        one.setOnClickListener(this);
-        two.setOnClickListener(this);
 
-        // 将fragment放进集合，并初始化适配器
-        list = new ArrayList<Fragment>();
-        list.add(new guanliFragment());
-        list.add(new guanliFragment2());
-        adapter = new guanlifragmentViewpagerAdapter(fm, list);
-        myvirwpager.setAdapter(adapter);
-        // viewpage监听事件，重写onPageSelected()方法，实现左右滑动页面
-        myvirwpager.setOnPageChangeListener(this);
-        // 初始按钮颜色
-        resetButtonColor();
-        // 默认第一页
-        one.setTextColor(Color.parseColor("#000000"));
-    }
 
-    // 设置按钮颜色
-    public void resetButtonColor() {
-        one.setBackgroundColor(Color.parseColor("#e5e5e5"));
-        two.setBackgroundColor(Color.parseColor("#e5e5e5"));
-        one.setTextColor(Color.BLACK);
-        two.setTextColor(Color.BLACK);
+    private void bindViews() {
+        //txt_topbar = (TextView) findViewById(R.id.txt_to pbar);
+        rg_tab_bar = (RadioGroup) findViewById(R.id.rg_tab_bar);
+        zuopinguan = (RadioButton) findViewById(R.id.zuopinguan);
+        tiezi = (RadioButton) findViewById(R.id.tiezi);
+        rg_tab_bar.setOnCheckedChangeListener(this);
 
+
+        rg_tab_bar.check(R.id.rg_tab_bar);
+        vpager = (ViewPager) findViewById(R.id.vpager);
+        vpager.setAdapter(mAdapter);
+        vpager.setCurrentItem(0);
+        vpager.addOnPageChangeListener(this);
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.zuopin:
-                myvirwpager.setCurrentItem(0);
-                cursorAnim(0);
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (checkedId) {
+            case R.id.zuopinguan:
+                vpager.setCurrentItem(PAGE_ONE);
                 break;
             case R.id.tiezi:
-                myvirwpager.setCurrentItem(1);
-                cursorAnim(1);
+                vpager.setCurrentItem(PAGE_TWO);
                 break;
         }
     }
 
-    @Override
-    public void onPageScrollStateChanged(int arg0) {
 
+
+
+    //重写ViewPager页面切换的处理方法
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
     }
 
     @Override
-    public void onPageScrolled(int arg0, float arg1, int arg2) {
-
+    public void onPageSelected(int position) {
     }
 
     @Override
-    public void onPageSelected(int arg0) {
-
-        if (WidrhArgs == null) {
-            WidrhArgs = new int[] { one.getWidth(), two.getWidth()};
+    public void onPageScrollStateChanged(int state) {
+        //state的状态有三个，0表示什么都没做，1正在滑动，2滑动完毕
+        if (state == 2) {
+            switch (vpager.getCurrentItem()) {
+                case PAGE_ONE:
+                    zuopinguan.setChecked(true);
+                    break;
+                case PAGE_TWO:
+                    tiezi.setChecked(true);
+                    break;
+            }
         }
-
-        // 根据每次选中的按钮，重置颜色
-        resetButtonColor();
-        // 将滑动到当前的标签下，改动标签颜色
-        ButtonArgs[arg0].setBackgroundColor(Color.parseColor("#FFFFFF"));
-        cursorAnim(arg0);
-
-    }
-
-    // 指示器的跳转，传入当前所处的页面的下标
-    public void cursorAnim(int curItem) {
-        // 每次调用，就将指示器的横坐标设置为0，即开始的位置
-        cursorX = 0;
-        // 再根据当前的curItem来设置指示器的宽度
-        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) huadong1
-                .getLayoutParams();
-        // 减去边距*2，以对齐标题栏文字
-        lp.width = WidrhArgs[curItem] - ButtonArgs[0].getPaddingLeft() * 2;
-        huadong1.setLayoutParams(lp);
-        // 循环获取当前页之前的所有页面的宽度
-        for (int i = 0; i < curItem; i++) {
-            cursorX = cursorX + ButtonArgs[i].getWidth();
-        }
-        // 再加上当前页面的左边距，即为指示器当前应处的位置
-        huadong1.setX(cursorX + ButtonArgs[curItem].getPaddingLeft());
     }
 }

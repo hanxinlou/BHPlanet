@@ -98,14 +98,18 @@
         <activity android:name=".ziliaoActivity" />
         <activity android:name=".tupianActivity" />
         <activity android:name=".tiaoshiActivity"/>
-        <activity android:name=".guanliActivity"/>
+        <activity android:name=".guanliActivity">
+        <intent-filter>
+            <action android:name="com.example.a12525.bhplanet.ACTION_ZUO" />
 
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+    </activity>
         <activity android:name=".TieziNeirongActivity" />
         <activity android:name=".ShequTieziActivity" />
         <activity android:name=".dongtuActivity" />
         <activity android:name=".manhuaActivity" />
         <activity android:name=".DaohangActivity" />
-        <activity android:name=".nmslActivity"></activity>
     </application>
 
 </manifest>

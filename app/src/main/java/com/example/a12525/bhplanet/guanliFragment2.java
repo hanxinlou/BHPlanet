@@ -8,12 +8,13 @@ import android.view.ViewGroup;
 
 public class guanliFragment2 extends Fragment {
 
-    private String flag; //判断是哪个页面过来的数据
+    public guanliFragment2() {
+    }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v2=inflater.inflate(R.layout.guanlifragment2, container,false);
-        return v2;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.guanlifragment2, container, false);
+        return view;
     }
 }
 

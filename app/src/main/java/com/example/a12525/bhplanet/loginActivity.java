@@ -27,15 +27,14 @@ public class loginActivity extends AppCompatActivity {
 
     private EditText phonenumber,passwd;
     private Button login,regist;
-    private  String phonenumber1,passwd1,phonenumber2,passwd2;
+    private  String phonenumber2,passwd2;
     private Map<String, String> mydata = new HashMap<>();
+    private String code;
     @SuppressLint("HandlerLeak")
     Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             if(msg.what==0x123) {
-                phonenumber2=phonenumber.getText().toString();
-                passwd2=passwd.getText().toString();
-                if(phonenumber1.equals(phonenumber2)&&passwd1.equals(passwd2))
+                if(code.equals("dxbvEcEX7d"))
                 {
                     Toast.makeText(loginActivity.this, "登陆成功", Toast.LENGTH_SHORT).show();
                 }
@@ -43,6 +42,14 @@ public class loginActivity extends AppCompatActivity {
                 {
                     Toast.makeText(loginActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
                 }
+//                if(phonenumber1.equals(phonenumber2)&&passwd1.equals(passwd2))
+//                {
+//                    Toast.makeText(loginActivity.this, "登陆成功", Toast.LENGTH_SHORT).show();
+//                }
+//                else
+//                {
+//                    Toast.makeText(loginActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
+//                }
 //                nickname.setText(mydata.get("user_name"));
 //                uid.setText(mydata.get("user_id"));
 ////                sexx.setText(mydata.get("birthday"));
@@ -61,10 +68,23 @@ public class loginActivity extends AppCompatActivity {
         passwd=(EditText)findViewById(R.id.passwd);
         login=(Button)findViewById(R.id.login);
         regist=(Button)findViewById(R.id.regist);
+        phonenumber2=phonenumber.getText().toString();
+        passwd2=passwd.getText().toString();
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getDatasync();
+                Intent intent=new Intent(loginActivity.this,DaohangActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        regist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(loginActivity.this,registActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -96,15 +116,14 @@ public class loginActivity extends AppCompatActivity {
     private void parseData(String resData){
         try{
             JSONObject jsonObject = new JSONObject(resData);
-            Log.d("ndxq", "jsonObject==" + jsonObject);
-            JSONObject dataObject =jsonObject.getJSONObject("content");
-            Log.d("ndxq", "jsonObject2==" + dataObject);
+            //Log.d("ndxq", "jsonObject==" + jsonObject);
+//            JSONObject dataObject =jsonObject.getJSONObject("content");
+//            Log.d("ndxq", "jsonObject2==" + dataObject);
+               code =jsonObject.optString("code");
 
 //            mydata.clear();
 //            mydata.put("phonenumber1", dataObject.optString("user_id"));
 //            mydata.put("passwd1", dataObject.optString("user_passwd"));
-                phonenumber1=mydata.get("user_id");
-                passwd1=mydata.get("user_passwd");
 //            mydata.put("birthday", dataObject.optString("birthday"));
 //            mydata.put("sex", dataObject.optString("sex"));
 //            mydata.put("introduce", dataObject.optString("introduce"));

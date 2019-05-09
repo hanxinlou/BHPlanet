@@ -36,5 +36,5 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.6'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation("com.squareup.okhttp3:okhttp:3.14.0")
-
+    testCompile 'junit:junit:4.12'
 }

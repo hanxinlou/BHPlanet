@@ -1,26 +1,69 @@
 package com.example.a12525.bhplanet;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.a12525.bhplanet.R;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 public class guanzhuActivity extends AppCompatActivity {
     private List<guanzhu> guanzhuList=new ArrayList<>();
+    private  Map<String, ArrayList<String>> mydata = new HashMap<>();
+    private  CircleImageView  gtouxiang;
+    private TextView gnicheng;
+    private String author_name;
+    private String picture;
+    private ArrayList<String> author_list;
 
+    Handler handler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            if(msg.what==0x123) {
+                    author_list=mydata.get("author_name");
+
+//                nickname.setText(mydata.get("user_name"));
+//                uid.setText(mydata.get("user_id"));
+//                sexx.setText(mydata.get("birthday"));
+//                birthh.setText(mydata.get("sex"));
+//                qianmingg.setText(mydata.get("introduce"));
+                //picture.setImageResource(Integer.parseInt(mydata.get("picture")));
+
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guanzhu);
         ImageButton fanhui=(ImageButton)findViewById(R.id.fanhui);
+        Intent intent = getIntent();
+
+        String id = intent.getStringExtra("id");
+        getDatasync(id);
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,6 +102,97 @@ public class guanzhuActivity extends AppCompatActivity {
             guanzhuList.add(apple9);
             guanzhu apple10=new guanzhu(R.drawable.head8,"团子");
             guanzhuList.add(apple10);
+        }
+    }
+    public void getDatasync(String id){
+        new Thread(() -> {
+            try {
+                OkHttpClient client = new OkHttpClient();//创建OkHttpClient对象
+                Request request = new Request.Builder()
+                        .url("https://nei.netease.com/api/apimock/53f5f289ef8648edd032ecb28f5ac8da/user/concern?user_id"+id+"=&currpage=" + id)//请求接口。如果需要传参拼接到接 口后面。
+                        .build();//创建Request 对象
+                Call call = client.newCall(request);
+                Response response = call.execute();//得到Response 对象
+                if (response.isSuccessful()) {
+                    Log.d("ndxq","response.code()=="+response.code());
+                    Log.d("ndxq","response.message()=="+response.message());
+                    String resData = response.body().string();
+                    Log.d("ndxq","res=="+resData);
+                    //此时的代码执行在子线程，修改UI的操作请使用handler跳转到UI线程。
+                    parseData(resData);  //  处理对象的函数
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            handler.sendEmptyMessage(0x123);
+        }).start();
+    }
+
+
+    private void parseData(String resData){
+        try{
+            JSONObject jsonObject = new JSONObject(resData);
+            JSONObject data = jsonObject.getJSONObject("data");
+            JSONArray info = data.getJSONArray("info");
+            ArrayList<String> author_name_list,picture_list;
+            author_name_list = new ArrayList<String>();
+            picture_list = new ArrayList<String>();
+            for(int i = 0; i < info.length(); i++) {
+                JSONObject object = info.getJSONObject(i);
+                author_name = object.optString("author_name");
+                picture = object.optString("picture");
+
+                author_name_list.add(author_name);
+                picture_list.add(picture);
+            }
+
+            mydata.put("author_name", author_name_list);
+            mydata.put("picture",picture_list);
+
+//            for(int i = 0; i < jsonArray.length(); i++) {
+//                JSONObject object = jsonArray.getJSONObject(i);
+//                author_name = object.optString("author_name");
+////                String picture = object.optString("picture");
+              Log.d("ndxq", "author_name==" + author_name);
+//                Log.d("ndxq", "reply_id==" + reply_id);
+               // getres = "compose_id==" + compose_id;
+
+            //mydata.clear();
+//            mydata.put("user_name", dataObject.optString("user_name"));
+//            mydata.put("author_id",dataObject.optString("author_id"));
+            //mydata.put("author_name",jsonObject2.optString("author_name"));
+//            mydata.put("author_name",jsonObject2.optString("author_name"));
+//            mydata.put("picture", jsonObject2.optString("picture"));
+//            mydata.put("birthday", dataObject.optString("birthday"));
+//            mydata.put("sex", dataObject.optString("sex"));
+//            mydata.put("introduce", dataObject.optString("introduce"));
+//            mydata.put("picture", dataObject.optString("picture"));
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+    public class guanAdapter extends ArrayAdapter<guanzhu> {
+
+        private int resourceId;
+        public guanAdapter(Context context, int textViewResourceId, List<guanzhu> objects){
+            super(context,textViewResourceId,objects);
+            resourceId=textViewResourceId;
+        }
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent){
+            guanzhu guanzhu=getItem(position);           //获取当前项的实例
+            View view= LayoutInflater.from(getContext()).inflate(resourceId,parent,false);
+            ImageView Gtou=(ImageView)view.findViewById(R.id.gtou);
+            TextView Gname=(TextView) view.findViewById(R.id.gname);
+            // Switch Guanfou =(Switch)view.findViewById(R.id.guanfou);
+
+            Gtou.setImageResource(guanzhu.getGtou());
+            for(int i = 0; i < author_list.size();i++){
+                Gname.setText(author_list.get(i));
+            }
+            return view;
         }
     }
 

@@ -67,6 +67,7 @@ public class MyFragment4 extends Fragment implements View.OnClickListener{
                 break;
            case R.id.guanzhu:
                 Intent intent2=new Intent("com.example.a12525.bhplanet.ACTION_GUAN");
+                intent2.putExtra("id", "1");
                 startActivity(intent2);
                 break;
             case R.id.fensi:

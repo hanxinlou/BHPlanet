@@ -11,6 +11,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +22,23 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 public class ShouyeFragment extends Fragment {
+    private Map<String, ArrayList<String>>map = new HashMap<>();
     private ImageButton sousuo;
     private List<HomeImage>dataList;
     private HomeImage homeImage;
@@ -38,16 +51,22 @@ public class ShouyeFragment extends Fragment {
     private ImageView iv;
     private int move;
     private boolean running = true;
+
+    private ArrayList<String> opus_title_list, opus_id_list, picture_list, type_list;
+
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler(){
         //每隔5秒自动实现vp的position加1
         public void handleMessage(Message msg) {
             vp.setCurrentItem(vp.getCurrentItem()+1);
             System.out.println(vp.getCurrentItem());
+            if(msg.what==0x123) {
+                showGridview();
+            }
             if(running){
                 handler.sendEmptyMessageDelayed(0, 3000);
             }
-        };
+        }
     };
 
     @Override
@@ -59,12 +78,13 @@ public class ShouyeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.activity_shouye, container, false);
+        String user_id = Client.user_id;
+        getDatasync(user_id);
         ll = (LinearLayout)view.findViewById(R.id.ll2);
         vp = (ViewPager)view.findViewById(R.id.pager);
         iv = (ImageView)view.findViewById(R.id.iv2);
         imagelist = new ArrayList<>();
         showPager(view);
-        showGridview(view);
         sousuo = (ImageButton)view.findViewById(R.id.sousuo);
         sousuo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +123,7 @@ public class ShouyeFragment extends Fragment {
             @Override
             public void onGlobalLayout() {
                 // TODO Auto-generated method stub
-                //内部子空间的距离获取
+                //内部子空间的距离获取f
                 move = ll.getChildAt(1).getLeft()-ll.getChildAt(0).getLeft();
             }
         });
@@ -174,19 +194,17 @@ public class ShouyeFragment extends Fragment {
         handler.sendEmptyMessageDelayed(0, 3000);
     }
 
-    void showGridview(View view) {
-        int img[] = { R.drawable.home_grid_img1, R.drawable.home_grid_img2, R.drawable.home_grid_img3,
-                R.drawable.home_grid_img4, R.drawable.home_grid_img5, R.drawable.home_grid_img6, R.drawable.home_grid_img7};
-        String home_img_classification[]={"萌宠", "动画", "影视", "漫画", "漫画", "漫画", "影视" };
-        String home_img_text[]={"目不转睛", "搞笑片段", "苏大强系列", "996", "一代宗师", "野良神", "你好骚啊"};
+    void showGridview() {
+        Log.d("shouye", String.valueOf(opus_title_list.size()));
+
         dataList = new ArrayList<>();
-        for (int i = 0; i< img.length; i++){
-            homeImage = new HomeImage(img[i], home_img_classification[i], home_img_text[i]);
+        for (int i = 0; i< opus_title_list.size(); i++){
+            homeImage = new HomeImage(image[i], type_list.get(i), opus_title_list.get(i), opus_id_list.get(i));
             dataList.add(homeImage);
         }
         HomeImageAdapter adapter = new HomeImageAdapter(dataList);
 
-        recyclerView = (RecyclerView)view.findViewById(R.id.home_view);
+        recyclerView = (RecyclerView)getActivity().findViewById(R.id.home_view);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -225,6 +243,7 @@ public class ShouyeFragment extends Fragment {
                     int position = holder.getAdapterPosition();
                     HomeImage homeImage = data.get(position);
                     Intent intent = new Intent(getActivity(), pinglunActivity.class);
+                    intent.putExtra("home_img_id", homeImage.getItemId());
                     startActivity(intent);
                 }
             });
@@ -234,7 +253,7 @@ public class ShouyeFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
             HomeImage homeImage = data.get(i);
-            viewHolder.home_img.setImageResource(homeImage.getImageId());
+            Glide.with(Objects.requireNonNull(getActivity())).load(homeImage.getImageId()).into(viewHolder.home_img);
             viewHolder.home_img_classification.setText(homeImage.getHome_img_classification());
             viewHolder.home_img_text.setText(homeImage.getHome_img_text());
         }
@@ -255,35 +274,88 @@ public class ShouyeFragment extends Fragment {
         private int imageId;
         private String home_img_classification;
         private String home_img_text;
+        private String itemId;
 
-        HomeImage(int imageId, String home_img_classification, String home_img_text){
+        HomeImage(int imageId, String home_img_classification, String home_img_text, String itemId){
             this.imageId = imageId;
             this.home_img_classification = home_img_classification;
             this.home_img_text = home_img_text;
+            this.itemId = itemId;
         }
 
         public String getHome_img_classification() {
             return home_img_classification;
         }
 
-        public void setHome_img_classification(String home_img_classification) {
-            this.home_img_classification = home_img_classification;
-        }
-
         public String getHome_img_text() {
             return home_img_text;
-        }
-
-        public void setHome_img_text(String home_img_text) {
-            this.home_img_text = home_img_text;
         }
 
         public int getImageId() {
             return imageId;
         }
 
-        public void setImageId(int imageId) {
-            this.imageId = imageId;
+        public String getItemId() {
+            return itemId;
         }
+    }
+
+    public void getDatasync(String user_id){
+        new Thread(() -> {
+            try {
+                String url = "https://nei.netease.com/api/apimock/53f5f289ef8648edd032ecb28f5ac8da/home/list?user_id=&currpage=";
+                Request request = new Request.Builder()
+                            .url(url)//请求接口。如果需要传参拼接到接口后面。
+                        .build();//创建Request 对象
+                Response response = null;
+                response = Client.client.newCall(request).execute();//得到Response 对象
+                if (response.isSuccessful()) {
+                    Log.d("shouye","response.code()=="+response.code());
+                    Log.d("shouye","response.message()=="+response.message());
+                    String resData = response.body().string();
+                    Log.d("shouye","res=="+resData);
+                    //此时的代码执行在子线程，修改UI的操作请使用handler跳转到UI线程。
+                    parseData(resData);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            handler.sendEmptyMessage(0x123);
+        }).start();
+    }
+
+    private void parseData(String resData){
+        try{
+            JSONObject jsonObject = new JSONObject(resData);
+            JSONObject opus_data = jsonObject.getJSONObject("opus_data");
+            JSONArray opus_info = opus_data.getJSONArray("opus_info");
+
+            JSONObject carousel_data = jsonObject.getJSONObject("carousel_data");
+            JSONArray carousel_info = carousel_data.getJSONArray("carousel_info");
+
+            opus_title_list = new ArrayList<>();
+            opus_id_list = new ArrayList<>();
+            picture_list = new ArrayList<>();
+            type_list = new ArrayList<>();
+
+            for(int i = 0; i < opus_info.length(); i++) {
+                JSONObject object = opus_info.getJSONObject(i);
+                String opus_title = object.optString("opus_title");
+                String opus_id = object.optString("opus_id");
+                String picture = object.optString("picture");
+                String type = String.valueOf(object.optInt("type"));
+
+                opus_title_list.add(opus_title);
+                opus_id_list.add(opus_id);
+                picture_list.add(picture);
+                type_list.add(type);
+            }
+
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }

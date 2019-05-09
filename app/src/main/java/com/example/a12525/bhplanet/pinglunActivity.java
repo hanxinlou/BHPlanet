@@ -42,6 +42,8 @@ public class pinglunActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pinglun);
+        Intent intent = getIntent();
+        String home_img_id = intent.getStringExtra("home_img_id");
 
         mLayout = (LinearLayout) findViewById(R.id.layout);
         mEdit = (EditText) findViewById(R.id.et_discuss);

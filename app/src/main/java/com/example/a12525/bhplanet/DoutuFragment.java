@@ -2,7 +2,6 @@ package com.example.a12525.bhplanet;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +18,8 @@ import java.util.Map;
 public class DoutuFragment extends Fragment implements AdapterView.OnItemClickListener {
     private GridView gridView1, gridView2;
     private List<Map<String, Object>> dataList1, dataList2;
-    private int img1[] = { R.drawable.img1 },
-                img2[] = { R.drawable.img2, R.drawable.img2, R.drawable.img2 };
+    private int img1[] = { R.drawable.com_board2_img1 },
+                img2[] = { R.drawable.com_board2_img2, R.drawable.com_board2_img3, R.drawable.com_board2_img4 };
     private String  name1[]={"斗图总榜"},
                     name2[]={"超人回来了", "小刘鸭", "蘑菇头"};
 
@@ -30,17 +29,13 @@ public class DoutuFragment extends Fragment implements AdapterView.OnItemClickLi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.shequ_doutu, container, false);
+        initView(view);
         return view;
     }
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        showGridview();
-    }
 
-    private void showGridview() {
-        gridView1 = (GridView)getActivity().findViewById(R.id.board_item1);
-        gridView2 = (GridView)getActivity().findViewById(R.id.board_item2);
+    private void initView(View view) {
+        gridView1 = (GridView)view.findViewById(R.id.board_item1);
+        gridView2 = (GridView)view.findViewById(R.id.board_item2);
 
         dataList1 = new ArrayList<>();
         dataList2 = new ArrayList<>();
@@ -56,7 +51,7 @@ public class DoutuFragment extends Fragment implements AdapterView.OnItemClickLi
             map.put("text", name[i]);
             dataList.add(map);
         }
-        SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity(), dataList, R.layout.bankuai, from, to);
+        SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity(), dataList, R.layout.bankuai_tupian, from, to);
         gridView.setAdapter(simpleAdapter);
         gridView.setOnItemClickListener(this);
     }

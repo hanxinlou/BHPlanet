@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Button;
 
-import com.example.a12525.bhplanet.R;
+//import com.example.a12525.bhplanet.R;
 
 public class anquanActivity extends AppCompatActivity {
 

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:id="@+id/relativeLayout"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.a12525.bhplanet.pinglunActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <RelativeLayout
@@ -14,38 +17,46 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/fanhui" />
+
         <TextView
             android:id="@+id/anquan"
-            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="搞笑片段"
             android:layout_centerInParent="true"
-            android:textStyle="bold"
             android:textColor="#000000"
             android:textSize="25sp"
-            android:text="脑洞星球" />
+            android:textStyle="bold" />
 
+</RelativeLayout>
 
-    </RelativeLayout>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
-    <VideoView
+    <ImageView
         android:id="@+id/video1"
-        android:layout_width="match_parent"
+        android:src="@drawable/home_grid_img2"
+        android:layout_width="wrap_content"
         android:layout_height="170dp" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="71dp"
+        android:layout_marginLeft="3dp
+"
         android:orientation="horizontal">
 
-        <ImageView
+        <com.example.a12525.bhplanet.CircleImageView
             android:id="@+id/zuotou"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_gravity="center"
             android:background="@drawable/button_view_style"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/head1" />
+            android:src="@drawable/img1" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -61,16 +72,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="出来挨骂"
+                    android:text="大家好我叫沈剑心，是稻香村的一名保安"
                     android:textColor="#090808"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ID 周哈哈"
+                    android:text="ID 归酣酣"
                     android:textColor="#505050"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -80,12 +91,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
         android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/imagebutton3"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+        <ImageView
+            android:id="@+id/dianzan"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="@drawable/unzan"
             android:contentDescription="@string/app_name" />
 
@@ -97,12 +109,12 @@
             android:textColor="#505050"
             android:textSize="20sp" />
 
-        <ImageButton
-            android:id="@+id/imagebutton4"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:contentDescription="@string/app_name"
-            android:background="@drawable/ping" />
+        <Button
+            android:id="@+id/pinglun"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ping"
+            android:contentDescription="@string/app_name" />
 
         <TextView
             android:layout_width="48dp"
@@ -112,10 +124,10 @@
             android:textColor="#505050"
             android:textSize="20sp" />
 
-        <ImageButton
-            android:id="@+id/imagebutton5"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+        <ImageView
+            android:id="@+id/shoucang"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:contentDescription="@string/app_name"
             android:background="@drawable/unshoucang" />
 
@@ -128,9 +140,9 @@
             android:textSize="20sp" />
 
         <ImageButton
-            android:id="@+id/imagebutton6"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:id="@+id/zhuanfa"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="@drawable/zhuan"
             android:contentDescription="@string/app_name" />
 
@@ -144,11 +156,53 @@
 
     </LinearLayout>
 
-
-    <ListView
-        android:id="@+id/list_view"
+    <LinearLayout
+        android:id="@+id/layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="45dp"
+        android:background="#ffffff"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:visibility="gone" >
 
-    </ListView>
+        <EditText
+            android:id="@+id/et_discuss"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:hint="说点什么"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:singleLine="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="10dp"
+            android:background="#ffffff"
+            />
+        <TextView
+            android:id="@+id/tv_confirm"
+            android:text="发送"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            >
+        </TextView>
+    </LinearLayout>
+
+
+<ListView
+    android:id="@+id/list_view"
+    android:layout_width="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_height="wrap_content">
+
+</ListView>
+
+</LinearLayout>
+
+
 </LinearLayout>

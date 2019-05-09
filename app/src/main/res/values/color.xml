@@ -8,8 +8,8 @@
 
     <color name="text_gray">#000000</color>
     <color name="text_white">#FFFFFF</color>
-    <color name="text_yellow">#fff176</color>
+    <color name="text_yellow">#2c2c2c</color>
     <color name="text_topbar">#fff176</color>
-    <color name="div_white">#E5E5E5</color>
+    <color name="div_white">#f2f2f2</color>
 
 </resources>

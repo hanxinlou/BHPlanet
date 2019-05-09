@@ -2,7 +2,6 @@ package com.example.a12525.bhplanet;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,12 +18,12 @@ import java.util.Map;
 public class ManhuaFragment extends Fragment implements AdapterView.OnItemClickListener {
     private GridView gridView1, gridView2, gridView3;
     private List<Map<String, Object>> dataList1, dataList2, dataList3;
-    private int img1[] = { R.drawable.img1 },
-                img2[] = { R.drawable.img2, R.drawable.img2, R.drawable.img2 },
-                img3[] = { R.drawable.img3 };
+    private int img1[] = { R.drawable.com_board1_img1 },
+                img2[] = { R.drawable.com_board1_img2, R.drawable.com_board1_img3, R.drawable.com_board1_img4 },
+                img3[] = { R.drawable.com_board1_img5 };
     private String  name1[]={"漫画总榜"},
                     name2[]={"日漫", "国漫", "美漫"},
-                    name3[]={"烟草"};
+                    name3[]={"海贼王"};
 
     private String[] from = {"img", "text"};
     private int[] to = {R.id.img, R.id.img_text};
@@ -32,18 +31,14 @@ public class ManhuaFragment extends Fragment implements AdapterView.OnItemClickL
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.shequ_manhua, container, false);
+        initView(view);
         return view;
     }
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        showGridview();
-    }
 
-    private void showGridview() {
-        gridView1 = (GridView)getActivity().findViewById(R.id.board_item1);
-        gridView2 = (GridView)getActivity().findViewById(R.id.board_item2);
-        gridView3 = (GridView)getActivity().findViewById(R.id.board_item3);
+    private void initView(View view) {
+        gridView1 = (GridView)view.findViewById(R.id.board_item1);
+        gridView2 = (GridView)view.findViewById(R.id.board_item2);
+        gridView3 = (GridView)view.findViewById(R.id.board_item3);
 
         dataList1 = new ArrayList<>();
         dataList2 = new ArrayList<>();
@@ -61,7 +56,7 @@ public class ManhuaFragment extends Fragment implements AdapterView.OnItemClickL
             map.put("text", name[i]);
             dataList.add(map);
         }
-        SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity(), dataList, R.layout.bankuai, from, to);
+        SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity(), dataList, R.layout.bankuai_tupian, from, to);
         gridView.setAdapter(simpleAdapter);
         gridView.setOnItemClickListener(this);
     }

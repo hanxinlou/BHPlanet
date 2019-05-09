@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#f2f2f2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:background="#ffffff"
+    android:layout_width="fill_parent"
+    android:layout_height="90dp">
+  <ImageView
+      android:id="@+id/tongtou"
+      android:layout_marginTop="10dp"
+      android:layout_marginLeft="10dp"
+      android:background="@drawable/test"
+      android:src="@drawable/head"
+      android:layout_width="45dp"
+      android:layout_height="45dp" />
+    <TextView
+        android:id="@+id/tongid"
+        android:text="小怪兽"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tongday"
+        android:text="12-08"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="33dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tongtime"
+        android:text="12:08"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="33dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tongneirong"
+        android:text="赞了你的XXX"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="63dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
+</LinearLayout>

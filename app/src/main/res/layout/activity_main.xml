@@ -3,27 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
-    android:background="#f2f2f2"
+    android:background="#7fe5e5e5"
     android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="wrap_content"
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:background="#fff176" >
+        android:background="#fff176">
 
-        <ImageView
+        <com.example.a12525.bhplanet.CircleImageView
             android:id="@+id/head"
+            android:layout_marginLeft="5dp"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/head" />
+            app:srcCompat="@drawable/img1" />
+
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="9dp"
             android:text="脑洞星球"
+            android:layout_centerInParent="true"
             android:textColor="#000000"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -32,11 +33,10 @@
             android:id="@+id/shezhi"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="100dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/shezhi"/>
-    </LinearLayout>
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/shezhi" />
+    </RelativeLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -48,25 +48,29 @@
 
         <Button
             android:id="@+id/dongtai"
-            android:layout_width="125dp"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+
             android:background="@android:color/background_light"
             android:text="动态" />
 
         <Button
             android:id="@+id/guanzhu"
-            android:layout_width="125dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_weight="1"
             android:background="@android:color/background_light"
             android:text="关注" />
 
         <Button
             android:id="@+id/fensi"
-            android:layout_width="125dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_weight="1"
             android:background="@android:color/background_light"
             android:text="粉丝" />
 
@@ -97,9 +101,10 @@
 
         <Button
             android:id="@+id/shoucang"
-            android:layout_width="125dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:layout_weight="1"
             android:drawableStart="@drawable/shou"
             android:drawableLeft="@drawable/shou"
             android:background="@android:color/background_light"
@@ -107,9 +112,12 @@
 
         <Button
             android:id="@+id/lishi"
-            android:layout_width="125dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="1dp"
             android:layout_marginTop="5dp"
+
+            android:layout_weight="1"
             android:drawableStart="@drawable/lishi"
             android:drawableLeft="@drawable/lishi"
             android:background="@android:color/background_light"
@@ -117,9 +125,11 @@
 
         <Button
             android:id="@+id/xiazai"
-            android:layout_width="125dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="1dp"
             android:layout_marginTop="5dp"
+            android:layout_weight="1"
             android:drawableStart="@drawable/xiazai"
             android:drawableLeft="@drawable/xiazai"
             android:background="@android:color/background_light"
@@ -127,7 +137,8 @@
     </LinearLayout>
     <Button
         android:id="@+id/zuopin"
-        android:layout_width="125dp"
+        android:layout_width="137dp"
+        android:paddingLeft="4dp"
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/zuopin"
         android:drawableLeft="@drawable/zuopin"
@@ -150,8 +161,9 @@
 
         <Button
             android:id="@+id/xitong"
-            android:layout_width="125dp"
+            android:layout_width="137dp"
             android:layout_height="wrap_content"
+            android:paddingLeft="1dp"
             android:layout_marginTop="5dp"
             android:drawableStart="@drawable/tongzhi"
             android:drawableLeft="@drawable/tongzhi"

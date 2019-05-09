@@ -51,9 +51,9 @@
             android:id="@+id/ubeijing"
             android:layout_width="fill_parent"
             android:layout_height="120dp"
-            android:background="@drawable/song" />
+            android:background="@drawable/qinluo" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/tou"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -173,6 +173,7 @@
     <TextView
         android:id="@+id/content"
         android:textSize="15sp"
+        android:layout_marginLeft="5dp"
         android:textColor="#000000"
         android:text="不想做了"
         android:background="#ffffff"
@@ -189,6 +190,7 @@
         android:textSize="15sp"
         android:textColor="#000000"
         android:text="我的表情和儿子表情一样"
+        android:layout_marginLeft="5dp"
         android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="20dp" />
@@ -196,12 +198,12 @@
         android:orientation="horizontal"
         android:background="#ffffff"
         android:layout_width="match_parent"
-        android:layout_height="35dp">
+        android:layout_height="wrap_content">
         <Button
             android:id="@+id/zhuan"
             android:background="@drawable/zhuan"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
         <TextView
             android:id="@+id/nzhuan"
             android:text="2"
@@ -213,8 +215,8 @@
             android:background="@drawable/ping"
             android:layout_marginStart="50dp"
             android:layout_marginLeft="50dp"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
         <TextView
             android:id="@+id/nping"
             android:text="2"
@@ -226,8 +228,8 @@
             android:background="@drawable/unzan"
             android:layout_marginStart="50dp"
             android:layout_marginLeft="50dp"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
         <TextView
             android:id="@+id/nzan"
             android:text="2"
@@ -288,9 +290,10 @@
             android:text="呵呵呵呵"
             android:background="#ffffff"
             android:layout_width="match_parent"
+            android:layout_marginLeft="5dp"
             android:layout_height="20dp" />
         <ImageView
-            android:src="@drawable/head"
+            android:src="@drawable/cxk"
             android:id="@+id/szuopin1"
             android:background="#ffffff"
             android:layout_width="fill_parent"
@@ -307,12 +310,12 @@
             android:orientation="horizontal"
             android:background="#ffffff"
             android:layout_width="match_parent"
-            android:layout_height="35dp">
+            android:layout_height="wrap_content">
             <Button
                 android:id="@+id/zhuan1"
                 android:background="@drawable/zhuan"
-                android:layout_width="30dp"
-                android:layout_height="30dp" />
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
             <TextView
                 android:id="@+id/nzhuan1"
                 android:text="2"
@@ -324,8 +327,8 @@
                 android:background="@drawable/ping"
                 android:layout_marginStart="50dp"
                 android:layout_marginLeft="50dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp" />
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
             <TextView
                 android:id="@+id/nping1"
                 android:text="2"
@@ -337,8 +340,8 @@
                 android:background="@drawable/unzan"
                 android:layout_marginStart="50dp"
                 android:layout_marginLeft="50dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp" />
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
             <TextView
                 android:id="@+id/nzan1"
                 android:text="2"

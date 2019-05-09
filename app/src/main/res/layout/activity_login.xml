@@ -7,24 +7,22 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/number"
+        android:id="@+id/phonenumber"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="请输入手机号码"
         android:layout_marginTop="100dp"
-        android:layout_gravity="center_horizontal"
-        android:inputType="number" />
+        android:layout_gravity="center_horizontal" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/passwd"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="请输入密码"
         android:layout_marginTop="5dp"
-        android:layout_gravity="center_horizontal"
-        android:inputType="numberPassword" />
+        android:layout_gravity="center_horizontal" />
 
     <Button
         android:id="@+id/problem"

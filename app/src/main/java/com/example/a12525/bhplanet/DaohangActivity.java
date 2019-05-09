@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 /**
@@ -86,7 +85,7 @@ public class DaohangActivity extends AppCompatActivity implements RadioGroup.OnC
 
     private void bindViews() {
         //txt_topbar = (TextView) findViewById(R.id.txt_to pbar);
-        rg_tab_bar = (RadioGroup) findViewById(R.id.rg_tab_bar);
+        rg_tab_bar = (RadioGroup) findViewById(R.id.shequ_tab_bar);
         shouye = (RadioButton) findViewById(R.id.shouye);
         shequ = (RadioButton) findViewById(R.id.shequ);
         dongtai = (RadioButton) findViewById(R.id.dongtai);
@@ -95,26 +94,26 @@ public class DaohangActivity extends AppCompatActivity implements RadioGroup.OnC
         rg_tab_bar.setOnCheckedChangeListener(this);
 
         Drawable drawablechannel = getResources().getDrawable(R.drawable.tab_menu_channel);
-        drawablechannel.setBounds(0, 0, 90, 90);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+        drawablechannel.setBounds(0, 0, 93, 93);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
         shouye.setCompoundDrawables(null, drawablechannel, null, null);//只放上面
 
         Drawable drawablemessage = getResources().getDrawable(R.drawable.tab_menu_message);
-        drawablemessage.setBounds(0, 0, 90, 90);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+        drawablemessage.setBounds(0, 0, 93, 93);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
         shequ.setCompoundDrawables(null, drawablemessage, null, null);//只放上面
 
         Drawable drawablebetter = getResources().getDrawable(R.drawable.tab_menu_better);
-        drawablebetter.setBounds(0, 0, 90, 90);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+        drawablebetter.setBounds(0, 0, 93, 93);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
         dongtai.setCompoundDrawables(null, drawablebetter, null, null);//只放上面
 
         Drawable drawablesetting = getResources().getDrawable(R.drawable.tab_menu_setting);
-        drawablesetting.setBounds(0, 0, 90, 90);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+        drawablesetting.setBounds(0, 0, 93, 93);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
         wo.setCompoundDrawables(null, drawablesetting, null, null);//只放上面
 
         /*Drawable drawablechuangzuo = getResources().getDrawable(R.drawable.add);
         drawablesetting.setBounds(0, 0, 100, 100);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
         chuangzuo.setCompoundDrawables(null, drawablechuangzuo, null, null);//只放上面*/
 
-        rg_tab_bar.check(R.id.rg_tab_bar);
+        rg_tab_bar.check(R.id.shequ_tab_bar);
         vpager = (ViewPager) findViewById(R.id.vpager);
         vpager.setAdapter(mAdapter);
         vpager.setCurrentItem(0);

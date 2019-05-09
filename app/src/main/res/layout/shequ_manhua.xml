@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
@@ -9,13 +10,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="@string/community_main_board"
-        android:textFontWeight="bold" />
+        android:textStyle="bold" />
 
     <include
         layout="@layout/shequ_bankuai1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"></include>
+        android:layout_margin="8dp" />
 
     <TextView
         android:id="@+id/comic_text2"
@@ -23,13 +24,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="@string/comic_sub_board"
-        android:textFontWeight="bold" />
+        android:textStyle="bold" />
 
     <include
         layout="@layout/shequ_bankuai2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"></include>
+        android:layout_margin="8dp" />
 
     <TextView
         android:id="@+id/comic_text3"
@@ -37,11 +38,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="@string/comic_sub_popular_board"
-        android:textFontWeight="bold" />
+        android:textStyle="bold" />
 
     <include
         layout="@layout/shequ_bankuai3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"></include>
+        android:layout_margin="8dp" />
 </LinearLayout>

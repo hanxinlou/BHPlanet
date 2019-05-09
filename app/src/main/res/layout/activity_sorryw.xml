@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#fff176" >
+
+        <ImageButton
+            android:id="@+id/fanhui"
+            android:layout_centerVertical="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/fanhui" />
+        <TextView
+            android:id="@+id/anquan"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="140dp"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="9dp"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="#000000"
+            android:text="脑洞星球" />
+
+    </RelativeLayout>
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/wanchengtu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/sorr1"/>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/baocun"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignRight="@+id/fabu"
+            android:layout_marginRight="70dp"
+            android:layout_alignBottom="@+id/quxiao"
+            android:layout_marginBottom="90dp"
+            android:background="@drawable/baocun"
+            android:gravity="center"
+            android:src="@drawable/baocun"
+            android:textSize="18sp" />
+        <TextView
+            android:text="保存"
+            android:layout_marginLeft="93dp"
+            android:layout_alignRight="@+id/fabu"
+            android:layout_marginRight="82dp"
+            android:layout_alignBottom="@+id/quxiao"
+            android:layout_marginBottom="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/fabu"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignBottom="@+id/quxiao"
+            android:layout_marginBottom="90dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/fabu"
+            android:src="@drawable/dongtu"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignBottom="@+id/quxiao"
+            android:layout_marginBottom="70dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginLeft="37dp"
+            android:text="发布" />
+        <Button
+            android:id="@+id/quxiao"
+            android:background="@drawable/quxiao"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+        <Button
+            android:id="@+id/fenxiang"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="70dp"
+            android:layout_alignLeft="@+id/fabu"
+            android:layout_alignBottom="@+id/quxiao"
+            android:layout_marginBottom="90dp"
+            android:background="@drawable/fenxiang"
+            android:gravity="center"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_alignBottom="@+id/quxiao"
+            android:layout_marginBottom="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/fabu"
+            android:layout_marginLeft="82dp"
+            android:text="分享" />
+
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>

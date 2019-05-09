@@ -25,7 +25,7 @@
             android:id="@+id/textViewG"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="动态"
+            android:text="个人动态"
             android:layout_centerInParent="true"
             android:textColor="#000000"
             android:textSize="25sp"
@@ -50,7 +50,7 @@
                     android:layout_height="120dp"
                     android:background="@drawable/song" />
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/tou"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -133,7 +133,7 @@
                     <TextView
                         android:id="@+id/uidd"
                         android:textSize="18sp"
-                        android:text="nmsl"
+                        android:text="归酣酣"
                         android:layout_width="match_parent"
                         android:layout_height="20dp" />
                     <LinearLayout
@@ -160,6 +160,7 @@
                 android:textSize="15sp"
                 android:textColor="#000000"
                 android:text="很好笑吗"
+                android:layout_marginLeft="3dp"
                 android:background="#ffffff"
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
@@ -173,6 +174,7 @@
                 android:id="@+id/zuoname"
                 android:textSize="15sp"
                 android:textColor="#000000"
+                android:layout_marginLeft="3dp"
                 android:text="我的表情和儿子表情一样"
                 android:background="#ffffff"
                 android:layout_width="match_parent"
@@ -181,12 +183,12 @@
                 android:orientation="horizontal"
                 android:background="#ffffff"
                 android:layout_width="match_parent"
-                android:layout_height="35dp">
+                android:layout_height="wrap_content">
                 <Button
                     android:id="@+id/zhuan"
                     android:background="@drawable/zhuan"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp" />
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
                 <TextView
                     android:id="@+id/nzhuan"
                     android:text="2"
@@ -198,8 +200,8 @@
                     android:background="@drawable/ping"
                     android:layout_marginStart="50dp"
                     android:layout_marginLeft="50dp"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp" />
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
                 <TextView
                     android:id="@+id/nping"
                     android:text="2"
@@ -211,8 +213,8 @@
                     android:background="@drawable/unzan"
                     android:layout_marginStart="50dp"
                     android:layout_marginLeft="50dp"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp" />
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
                 <TextView
                     android:id="@+id/nzan"
                     android:text="2"
@@ -244,7 +246,7 @@
                         <TextView
                             android:id="@+id/uidd1"
                             android:textSize="18sp"
-                            android:text="nmsl"
+                            android:text="归酣酣"
                             android:layout_width="match_parent"
                             android:layout_height="20dp" />
                         <LinearLayout
@@ -271,11 +273,12 @@
                     android:textSize="15sp"
                     android:textColor="#000000"
                     android:text="真的不会做了"
+                    android:layout_marginLeft="3dp"
                     android:background="#ffffff"
                     android:layout_width="match_parent"
                     android:layout_height="20dp" />
                 <ImageView
-                    android:src="@drawable/head"
+                    android:src="@drawable/img3"
                     android:id="@+id/szuopin1"
                     android:background="#ffffff"
                     android:layout_width="fill_parent"
@@ -284,7 +287,8 @@
                     android:id="@+id/zuoname1"
                     android:textSize="15sp"
                     android:textColor="#000000"
-                    android:text="作品名字"
+                    android:layout_marginLeft="3dp"
+                    android:text="狐妖小红娘"
                     android:background="#ffffff"
                     android:layout_width="match_parent"
                     android:layout_height="20dp" />
@@ -292,12 +296,12 @@
                     android:orientation="horizontal"
                     android:background="#ffffff"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp">
+                    android:layout_height="wrap_content">
                     <Button
                         android:id="@+id/zhuan1"
                         android:background="@drawable/zhuan"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp" />
+                        android:layout_width="25dp"
+                        android:layout_height="25dp" />
                     <TextView
                         android:id="@+id/nzhuan1"
                         android:text="2"
@@ -309,8 +313,8 @@
                         android:background="@drawable/ping"
                         android:layout_marginStart="50dp"
                         android:layout_marginLeft="50dp"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp" />
+                        android:layout_width="25dp"
+                        android:layout_height="25dp" />
                     <TextView
                         android:id="@+id/nping1"
                         android:text="2"
@@ -322,8 +326,8 @@
                         android:background="@drawable/unzan"
                         android:layout_marginStart="50dp"
                         android:layout_marginLeft="50dp"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp" />
+                        android:layout_width="25dp"
+                        android:layout_height="25dp" />
                     <TextView
                         android:id="@+id/nzan1"
                         android:text="2"

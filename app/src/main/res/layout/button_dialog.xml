@@ -4,7 +4,13 @@
     android:layout_height="wrap_content"
     android:background="#fff"
     android:paddingBottom="20dp"
-    android:orientation="horizontal">
+    android:orientation="vertical">
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="10dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 <LinearLayout
     android:orientation="vertical"
     android:layout_width="wrap_content"
@@ -13,14 +19,13 @@
         android:id="@+id/btn_open_camera"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="70dp"
         android:background="@drawable/tupian"
         android:gravity="center"
-        android:src="@drawable/tupian"
+
         android:textSize="18sp" />
     <TextView
         android:text="图片"
-        android:layout_marginLeft="80dp"
+        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>
@@ -36,7 +41,7 @@
         android:gravity="center"
         android:layout_marginLeft="30dp"
         android:background="@drawable/dongtu"
-        android:src="@drawable/dongtu"
+
         android:textSize="18sp" />
     <TextView
         android:text="动图"
@@ -45,13 +50,7 @@
         android:layout_marginLeft="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/quxiao"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/quxiao"
-        android:layout_marginLeft="40dp"
-        android:layout_width="30dp"
-        android:layout_height="30dp" />
+
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
@@ -69,11 +68,24 @@
 
     <TextView
         android:text="漫画"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="35dp"
         android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
 </LinearLayout>
+</LinearLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/quxiao"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/quxiao"
+       android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal" />
 
+</RelativeLayout>
     </LinearLayout>

@@ -5,61 +5,71 @@
     android:layout_height="fill_parent"
     android:background="#f2f2f2"
     android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#fff176" >
+        android:background="#fff176">
 
         <ImageButton
             android:id="@+id/fanhui"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="10dp"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="1dp"
             android:background="@drawable/fanhui" />
 
         <TextView
             android:id="@+id/anquan"
-            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:layout_marginStart="140dp"
             android:layout_marginLeft="140dp"
             android:layout_marginTop="9dp"
-            android:textStyle="bold"
-            android:textSize="25sp"
+            android:text="安全隐私"
             android:textColor="#000000"
-            android:text="安全隐私" />
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
     <Button
         android:id="@+id/zhongxin"
-        android:gravity="center_vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:drawableRight="@drawable/youjian"
-        android:drawableEnd="@drawable/youjian"
+        android:layout_marginTop="1dp"
+        android:paddingLeft="3dip"
         android:background="@android:color/background_light"
-        android:text="账号安全中心" />
+        android:baselineAligned="false"
+        android:drawableEnd="@drawable/youjian"
+        android:drawableRight="@drawable/youjian"
+        android:gravity="center_vertical"
+        android:text=" 账号安全中心" />
+
     <Button
         android:id="@+id/yinsi"
-        android:gravity="center_vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:drawableRight="@drawable/youjian"
-        android:drawableEnd="@drawable/youjian"
+        android:layout_marginTop="1dp"
+        android:paddingLeft="3dip"
         android:background="@android:color/background_light"
-        android:text="空间隐私设置" />
+        android:drawableEnd="@drawable/youjian"
+        android:drawableRight="@drawable/youjian"
+        android:gravity="center_vertical"
+        android:text=" 空间隐私设置" />
+
     <Button
         android:id="@+id/heidan"
-        android:gravity="center_vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:drawableRight="@drawable/youjian"
-        android:drawableEnd="@drawable/youjian"
+        android:layout_marginTop="1dp"
+        android:paddingLeft="3dip"
         android:background="@android:color/background_light"
-        android:text="黑名单管理" />
+        android:drawableEnd="@drawable/youjian"
+        android:drawableRight="@drawable/youjian"
+        android:gravity="center_vertical"
+        android:text=" 黑名单管理" />
 
 </LinearLayout>

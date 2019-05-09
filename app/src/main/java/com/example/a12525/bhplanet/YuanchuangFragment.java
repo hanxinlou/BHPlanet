@@ -2,7 +2,6 @@ package com.example.a12525.bhplanet;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +18,7 @@ import java.util.Map;
 public class YuanchuangFragment extends Fragment implements AdapterView.OnItemClickListener {
     private GridView gridView1;
     private List<Map<String, Object>> dataList1;
-    private int img1[] = { R.drawable.img1 };
+    private int img1[] = { R.drawable.com_board3_img1 };
     private String  name1[]={"原创总榜"};
 
     private String[] from = {"img", "text"};
@@ -28,16 +27,12 @@ public class YuanchuangFragment extends Fragment implements AdapterView.OnItemCl
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.shequ_yuanchuang, container, false);
+        initView(view);
         return view;
     }
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        showGridview();
-    }
 
-    private void showGridview() {
-        gridView1 = (GridView)getActivity().findViewById(R.id.board_item1);
+    private void initView(View view) {
+        gridView1 = (GridView)view.findViewById(R.id.board_item1);
         dataList1 = new ArrayList<>();
         getData(img1, name1, dataList1, gridView1);
     }
@@ -49,7 +44,7 @@ public class YuanchuangFragment extends Fragment implements AdapterView.OnItemCl
             map.put("text", name[i]);
             dataList.add(map);
         }
-        SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity(), dataList, R.layout.bankuai, from, to);
+        SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity(), dataList, R.layout.bankuai_tupian, from, to);
         gridView.setAdapter(simpleAdapter);
         gridView.setOnItemClickListener(this);
     }

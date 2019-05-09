@@ -6,7 +6,7 @@
     android:orientation="horizontal"
     android:layout_width="wrap_content"
     android:layout_height="50dp">
-    <ImageView
+    <com.example.a12525.bhplanet.CircleImageView
         android:id="@+id/gtou"
         android:src="@drawable/head"
         android:layout_width="50dp"

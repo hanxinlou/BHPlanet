@@ -28,6 +28,7 @@ public class MyFragment4 extends Fragment implements View.OnClickListener{
     private Button lishi;
     private Button xiazai;
     private Button zuopin;
+    private Button xitong;
     public MyFragment4() {
     }
 
@@ -42,6 +43,7 @@ public class MyFragment4 extends Fragment implements View.OnClickListener{
         lishi = (Button)Activity_main.findViewById(R.id.lishi);
         xiazai = (Button)Activity_main.findViewById(R.id.xiazai);
         zuopin = (Button)Activity_main.findViewById(R.id.zuopin);
+        xitong = (Button)Activity_main.findViewById(R.id.xitong);
         shezhi.setOnClickListener(this);
         dongtai.setOnClickListener(this);
         guanzhu.setOnClickListener(this);
@@ -50,6 +52,7 @@ public class MyFragment4 extends Fragment implements View.OnClickListener{
         lishi.setOnClickListener(this);
         xiazai.setOnClickListener(this);
         zuopin.setOnClickListener(this);
+        xitong.setOnClickListener(this);
         return Activity_main;
     }
     public  void onClick(View v) {
@@ -85,6 +88,10 @@ public class MyFragment4 extends Fragment implements View.OnClickListener{
             case R.id.zuopin:
                 Intent intent7=new Intent("com.example.a12525.bhplanet.ACTION_ZUO");
                 startActivity(intent7);
+                break;
+            case R.id.xitong:
+                Intent intent8=new Intent("com.example.a12525.bhplanet.ACTION_TONG");
+                startActivity(intent8);
                 break;
 
         }

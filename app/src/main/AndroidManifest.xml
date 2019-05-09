@@ -3,11 +3,15 @@
     package="com.example.a12525.bhplanet">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="false"
+        android:hardwareAccelerated="false"
         android:icon="@drawable/naodong"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -93,23 +97,64 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".tdongtaiActivity" />
+        <activity android:name=".tdongtaiActivity">
+            <intent-filter>
+                <action android:name="com.example.a12525.bhplanet.ACTION_TDONG" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".zhongxinActivity" />
         <activity android:name=".ziliaoActivity" />
         <activity android:name=".tupianActivity" />
-        <activity android:name=".tiaoshiActivity"/>
+        <activity android:name=".tiaoshiActivity" />
         <activity android:name=".guanliActivity">
+            <intent-filter>
+                <action android:name="com.example.a12525.bhplanet.ACTION_ZUO" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".TieziNeirongActivity" >
         <intent-filter>
-            <action android:name="com.example.a12525.bhplanet.ACTION_ZUO" />
+            <action android:name="com.example.a12525.bhplanet.ACTION_TIE" />
 
             <category android:name="android.intent.category.DEFAULT" />
         </intent-filter>
     </activity>
-        <activity android:name=".TieziNeirongActivity" />
         <activity android:name=".ShequTieziActivity" />
         <activity android:name=".dongtuActivity" />
         <activity android:name=".manhuaActivity" />
         <activity android:name=".DaohangActivity" />
+        <activity android:name=".wangjingzeActivity" />
+        <activity android:name=".jinkelaActivity" />
+        <activity android:name=".sorryActivity" />
+        <activity android:name=".wanchengActivity" />
+        <activity android:name=".tongzhiActivity">
+            <intent-filter>
+                <action android:name="com.example.a12525.bhplanet.ACTION_TONG" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".dagongActivity" />
+        <activity android:name=".ZhuanActivity">
+            <intent-filter>
+                <action android:name="com.example.a12525.bhplanet.ACTION_ZHUAN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".FatieActivity" />
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".fenxiangActivity" />
+        <activity android:name=".chakanActivity" />
+        <activity android:name=".sorrywActivity" />
+        <activity android:name=".dagongwActivity" />
+        <activity android:name=".wangjingzewActivity" />
+        <activity android:name=".jinkelawActivity" />
+        <activity android:name=".tupianwActivity" />
+        <activity android:name=".fenxiang2Activity"></activity>
     </application>
 
 </manifest>

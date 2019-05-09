@@ -2,7 +2,6 @@ package com.example.a12525.bhplanet;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +18,9 @@ import java.util.Map;
 public class YingshiFragment extends Fragment implements AdapterView.OnItemClickListener {
     private GridView gridView1, gridView2, gridView3;
     private List<Map<String, Object>> dataList1, dataList2, dataList3;
-    private int img1[] = { R.drawable.img1 },
-                img2[] = { R.drawable.img2, R.drawable.img2, R.drawable.img2 },
-                img3[] = { R.drawable.img3 };
+    private int img1[] = { R.drawable.com_board4_img1 },
+                img2[] = { R.drawable.com_board4_img2, R.drawable.com_board4_img3, R.drawable.com_board4_img4 },
+                img3[] = { R.drawable.com_board4_img5 };
     private String  name1[]={"影视总榜"},
                     name2[]={"国产影视", "欧美影视", "亚洲影视"},
                     name3[]={"漫威"};
@@ -32,18 +31,14 @@ public class YingshiFragment extends Fragment implements AdapterView.OnItemClick
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.shequ_yingshi, container, false);
+        initView(view);
         return view;
     }
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        showGridview();
-    }
 
-    private void showGridview() {
-        gridView1 = (GridView)getActivity().findViewById(R.id.board_item1);
-        gridView2 = (GridView)getActivity().findViewById(R.id.board_item2);
-        gridView3 = (GridView)getActivity().findViewById(R.id.board_item3);
+    private void initView(View view) {
+        gridView1 = (GridView)view.findViewById(R.id.board_item1);
+        gridView2 = (GridView)view.findViewById(R.id.board_item2);
+        gridView3 = (GridView)view.findViewById(R.id.board_item3);
 
         dataList1 = new ArrayList<>();
         dataList2 = new ArrayList<>();
@@ -61,7 +56,7 @@ public class YingshiFragment extends Fragment implements AdapterView.OnItemClick
             map.put("text", name[i]);
             dataList.add(map);
         }
-        SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity(), dataList, R.layout.bankuai, from, to);
+        SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity(), dataList, R.layout.bankuai_tupian, from, to);
         gridView.setAdapter(simpleAdapter);
         gridView.setOnItemClickListener(this);
     }

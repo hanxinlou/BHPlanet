@@ -5,9 +5,9 @@
     tools:context=".DaohangActivity">
 
     <RadioGroup
-        android:id="@+id/rg_tab_bar"
+        android:id="@+id/shequ_tab_bar"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:background="@color/bg_white"
         android:orientation="horizontal">
@@ -24,10 +24,14 @@
             style="@style/tab_menu_item"
             android:drawableTop="@drawable/tab_menu_message"
             android:text="@string/tab_menu_profile" />
+
         <Button
             android:id="@+id/chuangzuo"
             style="@style/tab_menu_item"
-            android:background="@drawable/add"/>
+
+            android:padding="5dp"
+            android:background="@drawable/add" />
+
         <RadioButton
             android:id="@+id/dongtai"
             style="@style/tab_menu_item"
@@ -46,7 +50,7 @@
         android:id="@+id/div_tab_bar"
         android:layout_width="match_parent"
         android:layout_height="2px"
-        android:layout_above="@id/rg_tab_bar"
+        android:layout_above="@id/shequ_tab_bar"
         android:background="@color/div_white" />
 
     <android.support.v4.view.ViewPager

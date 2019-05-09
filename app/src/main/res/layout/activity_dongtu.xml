@@ -10,6 +10,13 @@
         android:background="#fff176"
         android:layout_width="fill_parent"
         android:layout_height="50dp">
+        <ImageButton
+            android:id="@+id/fanhui"
+            android:layout_centerVertical="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/fanhui" />
         <TextView
             android:id="@+id/nao"
             android:layout_centerInParent="true"
@@ -19,67 +26,64 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/chuantu"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_alignRight="@+id/bianji"
-            android:layout_marginRight="50dp"
-            android:background="@drawable/xuanqu" />
-        <Button
-            android:id="@+id/bianji"
-            android:text="模板"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:background="#fff176"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content" />
     </RelativeLayout>
-    <ImageView
-        android:id="@+id/picture"
-        android:src="@drawable/xiongmao"
-        android:layout_width="wrap_content"
-        android:layout_height="170dp" />
-    <EditText
-        android:id="@+id/tuneirong1"
-        android:hint="请输入内容"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:id="@+id/tuneirong2"
-        android:hint="请输入内容"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:id="@+id/tuneirong3"
-        android:hint="请输入内容"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
     <RelativeLayout
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/wancheng"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="130dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/wancheng" />
-
-        <Button
-            android:id="@+id/quxiao"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="180dp"
-            android:background="@drawable/quxiao" />
+    <ImageView
+        android:id="@+id/wangjingze"
+        android:src="@drawable/wangjingze"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/jingze"
+            android:text="王境泽"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="60dp"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/dagong"
+        android:src="@drawable/dagong"
+        android:layout_marginTop="130dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/gong"
+            android:text="打工"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="190dp"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/sorry"
+        android:src="@drawable/sorry"
+        android:layout_marginTop="260dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/sorry1"
+            android:text="sorry"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="320dp"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/jinkela"
+        android:src="@drawable/jinkela"
+        android:layout_marginTop="390dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/kela"
+            android:text="金坷垃"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="450dp"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 </LinearLayout>

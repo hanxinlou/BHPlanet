@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/re"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#fff176" >
+
+
+        <TextView
+            android:id="@+id/anquan"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="140dp"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="9dp"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="#000000"
+            android:text="脑洞星球" />
+
+    </RelativeLayout>
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/wanchengtu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/re"
+        android:layout_marginTop="51dp"
+        android:src="@drawable/wangjingze1"/>
+    <TextView
+        android:id="@+id/fenxiangdao"
+        android:text="分享到:"
+        android:layout_alignBottom="@+id/re1"
+        android:layout_marginBottom="130dp"
+        android:layout_marginTop="180dp"
+        android:textSize="15sp"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:id="@+id/re1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/fdongtai"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignRight="@+id/qq"
+            android:layout_marginRight="70dp"
+            android:background="@drawable/dong"
+            android:gravity="center"
+            android:textSize="18sp" />
+        <TextView
+            android:text="动态"
+            android:layout_alignRight="@+id/qq"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+
+        <ImageButton
+            android:id="@+id/quxiao"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/quxiao"
+            android:layout_marginLeft="140dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+        <ImageView
+            android:id="@+id/qq"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="130dp"
+            android:background="@drawable/qq"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textSize="18sp" />
+
+        <TextView
+            android:text="QQ"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/weixin"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignLeft="@+id/qq"
+            android:layout_marginLeft="70dp"
+            android:background="@drawable/weixin"
+            android:gravity="center"
+            android:textSize="18sp" />
+
+        <TextView
+            android:text="微信"
+            android:layout_alignLeft="@+id/qq"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

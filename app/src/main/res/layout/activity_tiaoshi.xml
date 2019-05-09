@@ -18,26 +18,28 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#F8F8FF" >
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="#F8F8FF">
+
         <RelativeLayout
             android:id="@+id/shouyee"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" >
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/shouye"
-                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
                     android:src="@drawable/unshouye" />
 
                 <TextView
@@ -53,21 +55,21 @@
         <RelativeLayout
             android:id="@+id/shequ"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" >
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/sshequ"
-                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
                     android:src="@drawable/unshequ" />
 
                 <TextView
@@ -84,13 +86,13 @@
             android:id="@+id/news_layout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" >
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/news_image"
@@ -105,21 +107,21 @@
         <RelativeLayout
             android:id="@+id/ddongtai"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" >
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/dongttai"
-                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
                     android:src="@drawable/undongtai" />
 
                 <TextView
@@ -135,21 +137,21 @@
         <RelativeLayout
             android:id="@+id/setting_layout"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" >
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/setting_image"
-                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
                     android:src="@drawable/unwo" />
 
                 <TextView
@@ -162,4 +164,5 @@
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
+
 </LinearLayout>

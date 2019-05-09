@@ -7,7 +7,13 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#fff176" >
-
+        <ImageButton
+            android:id="@+id/fanhui"
+            android:layout_centerVertical="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/fanhui" />
         <TextView
             android:id="@+id/fensi"
             android:gravity="center"
@@ -23,6 +29,7 @@
     </RelativeLayout>
     <ListView
         android:id="@+id/list_view"
+        android:layout_marginTop="3dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

@@ -17,7 +17,7 @@ public class welcomeActivity extends AppCompatActivity{
         TimerTask timerTask=new TimerTask() {
             @Override
             public void run() {
-                Intent intent1=new Intent(welcomeActivity.this,DaohangActivity.class);
+                Intent intent1=new Intent(welcomeActivity.this,loginActivity.class);
                 startActivity(intent1);
                 welcomeActivity.this.finish();
             }

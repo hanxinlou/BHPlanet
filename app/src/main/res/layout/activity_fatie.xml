@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/fatie_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff176">
+
+        <TextView
+            android:id="@+id/nao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="脑洞星球"
+            android:textColor="#000000"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/fabiao"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="发表"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="#fff176" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_below="@id/fatie_toolbar"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/editText"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <ImageView
+        android:id="@+id/inserted_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText2"
+        tools:srcCompat="@tools:sample/avatars" />
+
+
+    <ImageButton
+        android:id="@+id/insert_img"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/inserted_img"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/tupian" />
+
+</RelativeLayout>

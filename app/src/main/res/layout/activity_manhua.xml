@@ -10,6 +10,16 @@
         android:background="#fff176"
         android:layout_width="fill_parent"
         android:layout_height="50dp">
+
+        <ImageButton
+            android:id="@+id/fanhui"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/fanhui" />
         <TextView
             android:id="@+id/nao"
             android:layout_centerInParent="true"
@@ -24,11 +34,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
-            android:layout_alignRight="@+id/bianji"
+            android:layout_alignRight="@+id/fabiao"
             android:layout_marginRight="50dp"
             android:background="@drawable/xuanqu" />
         <Button
-            android:id="@+id/bianji"
+            android:id="@+id/fabiao"
             android:text="模板"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
@@ -38,35 +48,26 @@
     </RelativeLayout>
     <ImageView
         android:id="@+id/picture"
-        android:src="@drawable/kenan"
+        android:src="@drawable/home_grid_img5"
         android:layout_width="wrap_content"
-        android:layout_height="250dp" />
+        android:layout_height="370dp" />
     <EditText
-        android:id="@+id/tuneirong1"
+        android:id="@+id/tuneirong"
         android:hint="请输入内容"
         android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/shape_edit"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/wancheng"
             android:layout_width="35dp"
             android:layout_height="35dp"
+            android:layout_gravity="center_horizontal"
             android:layout_alignParentBottom="true"
-            android:layout_marginLeft="130dp"
-            android:layout_marginBottom="10dp"
             android:background="@drawable/wancheng" />
 
-        <Button
-            android:id="@+id/quxiao"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="180dp"
-            android:background="@drawable/quxiao" />
-    </RelativeLayout>
+
 </LinearLayout>

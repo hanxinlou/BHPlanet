@@ -9,54 +9,124 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class tupianActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button btn_botton_dialog;
+public class tupianActivity extends AppCompatActivity{
+    //图片组件
+    private ImageView imageView;
+    //位于图片中的文本组件
+    private TextView tvInImage;
+    //图片和文本的父组件
+    private View containerView;
+    //父组件的尺寸
+    private float imageWidth, imageHeight, imagePositionX, imagePositionY;
+
     public static final int TAKE_PHOTO=1;
-    private ImageView picture;
+
     private Uri imageUri;
     public static final int CHOOSE_PHOTO=2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tupian);
-        btn_botton_dialog = (Button) findViewById(R.id.wancheng);
-        btn_botton_dialog.setOnClickListener(this);
 
-        picture=(ImageView) findViewById(R.id.picture);
-        Button choose =(Button)findViewById(R.id.chuantu);
-        Button quxiao=(Button) findViewById(R.id.quxiao);
-        quxiao.setOnClickListener(new View.OnClickListener() {
+        Button choose = (Button) findViewById(R.id.chuantu);
+        ImageButton fanhui = (ImageButton) findViewById(R.id.fanhui);
+        fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+        Button wancheng = (Button) findViewById(R.id.wancheng);
+        wancheng.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(tupianActivity.this, tupianwActivity.class);
+                startActivity(intent);
+            }
+        });
 
+        imageView = (ImageView) findViewById(R.id.writeText_img);
+        EditText editText = (EditText) findViewById(R.id.writeText_et);
+        tvInImage = (TextView) findViewById(R.id.writeText_image_tv);
+        containerView = findViewById(R.id.writeText_img_rl);
+        imageView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public void onGlobalLayout() {
+                imageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                imagePositionX = imageView.getX();
+                imagePositionY = imageView.getY();
+                imageWidth = imageView.getWidth();
+                imageHeight = imageView.getHeight();
+                //设置文本大小
+                tvInImage.setMaxWidth((int) imageWidth);
+            }
+        });
+        imageView.setImageBitmap(getScaledBitmap(R.drawable.xiongmaotou));
+        //输入框
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().equals("")) {
+                    tvInImage.setVisibility(View.INVISIBLE);
+                } else {
+                    tvInImage.setVisibility(View.VISIBLE);
+                    tvInImage.setText(s);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        final GestureDetector gestureDetector = new GestureDetector(this, new SimpleGestureListenerImpl());
+        //移动
+        tvInImage.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                gestureDetector.onTouchEvent(event);
+                return true;
+            }
+        });
 
         /*take.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,48 +164,72 @@ public class tupianActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
     }
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.wancheng:
-                setDialog();
-                break;
-            case R.id.btn_choose_img:
-                Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.btn_open_camera:
-                Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.btn_cancel:
-                Toast.makeText(this, "3", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.quxiao1:
-                finish();
+
+
+
+    public void confirm(View view) {
+        Bitmap bm = loadBitmapFromView(containerView);
+        String filePath = Environment.getExternalStorageDirectory() + File.separator + "image_with_text.jpg";
+        try {
+            bm.compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(filePath));
+            Toast.makeText(this, "图片已保存至：SD卡根目录/image_with_text.jpg", Toast.LENGTH_LONG).show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
-    private void setDialog(){
-        Dialog mCameraDialog = new Dialog(this, R.style.BottomDialog);
-        LinearLayout root = (LinearLayout) LayoutInflater.from(this).inflate(
-                R.layout.button_dialog1, null);
-        //初始化视图
-        root.findViewById(R.id.btn_choose_img).setOnClickListener(this);
-        root.findViewById(R.id.btn_open_camera).setOnClickListener(this);
-        root.findViewById(R.id.btn_cancel).setOnClickListener(this);
-        root.findViewById(R.id.quxiao1).setOnClickListener(this);
-        mCameraDialog.setContentView(root);
-        Window dialogWindow = mCameraDialog.getWindow();
-        dialogWindow.setGravity(Gravity.BOTTOM);
-//        dialogWindow.setWindowAnimations(R.style.dialogstyle); // 添加动画
-        WindowManager.LayoutParams lp = dialogWindow.getAttributes(); // 获取对话框当前的参数值
-        lp.x = 0; // 新位置X坐标
-        lp.y = 0; // 新位置Y坐标
-        lp.width = (int) getResources().getDisplayMetrics().widthPixels; // 宽度
-        root.measure(0, 0);
-        lp.height = root.getMeasuredHeight();
-
-        lp.alpha = 9f; // 透明度
-        dialogWindow.setAttributes(lp);
-        mCameraDialog.show();
+    //以图片形式获取View显示的内容（类似于截图）
+    public static Bitmap loadBitmapFromView(View view) {
+        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        view.draw(canvas);
+        return bitmap;
     }
+    private int count = 0;
+    //tvInImage的x方向和y方向移动量
+    private float mDx, mDy;
+    //移动
+    private class SimpleGestureListenerImpl extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+            //向右移动时，distanceX为负；向左移动时，distanceX为正
+            //向下移动时，distanceY为负；向上移动时，distanceY为正
+            count++;
+            mDx -= distanceX;
+            mDy -= distanceY;
+            //边界检查
+            mDx = calPosition(imagePositionX - tvInImage.getX(), imagePositionX + imageWidth - (tvInImage.getX() + tvInImage.getWidth()), mDx);
+            mDy = calPosition(imagePositionY - tvInImage.getY(), imagePositionY + imageHeight - (tvInImage.getY() + tvInImage.getHeight()), mDy);
+            //控制刷新频率
+            if (count % 5 == 0) {
+                tvInImage.setX(tvInImage.getX() + mDx);
+                tvInImage.setY(tvInImage.getY() + mDy);
+            }
+            return true;
+        }
+    }
+    //计算正确的显示位置（不能超出边界）
+    private float calPosition(float min, float max, float current) {
+        if (current < min) {
+            return min;
+        }
+        if (current > max) {
+            return max;
+        }
+        return current;
+    }
+    //获取压缩后的bitmap
+    private Bitmap getScaledBitmap(int resId) {
+        BitmapFactory.Options opt = new BitmapFactory.Options();
+        opt.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(getResources(), resId, opt);
+        opt.inSampleSize = Utility.calculateInSampleSize(opt, 600, 800);
+        opt.inJustDecodeBounds = false;
+        return BitmapFactory.decodeResource(getResources(), resId, opt);
+    }
+
+
+
+
 
 
     private void openAlbum()
@@ -164,7 +258,7 @@ public class tupianActivity extends AppCompatActivity implements View.OnClickLis
                 if(resultCode==RESULT_OK){
                     try{
                         Bitmap bitmap =BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
-                        picture.setImageBitmap(bitmap);
+                        imageView.setImageBitmap(bitmap);
                     }catch (FileNotFoundException e){
                         e.printStackTrace();
                     }
@@ -224,7 +318,7 @@ public class tupianActivity extends AppCompatActivity implements View.OnClickLis
     private void displayImage(String imagePath){
         if(imagePath!=null){
             Bitmap bitmap=BitmapFactory.decodeFile(imagePath);
-            picture.setImageBitmap(bitmap);
+            imageView.setImageBitmap(bitmap);
         }else{
             Toast.makeText(this,"failed to get image",Toast.LENGTH_SHORT).show();
         }

@@ -10,13 +10,13 @@
     <stroke
         android:dashGap="0dp"
         android:dashWidth="0dp"
-        android:width="1dp"
-        android:color="#ffcccccc" />
+        android:width="0dp"
+        android:color="#ffbfbfbf" />
     <!-- 圆角 -->
     <corners
-        android:bottomLeftRadius="3dp"
-        android:bottomRightRadius="3dp"
-        android:topLeftRadius="3dp"
-        android:topRightRadius="3dp" />
+        android:bottomLeftRadius="6dp"
+        android:bottomRightRadius="6dp"
+        android:topLeftRadius="6dp"
+        android:topRightRadius="6dp" />
 
 </shape>

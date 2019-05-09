@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="#f2f2f2"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#fff176" >
+
+        <ImageButton
+            android:id="@+id/fanhui"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/fanhui" />
+
+        <TextView
+            android:id="@+id/anquan"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="140dp"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="9dp"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="#000000"
+            android:text="脑洞星球" />
+
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/dagong"
+        android:src="@drawable/dagong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+<TextView
+    android:id="@+id/diyiju"
+    android:text="第一句"
+    android:layout_marginTop="5dp"
+    android:paddingLeft="3dip"
+    android:textColor="#000000"
+    android:textSize="20dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+     <EditText
+        android:id="@+id/one"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="3dip"
+         android:layout_marginTop="2dp"
+        android:hint="没有钱啊，肯定要做的啊"
+        android:textSize="20sp"
+        android:background="@drawable/shape_edit"  />
+        <TextView
+            android:id="@+id/dierju"
+            android:text="第二句"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="3dip"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/two"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="3dip"
+        android:layout_marginTop="2dp"
+        android:hint="不做的话没有钱用"
+        android:textSize="20sp"
+        android:background="@drawable/shape_edit"
+    />
+        <TextView
+            android:id="@+id/disanju"
+            android:text="第三句"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="3dip"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+        android:id="@+id/three"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="3dip"
+        android:layout_marginTop="2dp"
+        android:hint="那你不会去打工啊"
+        android:textSize="20sp"
+        android:background="@drawable/shape_edit"
+        />
+        <TextView
+            android:id="@+id/disiju"
+            android:text="第四句"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="3dip"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+        android:id="@+id/four"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="3dip"
+        android:layout_marginTop="2dp"
+        android:hint="有手有脚的"
+        android:textSize="20sp"
+        android:background="@drawable/shape_edit"
+        />
+        <TextView
+            android:id="@+id/diwuju"
+            android:text="第五句"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="3dip"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+        android:id="@+id/five"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="3dip"
+        android:hint="打工是不可能打工的"
+        android:textSize="20sp"
+        android:background="@drawable/shape_edit"
+        />
+        <TextView
+            android:id="@+id/diliuju"
+            android:text="第六句"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="3dip"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+        android:id="@+id/six"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="3dip"
+        android:hint="这辈子不可能打工的"
+        android:layout_marginTop="2dp"
+        android:textSize="20sp"
+        android:background="@drawable/shape_edit"
+        />
+        <ImageView
+            android:id="@+id/wancheng"
+            android:src="@drawable/wancheng"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>

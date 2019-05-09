@@ -29,44 +29,44 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/activity_lunbo"
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        >
+        tools:context="com.example.a12525.lunbotu.MainActivity" >
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+        </android.support.v4.view.ViewPager>
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="275dp">
-            <FrameLayout
+            android:layout_marginBottom="5dp" >
+            <LinearLayout
+                android:id="@+id/ll"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content">
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/iv"
+                android:src="@drawable/circle_bg"
 
-                android:layout_width="match_parent"
-                android:layout_height="220dp">
-                <!--轮播图位置-->
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/live_view_pager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-                <!--右下角小圆点-->
-                <LinearLayout
-                    android:layout_marginRight="5dp"
-                    android:layout_gravity="bottom|right"
-                    android:id="@+id/live_indicator"
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"/>
-            </FrameLayout>
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+        </RelativeLayout>
+
     </RelativeLayout>
     <View
         android:id="@+id/div_tab_bar"
         android:layout_width="match_parent"
         android:layout_height="2px"
-        android:layout_above="@id/rg_tab_bar"
+        android:layout_above="@id/shequ_tab_bar"
         android:background="@color/div_white" />
     <LinearLayout
         android:layout_width="match_parent"
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="作品    4"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:background="@android:color/background_light" />
 
         <Button
@@ -91,7 +91,7 @@
             android:drawableLeft="@drawable/zpguanli"
             android:background="@android:color/background_light"
             android:text="作品管理"
-            android:textSize="20sp"/>
+            android:textSize="15sp"/>
 
         <Button
             android:id="@+id/pinglunguanli"
@@ -102,15 +102,15 @@
             android:drawableLeft="@drawable/zpguanli"
             android:background="@android:color/background_light"
             android:text="评论管理"
-            android:textSize="20sp"/>
+            android:textSize="15sp"/>
     </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="2px"
-        android:layout_above="@id/rg_tab_bar"
+        android:layout_above="@id/shequ_tab_bar"
         android:background="@color/div_white" />
     <RadioGroup
-        android:id="@+id/rg_tab_bar"
+        android:id="@+id/shequ_tab_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -144,7 +144,7 @@
         android:id="@+id/div_tab_bar1"
         android:layout_width="match_parent"
         android:layout_height="2px"
-        android:layout_above="@id/rg_tab_bar"
+        android:layout_above="@id/shequ_tab_bar"
         android:background="@color/div_white" />
     <android.support.v4.view.ViewPager
         android:id="@+id/vpager"

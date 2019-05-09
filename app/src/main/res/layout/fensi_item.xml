@@ -5,7 +5,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="50dp">
-    <ImageView
+    <com.example.a12525.bhplanet.CircleImageView
              android:id="@+id/fruit_image"
         android:layout_centerVertical="true"
              android:layout_width="50dp"

@@ -1,86 +1,95 @@
 package com.example.a12525.bhplanet;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
-public class ShequFragment extends Fragment implements View.OnClickListener{
-
+public class ShequFragment extends Fragment implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener{
+    private RadioGroup radioGroup;
+    private RadioButton bankuai, tuijian;
+    private ViewPager shequPager;
+    private ImageButton sousuo;
+    private ShequFragmentViewpagerAdapter mAdapter;
+    public static final int PAGE_ONE = 0;
+    public static final int PAGE_TWO = 1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.activity_shequ, container, false);
+        initView(view);
         return view;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        Button button = (Button)getActivity().findViewById(R.id.button);
-        Button button2 = (Button)getActivity().findViewById(R.id.button2);
-        Button button3 = (Button)getActivity().findViewById(R.id.button3);
-        Button button4 = (Button)getActivity().findViewById(R.id.button4);
-        Button button5 = (Button)getActivity().findViewById(R.id.button5);
-        Button button6 = (Button)getActivity().findViewById(R.id.button6);
-        button.setOnClickListener(this);
-        button2.setOnClickListener(this);
-        button3.setOnClickListener(this);
-        button4.setOnClickListener(this);
-        button5.setOnClickListener(this);
-        button6.setOnClickListener(this);
-        replaceFragment(new WodeBankuaiFragment());
-    }
-    @Override
-    public void onClick(View view){
-        int id = view.getId();
-        switch (id){
-            case R.id.button:
-                replaceFragment(new WodeBankuaiFragment());
-                break;
-            case R.id.button2:
-                replaceFragment(new ManhuaFragment());
-                break;
-            case R.id.button3:
-                replaceFragment(new DoutuFragment());
-                break;
-            case R.id.button4:
-                replaceFragment(new YuanchuangFragment());
-                break;
-            case R.id.button5:
-                replaceFragment(new YingshiFragment());
-                break;
-            case R.id.button6:
-                replaceFragment(new zizhiFragment());
-                break;
-            default:
-                break;
-        }
-    }
+    private void initView(View view) {
 
-    private void replaceFragment(Fragment fragment){
-        FragmentManager fragmentManager = getChildFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.community_board_content, fragment);
-        transaction.commit();
-    }
-
-    /*private NavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new NavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_board_comic:
-
-                    return true;
-                case R.id.navigation_board_doutu:
+        radioGroup = (RadioGroup)view.findViewById(R.id.shequ_tab_bar);
+        bankuai = (RadioButton)view.findViewById(R.id.bankuai);
+        tuijian = (RadioButton)view.findViewById(R.id.tuijian);
+        sousuo = (ImageButton)view.findViewById(R.id.shequ_search);
+        sousuo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                intent.putExtra("source", "shequ");
+                startActivity(intent);
             }
-            return false;
+        });
+        radioGroup.setOnCheckedChangeListener(this);
+        radioGroup.check(R.id.shequ_tab_bar);
+        shequPager = (ViewPager)view.findViewById(R.id.shequ_pager);
+        mAdapter = new ShequFragmentViewpagerAdapter(getChildFragmentManager());
+        shequPager.setAdapter(mAdapter);
+        shequPager.setCurrentItem(0);
+        shequPager.addOnPageChangeListener(this);
+        bankuai.setChecked(true);
+        bankuai.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        tuijian.setBackgroundColor(Color.parseColor("#e5e5e5"));
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (checkedId) {
+            case R.id.bankuai:
+                shequPager.setCurrentItem(PAGE_ONE);
+                break;
+            case R.id.tuijian:
+                shequPager.setCurrentItem(PAGE_TWO);
+                break;
         }
-    };*/
+    }
+    //重写ViewPager页面切换的处理方法
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+        //state的状态有三个，0表示什么都没做，1正在滑动，2滑动完毕
+        if (state == 2) {
+            switch (shequPager.getCurrentItem()) {
+                case PAGE_ONE:
+                    bankuai.setChecked(true);
+                    bankuai.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    tuijian.setBackgroundColor(Color.parseColor("#e5e5e5"));
+                    break;
+                case PAGE_TWO:
+                    tuijian.setChecked(true);
+                    tuijian.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    bankuai.setBackgroundColor(Color.parseColor("#e5e5e5"));
+                    break;
+            }
+        }
+    }
 }

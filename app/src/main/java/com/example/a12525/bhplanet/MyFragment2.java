@@ -57,7 +57,7 @@ public class MyFragment2 extends Fragment implements View.OnClickListener{
                 replaceFragment(new YingshiFragment());
                 break;
             case R.id.button6:
-                replaceFragment(new zizhiFragment());
+                replaceFragment(new ZizhiFragment());
                 break;
             default:
                 break;

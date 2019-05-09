@@ -1,44 +1,108 @@
 package com.example.a12525.bhplanet;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class ShequTieziActivity extends AppCompatActivity {
-    private List<Posts>postsList = new ArrayList<>();
+public class ShequTieziActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
+    private Button button;
+    private ImageButton fanhui;
+    private RadioGroup radioGroup;
+    private RadioButton latest_post, popular_post;
+    private ViewPager bankuai_pager;
+    private ShequTieziViewpagerAdapter mAdapter;
+    public static final int PAGE_ONE = 0;
+    public static final int PAGE_TWO = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.shequ_tiezi_liebiao);
-        initPosts();
-        TieziAdapter adapter = new TieziAdapter(ShequTieziActivity.this, R.layout.shequ_tiezi, postsList);
-        ListView listView = (ListView)findViewById(R.id.posts_list_view);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        setContentView(R.layout.shequ_bankuai_neirong);
+        initView();
+        button = (Button) findViewById(R.id.new_post_button);
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Posts posts = postsList.get(position);
-                Toast.makeText(ShequTieziActivity.this, posts.getTitle(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(ShequTieziActivity.this, TieziNeirongActivity.class);
+            public void onClick(View v) {
+                Intent intent = new Intent(ShequTieziActivity.this, FatieActivity.class);
                 startActivity(intent);
+            }
+        });
+        fanhui = (ImageButton) findViewById(R.id.fanhui);
+        fanhui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               finish();
             }
         });
     }
 
-    private void initPosts(){
-        Posts post1 = new Posts("一个版块", "这是标题", "这是用户名",
-                10, 3, 7, R.drawable.img1);
-        Posts post2 = new Posts("另一个版块", "这是另一个标题", "这也是用户名",
-                11, 4, 8, R.drawable.img2);
-        postsList.add(post1);
-        postsList.add(post2);
+    private void initView() {
+
+        radioGroup = (RadioGroup) findViewById(R.id.bankuai_tab_bar);
+        latest_post = (RadioButton) findViewById(R.id.latest_post);
+        popular_post = (RadioButton) findViewById(R.id.popular_post);
+        radioGroup.setOnCheckedChangeListener(this);
+        radioGroup.check(R.id.bankuai_tab_bar);
+        bankuai_pager = (ViewPager) findViewById(R.id.bankuai_pager);
+        mAdapter = new ShequTieziViewpagerAdapter(getSupportFragmentManager());
+        bankuai_pager.setAdapter(mAdapter);
+        bankuai_pager.setCurrentItem(0);
+        bankuai_pager.addOnPageChangeListener(this);
+        bankuai_pager.setOffscreenPageLimit(2); //预加载
+        latest_post.setChecked(true);
+        latest_post.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        popular_post.setBackgroundColor(Color.parseColor("#C8C8C8"));
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (checkedId) {
+            case R.id.latest_post:
+                bankuai_pager.setCurrentItem(PAGE_ONE);
+                break;
+            case R.id.popular_post:
+                bankuai_pager.setCurrentItem(PAGE_TWO);
+                break;
+        }
+    }
+
+    //重写ViewPager页面切换的处理方法
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+        //state的状态有三个，0表示什么都没做，1正在滑动，2滑动完毕
+        if (state == 2) {
+            switch (bankuai_pager.getCurrentItem()) {
+                case PAGE_ONE:
+                    latest_post.setChecked(true);
+                    latest_post.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    popular_post.setBackgroundColor(Color.parseColor("#C8C8C8"));
+                    break;
+                case PAGE_TWO:
+                    popular_post.setChecked(true);
+                    popular_post.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    latest_post.setBackgroundColor(Color.parseColor("#C8C8C8"));
+                    break;
+            }
+        }
     }
 }

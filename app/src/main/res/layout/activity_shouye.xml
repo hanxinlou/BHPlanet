@@ -5,17 +5,75 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="wrap_content"
-        android:layout_height="157dp">
-
-    </android.support.v4.view.ViewPager>
-
-    <GridView
-        android:id="@+id/home_gridview"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:numColumns="2" />
+        android:layout_height="50dp"
+        android:background="#fff176" >
+
+        <TextView
+            android:id="@+id/anquan"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="140dp"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="9dp"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="#000000"
+            android:text="脑洞星球" />
+
+        <ImageButton
+            android:id="@+id/sousuo"
+            android:background="@drawable/sousuo"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="360dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        tools:context="com.example.a12525.lunbotu.MainActivity">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></android.support.v4.view.ViewPager>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp">
+
+            <LinearLayout
+                android:id="@+id/ll2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"></LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv2"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:src="@drawable/circle_bg" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/home_view"
+        android:background="#7fe5e5e5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
 </LinearLayout>

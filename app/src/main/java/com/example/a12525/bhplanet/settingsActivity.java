@@ -50,11 +50,27 @@ public class settingsActivity extends AppCompatActivity {
         });
 
 
-        anquan=(Button)findViewById(R.id.anquan);
-        anquan.setOnClickListener(new View.OnClickListener() {
+//        anquan=(Button)findViewById(R.id.anquan);
+//        anquan.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=new Intent(settingsActivity.this,anquanActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+        Button zhongxin=(Button)findViewById(R.id.zhongxin);
+        zhongxin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(settingsActivity.this,anquanActivity.class);
+                Intent intent=new Intent(settingsActivity.this,zhongxinActivity.class);
+                startActivity(intent);
+            }
+        });
+        Button yinsi=(Button)findViewById(R.id.yinsi);
+        yinsi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(settingsActivity.this,kongjianActivity.class);
                 startActivity(intent);
             }
         });

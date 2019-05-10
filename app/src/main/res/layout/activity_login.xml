@@ -28,8 +28,9 @@
         android:id="@+id/problem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="160dp"
         android:background="#f2f2f2"
-        android:text="                                   登录遇到问题？" />
+        android:text="登录遇到问题？" />
 
     <Button
         android:id="@+id/login"
@@ -49,41 +50,41 @@
         android:layout_marginBottom="50dp"
         android:text="注册" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="其他登录方式" />
+    <!--<TextView-->
+        <!--android:id="@+id/textView4"-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:text="其他登录方式" />-->
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginLeft="120dp"
-        android:background="#f2f2f2"
-        android:orientation="horizontal">
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:layout_marginStart="120dp"-->
+        <!--android:layout_marginLeft="120dp"-->
+        <!--android:background="#f2f2f2"-->
+        <!--android:orientation="horizontal">-->
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:background="#f2f2f2"
-            app:srcCompat="@drawable/weixin" />
+        <!--<ImageButton-->
+            <!--android:id="@+id/imageButton"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:background="#f2f2f2"-->
+            <!--app:srcCompat="@drawable/weixin" />-->
 
-        <ImageButton
-            android:id="@+id/imageButton1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
-            android:background="#f2f2f2"
-            app:srcCompat="@drawable/qq" />
+        <!--<ImageButton-->
+            <!--android:id="@+id/imageButton1"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_marginStart="25dp"-->
+            <!--android:layout_marginLeft="25dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:background="#f2f2f2"-->
+            <!--app:srcCompat="@drawable/qq" />-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
 </LinearLayout>
 

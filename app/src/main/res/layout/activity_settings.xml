@@ -43,17 +43,65 @@
         android:drawableEnd="@drawable/youjian"
         android:background="@android:color/background_light"
         android:text="账号资料" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+
+        android:textSize="10dp"
+        android:textStyle="bold"/>
+    <!--<Button-->
+        <!--android:id="@+id/anquan"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="1dp"-->
+        <!--android:paddingLeft="3dip"-->
+        <!--android:drawableRight="@drawable/youjian"-->
+        <!--android:drawableEnd="@drawable/youjian"-->
+        <!--android:background="@android:color/background_light"-->
+        <!--android:text="安全隐私" />-->
+
     <Button
-        android:id="@+id/anquan"
-        android:gravity="center_vertical"
+        android:id="@+id/zhongxin"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
         android:paddingLeft="3dip"
-        android:drawableRight="@drawable/youjian"
-        android:drawableEnd="@drawable/youjian"
         android:background="@android:color/background_light"
-        android:text="安全隐私" />
+        android:baselineAligned="false"
+        android:drawableEnd="@drawable/youjian"
+        android:drawableRight="@drawable/youjian"
+        android:gravity="center_vertical"
+        android:text=" 账号安全中心" />
+
+    <Button
+        android:id="@+id/yinsi"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:paddingLeft="3dip"
+        android:background="@android:color/background_light"
+        android:drawableEnd="@drawable/youjian"
+        android:drawableRight="@drawable/youjian"
+        android:gravity="center_vertical"
+        android:text=" 空间隐私设置" />
+
+    <Button
+        android:id="@+id/heidan"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:paddingLeft="3dip"
+        android:background="@android:color/background_light"
+        android:drawableEnd="@drawable/youjian"
+        android:drawableRight="@drawable/youjian"
+        android:gravity="center_vertical"
+        android:text=" 黑名单管理" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:textSize="10dp"
+        android:textStyle="bold"/>
     <Button
         android:id="@+id/guanyu"
         android:gravity="center_vertical"

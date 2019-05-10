@@ -18,9 +18,9 @@ import java.util.Map;
 public class DoutuFragment extends Fragment implements AdapterView.OnItemClickListener {
     private GridView gridView1, gridView2;
     private List<Map<String, Object>> dataList1, dataList2;
-    private int img1[] = { R.drawable.com_board2_img1 },
+    public int img1[] = { R.drawable.com_board2_img1 },
                 img2[] = { R.drawable.com_board2_img2, R.drawable.com_board2_img3, R.drawable.com_board2_img4 };
-    private String  name1[]={"斗图总榜"},
+    public String  name1[]={"斗图总榜"},
                     name2[]={"超人回来了", "小刘鸭", "蘑菇头"};
 
     private String[] from = {"img", "text"};
@@ -60,6 +60,7 @@ public class DoutuFragment extends Fragment implements AdapterView.OnItemClickLi
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(getActivity(), ShequTieziActivity.class);
+        intent.putExtra("bankuai", "doutu");
         startActivity(intent);
     }
 }

@@ -52,7 +52,11 @@ public class ShouyeFragment extends Fragment {
     private int move;
     private boolean running = true;
 
-    private ArrayList<String> opus_title_list, opus_id_list, picture_list, type_list;
+    private ArrayList<String> opus_title_list = new ArrayList<>();
+    private ArrayList<String> opus_id_list = new ArrayList<>();
+    private ArrayList<String> type_list = new ArrayList<>();
+    private ArrayList<String> picture_list = new ArrayList<>();
+
 
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler(){
@@ -199,7 +203,7 @@ public class ShouyeFragment extends Fragment {
 
         dataList = new ArrayList<>();
         for (int i = 0; i< opus_title_list.size(); i++){
-            homeImage = new HomeImage(image[i], type_list.get(i), opus_title_list.get(i), opus_id_list.get(i));
+            homeImage = new HomeImage(picture_list.get(i), type_list.get(i), opus_title_list.get(i), opus_id_list.get(i));
             dataList.add(homeImage);
         }
         HomeImageAdapter adapter = new HomeImageAdapter(dataList);
@@ -271,12 +275,12 @@ public class ShouyeFragment extends Fragment {
     }
 
     public class HomeImage{
-        private int imageId;
+        private String imageId;
         private String home_img_classification;
         private String home_img_text;
         private String itemId;
 
-        HomeImage(int imageId, String home_img_classification, String home_img_text, String itemId){
+        HomeImage(String imageId, String home_img_classification, String home_img_text, String itemId){
             this.imageId = imageId;
             this.home_img_classification = home_img_classification;
             this.home_img_text = home_img_text;
@@ -291,7 +295,7 @@ public class ShouyeFragment extends Fragment {
             return home_img_text;
         }
 
-        public int getImageId() {
+        public String getImageId() {
             return imageId;
         }
 
@@ -303,7 +307,7 @@ public class ShouyeFragment extends Fragment {
     public void getDatasync(String user_id){
         new Thread(() -> {
             try {
-                String url = "https://nei.netease.com/api/apimock/53f5f289ef8648edd032ecb28f5ac8da/home/list?user_id=&currpage=";
+                String url = "http://129.211.5.66:8080/home/list?user_id=" + Client.user_id + "&currpage=0";
                 Request request = new Request.Builder()
                             .url(url)//请求接口。如果需要传参拼接到接口后面。
                         .build();//创建Request 对象
@@ -327,16 +331,8 @@ public class ShouyeFragment extends Fragment {
     private void parseData(String resData){
         try{
             JSONObject jsonObject = new JSONObject(resData);
-            JSONObject opus_data = jsonObject.getJSONObject("opus_data");
-            JSONArray opus_info = opus_data.getJSONArray("opus_info");
-
-            JSONObject carousel_data = jsonObject.getJSONObject("carousel_data");
-            JSONArray carousel_info = carousel_data.getJSONArray("carousel_info");
-
-            opus_title_list = new ArrayList<>();
-            opus_id_list = new ArrayList<>();
-            picture_list = new ArrayList<>();
-            type_list = new ArrayList<>();
+            JSONObject opus_data = jsonObject.getJSONObject("opuscontent");
+            JSONArray opus_info = opus_data.getJSONArray("opusinfos");
 
             for(int i = 0; i < opus_info.length(); i++) {
                 JSONObject object = opus_info.getJSONObject(i);
@@ -350,8 +346,6 @@ public class ShouyeFragment extends Fragment {
                 picture_list.add(picture);
                 type_list.add(type);
             }
-
-
 
         }catch (Exception e){
             e.printStackTrace();

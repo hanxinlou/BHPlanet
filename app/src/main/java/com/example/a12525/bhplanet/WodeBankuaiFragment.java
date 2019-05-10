@@ -33,11 +33,13 @@ public class WodeBankuaiFragment extends Fragment implements AdapterView.OnItemC
     private String[] from = {"img", "text"};
     private int[] to = {R.id.img, R.id.img_text};
 
-    private ArrayList<String> community_name_list, picture_list;
+    private ArrayList<String> community_name_list = new ArrayList<>();
+    private ArrayList<String> picture_list = new ArrayList<>();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.shequ_wode, container, false);
-        getDatasync("51519");
+        getDatasync(Client.user_id);
         gridView = (GridView)view.findViewById(R.id.board_item1);
         return view;
     }
@@ -73,7 +75,7 @@ public class WodeBankuaiFragment extends Fragment implements AdapterView.OnItemC
     public void getDatasync(String user_id){
         new Thread(() -> {
             try {
-                String url = "https://nei.netease.com/api/apimock/53f5f289ef8648edd032ecb28f5ac8da/community/mypart?user_id=" + user_id;
+                String url = "http://129.211.5.66:8080/community/mypart?user_id=" + user_id;
                 Request request = new Request.Builder()
                         .url(url)//请求接口。如果需要传参拼接到接口后面。
                         .build();//创建Request 对象
@@ -97,12 +99,8 @@ public class WodeBankuaiFragment extends Fragment implements AdapterView.OnItemC
     private void parseData(String resData){
         try{
             JSONObject jsonObject = new JSONObject(resData);
-            JSONObject data = jsonObject.getJSONObject("data");
+            JSONObject data = jsonObject.getJSONObject("content");
             JSONArray info = data.getJSONArray("info");
-
-
-            community_name_list = new ArrayList<>();
-            picture_list = new ArrayList<>();
 
             for(int i = 0; i < info.length(); i++) {
                 JSONObject object = info.getJSONObject(i);

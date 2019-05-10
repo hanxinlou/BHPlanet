@@ -18,10 +18,10 @@ import java.util.Map;
 public class YingshiFragment extends Fragment implements AdapterView.OnItemClickListener {
     private GridView gridView1, gridView2, gridView3;
     private List<Map<String, Object>> dataList1, dataList2, dataList3;
-    private int img1[] = { R.drawable.com_board4_img1 },
+    public int img1[] = { R.drawable.com_board4_img1 },
                 img2[] = { R.drawable.com_board4_img2, R.drawable.com_board4_img3, R.drawable.com_board4_img4 },
                 img3[] = { R.drawable.com_board4_img5 };
-    private String  name1[]={"影视总榜"},
+    public String  name1[]={"影视总榜"},
                     name2[]={"国产影视", "欧美影视", "亚洲影视"},
                     name3[]={"漫威"};
 
@@ -61,10 +61,10 @@ public class YingshiFragment extends Fragment implements AdapterView.OnItemClick
         gridView.setOnItemClickListener(this);
     }
 
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(getActivity(), ShequTieziActivity.class);
+        intent.putExtra("bankuai", "yingshi");
         startActivity(intent);
     }
 }

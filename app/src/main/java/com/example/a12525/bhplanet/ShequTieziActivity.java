@@ -13,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 public class ShequTieziActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
     private Button button;
@@ -23,6 +25,8 @@ public class ShequTieziActivity extends AppCompatActivity implements RadioGroup.
     private RadioButton latest_post, popular_post;
     private ViewPager bankuai_pager;
     private ShequTieziViewpagerAdapter mAdapter;
+    private ImageView board_icon;
+    private TextView board_name;
     public static final int PAGE_ONE = 0;
     public static final int PAGE_TWO = 1;
 
@@ -31,6 +35,7 @@ public class ShequTieziActivity extends AppCompatActivity implements RadioGroup.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shequ_bankuai_neirong);
         initView();
+        setBoardName();
         button = (Button) findViewById(R.id.new_post_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +69,23 @@ public class ShequTieziActivity extends AppCompatActivity implements RadioGroup.
         latest_post.setChecked(true);
         latest_post.setBackgroundColor(Color.parseColor("#FFFFFF"));
         popular_post.setBackgroundColor(Color.parseColor("#C8C8C8"));
+        board_icon = (ImageView)findViewById(R.id.board_icon);
+        board_name = (TextView) findViewById(R.id.board_name);
+    }
+
+    private void setBoardName(){
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("bankuai");
+        switch (name){
+            case "zizhi":
+
+                break;
+            case "yingshi": ;break;
+            case "yuanchuang": ;break;
+            case "doutu": ;break;
+            case "manhua": ;break;
+
+        }
     }
 
     @Override

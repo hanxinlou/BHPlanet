@@ -1,11 +1,15 @@
 package com.example.a12525.bhplanet;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
@@ -18,10 +22,10 @@ import java.util.Map;
 public class ManhuaFragment extends Fragment implements AdapterView.OnItemClickListener {
     private GridView gridView1, gridView2, gridView3;
     private List<Map<String, Object>> dataList1, dataList2, dataList3;
-    private int img1[] = { R.drawable.com_board1_img1 },
+    public int img1[] = { R.drawable.com_board1_img1 },
                 img2[] = { R.drawable.com_board1_img2, R.drawable.com_board1_img3, R.drawable.com_board1_img4 },
                 img3[] = { R.drawable.com_board1_img5 };
-    private String  name1[]={"漫画总榜"},
+    public String  name1[]={"漫画总榜"},
                     name2[]={"日漫", "国漫", "美漫"},
                     name3[]={"海贼王"};
 
@@ -62,9 +66,11 @@ public class ManhuaFragment extends Fragment implements AdapterView.OnItemClickL
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(getActivity(), ShequTieziActivity.class);
+        intent.putExtra("bankuai", "manhua");
         startActivity(intent);
     }
 }

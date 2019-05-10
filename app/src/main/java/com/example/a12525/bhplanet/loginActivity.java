@@ -119,7 +119,7 @@ public class loginActivity extends AppCompatActivity {
             //Log.d("ndxq", "jsonObject==" + jsonObject);
 //            JSONObject dataObject =jsonObject.getJSONObject("content");
 //            Log.d("ndxq", "jsonObject2==" + dataObject);
-               code =jsonObject.optString("code");
+              code = jsonObject.optString("code");
 
 //            mydata.clear();
 //            mydata.put("phonenumber1", dataObject.optString("user_id"));

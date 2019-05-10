@@ -18,9 +18,8 @@ import java.util.Map;
 public class ZizhiFragment extends Fragment implements AdapterView.OnItemClickListener {
     private GridView gridView1;
     private List<Map<String, Object>> dataList1;
-    private int img1[] = { R.drawable.com_board5_img1 };
-    private String  name1[]={"自制总榜"};
-
+    public int img1[] = { R.drawable.com_board5_img1 };
+    public String  name1[] = {"自制总榜"};
     private String[] from = {"img", "text"};
     private int[] to = {R.id.img, R.id.img_text};
 
@@ -52,6 +51,7 @@ public class ZizhiFragment extends Fragment implements AdapterView.OnItemClickLi
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(getActivity(), ShequTieziActivity.class);
+        intent.putExtra("bankuai", "zizhi");
         startActivity(intent);
     }
 }

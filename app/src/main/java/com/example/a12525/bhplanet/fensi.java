@@ -81,7 +81,7 @@ public class fensi extends AppCompatActivity {
 
     private void initFruits() {
         for (int i = 0; i < fan_name_list.size(); i++) {
-            Fruit apple = new Fruit("小老鼠", R.drawable.head);
+            Fruit apple = new Fruit(fan_name_list.get(i), R.drawable.head);
             fruitList.add(apple);
 //                         Fruit orange=new Fruit("大老鼠",R.drawable.head1);
 //                         fruitList.add(orange);
@@ -109,7 +109,7 @@ public class fensi extends AppCompatActivity {
             try {
                 OkHttpClient client = Client.client;//创建OkHttpClient对象
                 Request request = new Request.Builder()
-                        .url("http://129.211.5.66/user/concern?user_id=" + id + "&currpage=0")//请求接口。如果需要传参拼接到接 口后面。
+                        .url("http://129.211.5.66:8080/user/fan?user_id=" + id + "&currpage=1")//请求接口。如果需要传参拼接到接 口后面。
                         .build();//创建Request 对象
                 Call call = client.newCall(request);
                 Response response = call.execute();//得到Response 对象
@@ -132,7 +132,7 @@ public class fensi extends AppCompatActivity {
     private void parseData(String resData) {
         try {
             JSONObject jsonObject = new JSONObject(resData);
-            JSONObject data = jsonObject.getJSONObject("data");
+            JSONObject data = jsonObject.getJSONObject("content");
 
             JSONArray info = data.getJSONArray("info");
 
@@ -184,7 +184,7 @@ public class fensi extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             Fruit fruit = getItem(position);           //获取当前项的实例
             View view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
-            ImageView fruitImage = (ImageView) view.findViewById(R.id.fruit_image);
+            ImageView fruitImage = (CircleImageView) view.findViewById(R.id.fruit_image);
             TextView fruitName = (TextView) view.findViewById(R.id.fruit_name);
             fruitImage.setImageResource(fruit.getImageId());
             fruitName.setText(fruit.getName());

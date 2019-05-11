@@ -69,7 +69,7 @@ public class ShequBankuaiFragment extends Fragment implements View.OnClickListen
         switch (id){
             case R.id.button:
                 if(lastfragment != 0) {
-                    switchFragment(lastfragment,0);
+                    switchFragment(lastfragment, 0);
                     buttonList.get(0).setBackgroundColor(Color.parseColor("#FFFFFFFF"));
                     buttonList.get(lastfragment).setBackgroundColor(Color.parseColor("#e5e5e5"));
                     lastfragment = 0;

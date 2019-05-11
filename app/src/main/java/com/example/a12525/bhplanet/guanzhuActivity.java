@@ -1,5 +1,6 @@
 package com.example.a12525.bhplanet;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
@@ -25,37 +26,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-
 public class guanzhuActivity extends AppCompatActivity {
-    private List<guanzhu> guanzhuList = new ArrayList<>();
-    private CircleImageView gtouxiang;
+    private ArrayList<guanzhu> guanzhuList = new ArrayList<>();
+    private ImageView gtouxiang;
     private TextView gnicheng;
     private String author_name;
     private String picture;
     private ArrayList<String> author_name_list=new ArrayList<>();
     private ArrayList<String> picture_list=new ArrayList<>();
+
+    @SuppressLint("HandlerLeak")
     Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             if (msg.what == 0x123) {
                 initguanzhu();                 //初始化水果数据
                 guanAdapter adapter = new guanAdapter(guanzhuActivity.this, R.layout.guanzhu_item, guanzhuList);
-
-                //      ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, data);
                 ListView listview = (ListView) findViewById(R.id.list_view);
                 listview.setAdapter(adapter);
-
-//                nickname.setText(mydata.get("user_name"));
-//                uid.setText(mydata.get("user_id"));
-//                sexx.setText(mydata.get("birthday"));
-//                birthh.setText(mydata.get("sex"));
-//                qianmingg.setText(mydata.get("introduce"));
-                //picture.setImageResource(Integer.parseInt(mydata.get("picture")));
 
             }
         }
@@ -65,61 +59,34 @@ public class guanzhuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guanzhu);
-        ImageButton fanhui = (ImageButton) findViewById(R.id.fanhui);
-        Intent intent = getIntent();
+        ImageButton fanhui = (ImageButton)findViewById(R.id.fanhui);
+        gtouxiang = (ImageView)findViewById(R.id.gtou);
+        gnicheng = (TextView)findViewById(R.id.gname);
+        getDatasync();
 
-        String id = Client.user_id;
-        getDatasync(id);
-        fanhui.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
+        fanhui.setOnClickListener(v -> finish());
     }
 
     private void initguanzhu() {
         for (int i = 0; i < author_name_list.size(); i++) {
-                guanzhu apple = new guanzhu(R.drawable.head5, author_name_list.get(i));
+                guanzhu apple = new guanzhu(picture_list.get(i), author_name_list.get(i));
                 guanzhuList.add(apple);
-//            guanzhu apple1 = new guanzhu(R.drawable.head12, "小狐狸");
-//            guanzhuList.add(apple1);
-//            guanzhu apple2 = new guanzhu(R.drawable.head11, "鹿小草");
-//            guanzhuList.add(apple2);
-//            guanzhu apple3 = new guanzhu(R.drawable.head3, "孙笑川");
-//            guanzhuList.add(apple3);
-//            guanzhu apple4 = new guanzhu(R.drawable.head6, "团子");
-//            guanzhuList.add(apple4);
-//            guanzhu apple5 = new guanzhu(R.drawable.head8, "团子");
-//            guanzhuList.add(apple5);
-//            guanzhu apple6 = new guanzhu(R.drawable.head4, "团子");
-//            guanzhuList.add(apple6);
-//            guanzhu apple7 = new guanzhu(R.drawable.head10, "团子");
-//            guanzhuList.add(apple7);
-//            guanzhu apple8 = new guanzhu(R.drawable.head10, "团子");
-//            guanzhuList.add(apple8);
-//            guanzhu apple9 = new guanzhu(R.drawable.head9, "团子");
-//            guanzhuList.add(apple9);
-//            guanzhu apple10 = new guanzhu(R.drawable.head8, "团子");
-//            guanzhuList.add(apple10);
         }
     }
 
-    public void getDatasync(String id) {
+    public void getDatasync() {
         new Thread(() -> {
             try {
-                OkHttpClient client = Client.client;//创建OkHttpClient对象
                 Request request = new Request.Builder()
-                        .url("http://129.211.5.66:8080/user/concern?user_id=" + id + "&currpage=1")//请求接口。如果需要传参拼接到接 口后面。
+                        .url("http://129.211.5.66:8080/user/concern?user_id=" + Client.user_id + "&currpage=1")//请求接口。如果需要传参拼接到接 口后面。
                         .build();//创建Request 对象
-                Call call = client.newCall(request);
+                Call call = Client.client.newCall(request);
                 Response response = call.execute();//得到Response 对象
                 if (response.isSuccessful()) {
-                    Log.d("ndxq", "response.code()==" + response.code());
-                    Log.d("ndxq", "response.message()==" + response.message());
+                    Log.d("guanzhu", "response.code()==" + response.code());
+                    Log.d("guanzhu", "response.message()==" + response.message());
                     String resData = response.body().string();
-                    Log.d("ndxq", "res==" + resData);
+                    Log.d("guanzhu", "res==" + resData);
                     //此时的代码执行在子线程，修改UI的操作请使用handler跳转到UI线程。
                     parseData(resData);  //  处理对象的函数
                 }
@@ -138,8 +105,6 @@ public class guanzhuActivity extends AppCompatActivity {
 
             JSONArray info = data.getJSONArray("info");
 
-//            author_name_list = new ArrayList<String>();
-//            picture_list = new ArrayList<String>();
             for (int i = 0; i < info.length(); i++) {
                 JSONObject object = info.getJSONObject(i);
                 author_name = object.optString("author_name");
@@ -149,23 +114,6 @@ public class guanzhuActivity extends AppCompatActivity {
                 picture_list.add(picture);
             }
 
-//            for(int i = 0; i < jsonArray.length(); i++) {
-//                JSONObject object = jsonArray.getJSONObject(i);
-//                author_name = object.optString("author_name");
-////                String picture = object.optString("picture");
-//                Log.d("ndxq", "reply_id==" + reply_id);
-            // getres = "compose_id==" + compose_id;
-
-            //mydata.clear();
-//            mydata.put("user_name", dataObject.optString("user_name"));
-//            mydata.put("author_id",dataObject.optString("author_id"));
-            //mydata.put("author_name",jsonObject2.optString("author_name"));
-//            mydata.put("author_name",jsonObject2.optString("author_name"));
-//            mydata.put("picture", jsonObject2.optString("picture"));
-//            mydata.put("birthday", dataObject.optString("birthday"));
-//            mydata.put("sex", dataObject.optString("sex"));
-//            mydata.put("introduce", dataObject.optString("introduce"));
-//            mydata.put("picture", dataObject.optString("picture"));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -184,16 +132,27 @@ public class guanzhuActivity extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            guanzhu guanzhu = getItem(position);           //获取当前项的实例
-            View view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
-            CircleImageView Gtou = (CircleImageView) view.findViewById(R.id.gtou);
-            TextView Gname = (TextView) view.findViewById(R.id.gname);
-            // Switch Guanfou =(Switch)view.findViewById(R.id.guanfou);
-
-//            Gtou.setImageResource(guanzhu.getGtou());
-                Glide.with(guanzhuActivity.this).load(guanzhu.getGtou()).into(Gtou);
-                Gname.setText(guanzhu.getGname());
+            guanzhu g = getItem(position);           //获取当前项的实例
+            View view;
+            ViewHolder viewHolder;
+            if (convertView == null) {
+                view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
+                viewHolder = new ViewHolder();
+                viewHolder.gnicheng = (TextView) view.findViewById(R.id.gname);
+                viewHolder.gtouxiang = (ImageView) view.findViewById(R.id.gtou);
+                view.setTag(viewHolder);
+            } else {
+                view = convertView;
+                viewHolder = (ViewHolder) view.getTag();
+            }
+            viewHolder.gnicheng.setText(g.getGname());
+            Glide.with(getContext()).load(g.getGtou()).into(viewHolder.gtouxiang);
             return view;
+        }
+
+        class ViewHolder {
+            TextView gnicheng;
+            ImageView gtouxiang;
         }
     }
 }

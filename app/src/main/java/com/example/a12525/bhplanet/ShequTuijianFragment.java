@@ -52,7 +52,7 @@ public class ShequTuijianFragment extends Fragment {
     public void getDatasync(){
         new Thread(() -> {
             try {
-                String url = "http://129.211.5.66:8080/community/recommend?user_id=" + Client.user_id + "&currpage=0";
+                String url = "http://129.211.5.66:8080/community/recommend?user_id=" + Client.user_id + "&currpage=1";
                 Request request = new Request.Builder()
                         .url(url)//请求接口。如果需要传参拼接到接口后面。
                         .build();//创建Request 对象
@@ -77,18 +77,17 @@ public class ShequTuijianFragment extends Fragment {
         try{
             JSONObject jsonObject = new JSONObject(resData);
             JSONObject content = jsonObject.getJSONObject("content");
-            JSONArray Info = content.getJSONArray("Info");
+            JSONArray Info = content.getJSONArray("info");
 
             for(int i = 0; i < Info.length(); i++) {
                 JSONObject object = Info.getJSONObject(i);
                 String post_id = object.optString("post_id");
                 String post_title = object.optString("post_title");
                 String community_name = object.optString("community_name");
-                String user_name = object.optString("community_name");
+                String user_name = object.optString("user_name");
                 String picture = object.optString("community_name");
                 int zan_num = object.optInt("zan_num");
                 int comment_num = object.optInt("comment_num");
-                int zhuan_num = object.optInt("zhuan_num");
 
                 post_id_list.add(post_id);
                 post_title_list.add(post_title);

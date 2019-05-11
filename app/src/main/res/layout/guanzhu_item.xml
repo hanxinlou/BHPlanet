@@ -6,13 +6,14 @@
     android:orientation="horizontal"
     android:layout_width="wrap_content"
     android:layout_height="50dp">
-    <com.example.a12525.bhplanet.CircleImageView
+
+    <ImageView
         android:id="@+id/gtou"
-        android:src="@drawable/head"
         android:layout_width="50dp"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:background="@drawable/button_view_style"
-        android:layout_height="wrap_content" />
+        android:src="@drawable/head" />
     <TextView
         android:id="@+id/gname"
         android:text="江澄夫人"

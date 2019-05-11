@@ -1,6 +1,7 @@
 package com.example.a12525.bhplanet;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -22,6 +23,7 @@ public class LiAdapter extends ArrayAdapter<lishi> {
         super(context,textViewResourceId,objects);
         resourceId=textViewResourceId;
     }
+    @NonNull
     @Override
     public View getView(int position,View convertView,ViewGroup parent){
         lishi lishi=getItem(position);           //获取当前项的实例

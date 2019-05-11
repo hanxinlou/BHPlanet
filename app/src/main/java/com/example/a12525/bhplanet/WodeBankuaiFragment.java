@@ -42,10 +42,6 @@ public class WodeBankuaiFragment extends Fragment implements AdapterView.OnItemC
         getDatasync();
         return view;
     }
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
 
     private void getData() {
         dataList.clear();
@@ -70,7 +66,17 @@ public class WodeBankuaiFragment extends Fragment implements AdapterView.OnItemC
         Intent intent = new Intent(getActivity(), ShequTieziActivity.class);
         intent.putExtra("bankuai", "wode");
         intent.putExtra("wode", index);
-        startActivity(intent);
+        startActivityForResult(intent, 1000);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent datat) {
+        switch(resultCode){
+            case 0:
+
+        }
+
+        super.onActivityResult(requestCode, resultCode, datat);
     }
 
     @SuppressLint("HandlerLeak")

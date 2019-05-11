@@ -1,8 +1,11 @@
 package com.example.a12525.bhplanet;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -17,9 +20,27 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class ShequTieziActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
-    private Button button;
+    private Button fatie, follow;
     private ImageButton fanhui;
     private RadioGroup radioGroup;
     private RadioButton latest_post, popular_post;
@@ -27,23 +48,44 @@ public class ShequTieziActivity extends AppCompatActivity implements RadioGroup.
     private ShequTieziViewpagerAdapter mAdapter;
     private ImageView board_icon;
     private TextView board_name;
+    private int code;
     public static final int PAGE_ONE = 0;
     public static final int PAGE_TWO = 1;
+    public static String community_id;
+    private Map<String, String>map = new HashMap<>();
+    private boolean is_follow = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shequ_bankuai_neirong);
+
         initView();
-        setBoardName();
-        button = (Button) findViewById(R.id.new_post_button);
-        button.setOnClickListener(new View.OnClickListener() {
+
+        follow = (Button)findViewById(R.id.follow);
+        follow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(is_follow){
+                    cancleFollow();
+                    is_follow = false;
+                }else{
+                    setFollow();
+                    is_follow = true;
+                }
+            }
+        });
+
+        fatie = (Button)findViewById(R.id.new_post_button);
+        fatie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ShequTieziActivity.this, FatieActivity.class);
                 startActivity(intent);
             }
         });
+
         fanhui = (ImageButton) findViewById(R.id.fanhui);
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +93,16 @@ public class ShequTieziActivity extends AppCompatActivity implements RadioGroup.
                finish();
             }
         });
+
+        String b_name = setBoardName();
+        for(int i = 0; i < WodeBankuaiFragment.community_name_list.size(); i++){
+            if (b_name.equals(WodeBankuaiFragment.community_name_list.get(i))){
+                is_follow = true;
+                follow.setText("已关注");
+                break;
+            }
+            is_follow = false;
+        }
     }
 
     private void initView() {
@@ -71,21 +123,60 @@ public class ShequTieziActivity extends AppCompatActivity implements RadioGroup.
         popular_post.setBackgroundColor(Color.parseColor("#C8C8C8"));
         board_icon = (ImageView)findViewById(R.id.board_icon);
         board_name = (TextView) findViewById(R.id.board_name);
+        map.put("漫画总榜", "1_1");
+        map.put("日漫", "1_2");
+        map.put("国漫", "1_3");
+        map.put("美漫", "1_4");
+        map.put("海贼王", "1_5");
+        map.put("斗图总榜", "2_1");
+        map.put("超人回来了", "2_2");
+        map.put("小刘鸭", "2_3");
+        map.put("蘑菇头", "2_4");
+        map.put("原创总榜", "3_1");
+        map.put("影视总榜", "4_1");
+        map.put("国产影视", "4_2");
+        map.put("欧美影视", "4_3");
+        map.put("亚洲影视", "4_4");
+        map.put("漫威", "4_5");
+        map.put("自制总榜", "5_1");
     }
 
-    private void setBoardName(){
+    private String setBoardName(){
         Intent intent = getIntent();
         String name = intent.getStringExtra("bankuai");
+        int []index = intent.getIntArrayExtra(name);
+        int i = index[0];
+        int j = index[1];
+        String b_name = "1_1";
         switch (name){
-            case "zizhi":
-
+            case "wode":
+                Glide.with(ShequTieziActivity.this).load(WodeBankuaiFragment.picture_list.get(i)).into(board_icon);
+                b_name = WodeBankuaiFragment.community_name_list.get(i);
                 break;
-            case "yingshi": ;break;
-            case "yuanchuang": ;break;
-            case "doutu": ;break;
-            case "manhua": ;break;
-
+            case "zizhi":
+                b_name = ZizhiFragment.name[0];
+                board_icon.setImageResource(ZizhiFragment.img[0]);
+                break;
+            case "yingshi":
+                b_name = YingshiFragment.name[i][j];
+                board_icon.setImageResource(YingshiFragment.img[i][j]);
+                break;
+            case "yuanchuang":
+                b_name = YuanchuangFragment.name[0];
+                board_icon.setImageResource(YuanchuangFragment.img[0]);
+                break;
+            case "doutu":
+                b_name = DoutuFragment.name[i][j];
+                board_icon.setImageResource(DoutuFragment.img[i][j]);
+                break;
+            case "manhua":
+                b_name = ManhuaFragment.name[i][j];
+                board_icon.setImageResource(ManhuaFragment.img[i][j]);
+                break;
         }
+        board_name.setText(b_name);
+        community_id = map.get(b_name);
+        return b_name;
     }
 
     @Override
@@ -127,4 +218,93 @@ public class ShequTieziActivity extends AppCompatActivity implements RadioGroup.
             }
         }
     }
+
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler(){
+        //每隔5秒自动实现vp的position加1
+        public void handleMessage(Message msg) {
+            if(msg.what==0x123) {
+                follow.setText("已关注");
+            }else if(msg.what ==0x456){
+                follow.setText("+关注");
+            }
+        }
+    };
+
+    private void setFollow(){
+        new Thread(() -> {
+            try {
+                String url = "http://129.211.5.66:8080/community/followcommunity";
+                FormBody.Builder formBody = new FormBody.Builder();
+                formBody.add("user_id", Client.user_id)
+                        .add("community_id", community_id);
+
+                Request request = new Request.Builder()
+                        .url(url)//请求接口。如果需要传参拼接到接口后面。
+                        .post(formBody.build())
+                        .build();//创建Request 对象
+
+                Call call = Client.client.newCall(request);
+                call.enqueue(new Callback(){
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        code = response.code();
+                        Log.d("shequ","response.code()==" + code);
+                        Log.d("shequ","response.message()=="+response.message());
+                        String resData = response.body().string();
+                        Log.d("shequ","res=="+resData);
+
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            handler.sendEmptyMessage(0x123);
+
+        }).start();
+    }
+
+
+    private void cancleFollow(){
+        new Thread(() -> {
+            try {
+                String url = "http://129.211.5.66:8080/community/cancelfollow";
+                FormBody.Builder formBody = new FormBody.Builder();
+                formBody.add("user_id", Client.user_id)
+                        .add("community_id", community_id);
+
+                Request request = new Request.Builder()
+                        .url(url)//请求接口。如果需要传参拼接到接口后面。
+                        .post(formBody.build())
+                        .build();//创建Request 对象
+
+                Call call = Client.client.newCall(request);
+                call.enqueue(new Callback(){
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        code = response.code();
+                        Log.d("shequ","response.code()==" + code);
+                        Log.d("shequ","response.message()=="+response.message());
+                        String resData = response.body().string();
+                        Log.d("shequ","res=="+resData);
+
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            handler.sendEmptyMessage(0x456);
+        }).start();
+    }
+
 }

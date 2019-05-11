@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,10 +19,9 @@ import java.util.Map;
 public class DoutuFragment extends Fragment implements AdapterView.OnItemClickListener {
     private GridView gridView1, gridView2;
     private List<Map<String, Object>> dataList1, dataList2;
-    public int img1[] = { R.drawable.com_board2_img1 },
-                img2[] = { R.drawable.com_board2_img2, R.drawable.com_board2_img3, R.drawable.com_board2_img4 };
-    public String  name1[]={"斗图总榜"},
-                    name2[]={"超人回来了", "小刘鸭", "蘑菇头"};
+    public static int [][]img = {{ R.drawable.com_board2_img1 },
+                { R.drawable.com_board2_img2, R.drawable.com_board2_img3, R.drawable.com_board2_img4 }};
+    public static String  [][]name = {{"斗图总榜"}, {"超人回来了", "小刘鸭", "蘑菇头"}};
 
     private String[] from = {"img", "text"};
     private int[] to = {R.id.img, R.id.img_text};
@@ -40,8 +40,8 @@ public class DoutuFragment extends Fragment implements AdapterView.OnItemClickLi
         dataList1 = new ArrayList<>();
         dataList2 = new ArrayList<>();
 
-        getData(img1, name1, dataList1, gridView1);
-        getData(img2, name2, dataList2, gridView2);
+        getData(img[0], name[0], dataList1, gridView1);
+        getData(img[1], name[1], dataList2, gridView2);
     }
 
     private void getData(int[] img, String[] name, List<Map<String, Object>> dataList, GridView gridView) {
@@ -59,8 +59,30 @@ public class DoutuFragment extends Fragment implements AdapterView.OnItemClickLi
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        TextView textView= (TextView) view.findViewById(R.id.img_text);
+        String text = (String)textView.getText();
+        int []index = new int[2];
+        switch (text) {
+            case "斗图总榜":
+                index[0] = 0;
+                index[1] = 0;
+                break;
+            case  "超人回来了":
+                index[0] = 1;
+                index[1] = 0;
+                break;
+            case  "小刘鸭":
+                index[0] = 1;
+                index[1] = 1;
+                break;
+            case  "蘑菇头":
+                index[0] = 1;
+                index[1] = 2;
+                break;
+        }
         Intent intent = new Intent(getActivity(), ShequTieziActivity.class);
         intent.putExtra("bankuai", "doutu");
+        intent.putExtra("doutu", index);
         startActivity(intent);
     }
 }

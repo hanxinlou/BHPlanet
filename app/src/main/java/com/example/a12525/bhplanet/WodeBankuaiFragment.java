@@ -33,32 +33,43 @@ public class WodeBankuaiFragment extends Fragment implements AdapterView.OnItemC
     private String[] from = {"img", "text"};
     private int[] to = {R.id.img, R.id.img_text};
 
-    private ArrayList<String> community_name_list = new ArrayList<>();
-    private ArrayList<String> picture_list = new ArrayList<>();
+    public static ArrayList<String> community_name_list = new ArrayList<>();
+    public static ArrayList<String> picture_list = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.shequ_wode, container, false);
-        getDatasync(Client.user_id);
-        gridView = (GridView)view.findViewById(R.id.board_item1);
+        getDatasync();
         return view;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     private void getData() {
+        dataList.clear();
         for (int i = 0; i < community_name_list.size(); i++) {
             Map<String, Object> map = new HashMap<>();
-            map.put("img", img1[i]);
+            map.put("img", picture_list.get(i));
             map.put("text", community_name_list.get(i));
             dataList.add(map);
         }
         SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity(), dataList, R.layout.bankuai_tupian, from, to);
+        gridView = (GridView)getView().findViewById(R.id.board_item1);
         gridView.setAdapter(simpleAdapter);
         gridView.setOnItemClickListener(this);
+        simpleAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        int []index = new int[2];
+        index[0] = position;
+        index[1] = position;
         Intent intent = new Intent(getActivity(), ShequTieziActivity.class);
+        intent.putExtra("bankuai", "wode");
+        intent.putExtra("wode", index);
         startActivity(intent);
     }
 
@@ -72,15 +83,14 @@ public class WodeBankuaiFragment extends Fragment implements AdapterView.OnItemC
         }
     };
 
-    public void getDatasync(String user_id){
+    public void getDatasync(){
         new Thread(() -> {
             try {
-                String url = "http://129.211.5.66:8080/community/mypart?user_id=" + user_id;
+                String url = "http://129.211.5.66:8080/community/mypart?user_id=" + Client.user_id;
                 Request request = new Request.Builder()
                         .url(url)//请求接口。如果需要传参拼接到接口后面。
                         .build();//创建Request 对象
-                Response response = null;
-                response = Client.client.newCall(request).execute();//得到Response 对象
+                Response response = Client.client.newCall(request).execute();//得到Response 对象
                 if (response.isSuccessful()) {
                     Log.d("shequ","response.code()=="+response.code());
                     Log.d("shequ","response.message()=="+response.message());
@@ -114,6 +124,5 @@ public class WodeBankuaiFragment extends Fragment implements AdapterView.OnItemC
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
 }

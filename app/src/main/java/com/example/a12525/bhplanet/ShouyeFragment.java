@@ -82,8 +82,7 @@ public class ShouyeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.activity_shouye, container, false);
-        String user_id = Client.user_id;
-        getDatasync(user_id);
+        getDatasync();
         ll = (LinearLayout)view.findViewById(R.id.ll2);
         vp = (ViewPager)view.findViewById(R.id.pager);
         iv = (ImageView)view.findViewById(R.id.iv2);
@@ -304,7 +303,7 @@ public class ShouyeFragment extends Fragment {
         }
     }
 
-    public void getDatasync(String user_id){
+    public void getDatasync(){
         new Thread(() -> {
             try {
                 String url = "http://129.211.5.66:8080/home/list?user_id=" + Client.user_id + "&currpage=0";

@@ -7,7 +7,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
+import java.util.Objects;
 
 public class TieziAdapter extends ArrayAdapter {
     private int resourceId;
@@ -28,7 +31,6 @@ public class TieziAdapter extends ArrayAdapter {
             viewHolder.boardTitle = (TextView)view.findViewById(R.id.community_posts_title);
             viewHolder.userName = (TextView)view.findViewById(R.id.community_posts_user_name);
             viewHolder.zanNum = (TextView)view.findViewById(R.id.community_posts_zan_num);
-            viewHolder.shareNum = (TextView)view.findViewById(R.id.community_posts_share_num);
             viewHolder.commentNum = (TextView)view.findViewById(R.id.community_posts_comment_num);
             viewHolder.boardImg = (ImageView)view.findViewById(R.id.community_posts_board_img);
             view.setTag(viewHolder);
@@ -40,9 +42,8 @@ public class TieziAdapter extends ArrayAdapter {
         viewHolder.boardTitle.setText(posts.getTitle());
         viewHolder.userName.setText(posts.getUserName());
         viewHolder.zanNum.setText(String.valueOf(posts.getZanNum()));
-        viewHolder.shareNum.setText(String.valueOf(posts.getShareNum()));
         viewHolder.commentNum.setText(String.valueOf(posts.getCommentNum()));
-        viewHolder.boardImg.setImageResource(posts.getBoardImgId());
+        Glide.with(getContext()).load(posts.getBoardImgId()).into(viewHolder.boardImg);
         return view;
     }
     class ViewHolder{
@@ -50,7 +51,6 @@ public class TieziAdapter extends ArrayAdapter {
         TextView boardTitle;
         TextView userName;
         TextView zanNum;
-        TextView shareNum;
         TextView commentNum;
         ImageView boardImg;
     }

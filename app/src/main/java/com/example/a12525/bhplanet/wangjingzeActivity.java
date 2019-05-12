@@ -41,25 +41,15 @@ public class wangjingzeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wangjingze);
-        editText1 = (EditText)findViewById(R.id.one);
-        editText2 = (EditText)findViewById(R.id.two);
-        editText3 = (EditText)findViewById(R.id.three);
-        editText4 = (EditText)findViewById(R.id.four);
+        editText1 = (EditText) findViewById(R.id.one);
+        editText2 = (EditText) findViewById(R.id.two);
+        editText3 = (EditText) findViewById(R.id.three);
+        editText4 = (EditText) findViewById(R.id.four);
 
-        ImageView wancheng=(ImageView) findViewById(R.id.wancheng);
-        wancheng.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getDatasync();
-            }
-        });
-        ImageButton fanhui=(ImageButton) findViewById(R.id.fanhui);
-        fanhui.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        ImageView wancheng = (ImageView) findViewById(R.id.wancheng);
+        wancheng.setOnClickListener(v-> getDatasync());
+        ImageButton fanhui = (ImageButton) findViewById(R.id.fanhui);
+        fanhui.setOnClickListener(v -> finish());
     }
 
     @SuppressLint("HandlerLeak")
@@ -67,9 +57,9 @@ public class wangjingzeActivity extends AppCompatActivity {
         //每隔5秒自动实现vp的position加1
         public void handleMessage(Message msg) {
             if(msg.what==0x123) {
-                resData = "https://sorry.xuty.tk" + resData;
                 Intent intent = new Intent(wangjingzeActivity.this,wangjingzewActivity.class);
-                intent.putExtra("gif_url", resData);
+                intent.putExtra("gif_url", "https://sorry.xuty.tk" + resData);
+                Toast.makeText(wangjingzeActivity.this, "图片生成中……", Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         }

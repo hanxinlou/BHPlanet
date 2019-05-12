@@ -49,7 +49,7 @@
 "
         android:orientation="horizontal">
 
-        <com.example.a12525.bhplanet.CircleImageView
+        <ImageView
             android:id="@+id/zuotou"
             android:layout_width="50dp"
             android:layout_height="50dp"

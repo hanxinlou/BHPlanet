@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.example.a12525.bhplanet.CircleImageView
+        <ImageView
             android:id="@+id/tou"
             android:layout_width="35dp"
             android:layout_height="35dp"

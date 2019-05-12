@@ -37,7 +37,7 @@ public class MyFragment3 extends Fragment implements View.OnClickListener {
     private ImageView zan;
     private ImageView zan1;
     private ImageView zan2;
-    private CircleImageView tou;
+    private ImageView tou;
     private ImageView tou1;
     private ImageView tou2;
     private ImageView zhuan;
@@ -62,7 +62,7 @@ public class MyFragment3 extends Fragment implements View.OnClickListener {
         zan = (ImageView) Activity_dongtai.findViewById(R.id.zan);
         zan1 = (ImageView) Activity_dongtai.findViewById(R.id.zan1);
         zan2 = (ImageView) Activity_dongtai.findViewById(R.id.zan2);
-        tou = (CircleImageView) Activity_dongtai.findViewById(R.id.tou);
+        tou = (ImageView) Activity_dongtai.findViewById(R.id.tou);
         tou1 = (ImageView) Activity_dongtai.findViewById(R.id.tou1);
         tou2 = (ImageView)Activity_dongtai.findViewById(R.id.tou2);
         zhuan = (ImageView)Activity_dongtai.findViewById(R.id.zhuan);

@@ -71,22 +71,6 @@
             android:padding="4dp">
 
             <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/fen" />
-
-            <TextView
-                android:id="@+id/community_posts_share_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/community_posts_share_num" />
-
-            <ImageButton
                 android:id="@+id/imageButton2"
                 android:layout_width="20dp"
                 android:layout_height="20dp"

@@ -43,23 +43,17 @@ public class FatieActivity extends Activity {
         fabiao = (Button)findViewById(R.id.fabiao);
         editText1.setHint("请输入标题");
         editText2.setHint("请输入内容");
-        insert_img.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
+        insert_img.setOnClickListener(v-> {
                 if(ContextCompat.checkSelfPermission(FatieActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                         != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(FatieActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                 } else {
                     openAlbum();
                 }
-            }
         });
-        fabiao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        fabiao.setOnClickListener(v-> {
                 Toast.makeText(FatieActivity.this, "发表成功", Toast.LENGTH_SHORT).show();
                 finish();
-            }
         });
     }
     private void openAlbum(){

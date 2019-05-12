@@ -32,7 +32,7 @@ import okhttp3.Response;
 public class fensi extends AppCompatActivity {
     private List<Fruit> fruitList = new ArrayList<>();
     private List<fensi> fensiList = new ArrayList<>();
-    private CircleImageView ftouxiang;
+    private ImageView ftouxiang;
     private TextView fnicheng;
     private String fan_name;
     private String picture;
@@ -71,36 +71,12 @@ public class fensi extends AppCompatActivity {
                 finish();
             }
         });
-//                 initFruits();                 //初始化水果数据
-//                 FruitAdapter adapter=new FruitAdapter(fensi.this,R.layout.fensi_item,fruitList);
-//
-//         //      ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, data);
-//                ListView listview = (ListView) findViewById(R.id.list_view);
-//                 listview.setAdapter(adapter);
     }
 
     private void initFruits() {
         for (int i = 0; i < fan_name_list.size(); i++) {
             Fruit apple = new Fruit(fan_name_list.get(i), R.drawable.head);
             fruitList.add(apple);
-//                         Fruit orange=new Fruit("大老鼠",R.drawable.head1);
-//                         fruitList.add(orange);
-//                         Fruit banana=new Fruit("小精灵",R.drawable.head2);
-//                         fruitList.add(banana);
-//                         Fruit waterlenmo=new Fruit("大精灵",R.drawable.head3);
-//                         fruitList.add(waterlenmo);
-//                         Fruit pear=new Fruit("Pear",R.drawable.head4);
-//                         fruitList.add(pear);
-//                         Fruit grape=new Fruit("Grape",R.drawable.head5);
-//                       fruitList.add(grape);
-//                        Fruit pineapple=new Fruit("Pineapple",R.drawable.head6);
-//                        fruitList.add(pineapple);
-//                         Fruit strawberry=new Fruit("Strawberry",R.drawable.head7);
-//                         fruitList.add(strawberry);
-//                         Fruit cherry=new Fruit("Cherry",R.drawable.head8);
-//                         fruitList.add(cherry);
-//                         Fruit mango=new Fruit("mango",R.drawable.head9);
-//                         fruitList.add(mango);
         }
     }
 
@@ -136,8 +112,6 @@ public class fensi extends AppCompatActivity {
 
             JSONArray info = data.getJSONArray("info");
 
-//            author_name_list = new ArrayList<String>();
-//            picture_list = new ArrayList<String>();
             for (int i = 0; i < info.length(); i++) {
                 JSONObject object = info.getJSONObject(i);
                 fan_name = object.optString("fan_name");
@@ -146,24 +120,6 @@ public class fensi extends AppCompatActivity {
                 fan_name_list.add(fan_name);
                 picture_list.add(picture);
             }
-
-//            for(int i = 0; i < jsonArray.length(); i++) {
-//                JSONObject object = jsonArray.getJSONObject(i);
-//                author_name = object.optString("author_name");
-////                String picture = object.optString("picture");
-//                Log.d("ndxq", "reply_id==" + reply_id);
-            // getres = "compose_id==" + compose_id;
-
-            //mydata.clear();
-//            mydata.put("user_name", dataObject.optString("user_name"));
-//            mydata.put("author_id",dataObject.optString("author_id"));
-            //mydata.put("author_name",jsonObject2.optString("author_name"));
-//            mydata.put("author_name",jsonObject2.optString("author_name"));
-//            mydata.put("picture", jsonObject2.optString("picture"));
-//            mydata.put("birthday", dataObject.optString("birthday"));
-//            mydata.put("sex", dataObject.optString("sex"));
-//            mydata.put("introduce", dataObject.optString("introduce"));
-//            mydata.put("picture", dataObject.optString("picture"));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -184,7 +140,7 @@ public class fensi extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             Fruit fruit = getItem(position);           //获取当前项的实例
             View view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
-            ImageView fruitImage = (CircleImageView) view.findViewById(R.id.fruit_image);
+            ImageView fruitImage = (ImageView) view.findViewById(R.id.fruit_image);
             TextView fruitName = (TextView) view.findViewById(R.id.fruit_name);
             fruitImage.setImageResource(fruit.getImageId());
             fruitName.setText(fruit.getName());

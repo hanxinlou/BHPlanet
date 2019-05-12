@@ -54,7 +54,7 @@
                     android:layout_marginTop="3dp"
                     android:orientation="horizontal">
 
-                    <com.example.a12525.bhplanet.CircleImageView
+                    <ImageView
                         android:id="@+id/tou"
                         android:layout_width="50dp"
                         android:layout_height="50dp"

@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="false"
@@ -149,12 +150,10 @@
         <activity android:name=".SearchActivity" />
         <activity android:name=".fenxiangActivity" />
         <activity android:name=".chakanActivity" />
-        <activity android:name=".sorrywActivity" />
-        <activity android:name=".dagongwActivity" />
         <activity android:name=".wangjingzewActivity" />
-        <activity android:name=".jinkelawActivity" />
         <activity android:name=".tupianwActivity" />
         <activity android:name=".fenxiang2Activity"></activity>
+        <activity android:name=".wancheng1Activity" />
     </application>
 
 </manifest>

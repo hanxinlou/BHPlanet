@@ -12,14 +12,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.Resource;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.Request;
 import okhttp3.Response;
 
@@ -40,6 +45,13 @@ public class TieziNeirongActivity extends Activity {
     private int zan_num;
     private int comment_num;
 
+    private ArrayList<String> ping_content = new ArrayList<>();
+    private ArrayList<String> ping_create_time = new ArrayList<>();
+    private ArrayList<String> ping_user_name = new ArrayList<>();
+    private ArrayList<String> ping_user_picture = new ArrayList<>();
+    private ArrayList<Integer> ping_zan_num = new ArrayList<>();
+    private ArrayList<Integer> ping_reply_num = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +59,16 @@ public class TieziNeirongActivity extends Activity {
         setContentView(R.layout.shequ_tiezi_neirong);
         Intent intent = getIntent();
         post_id = intent.getStringExtra("post_id");
+        getContent();
+        getPing("0");
     }
 
     private void initPing(){
+        for(int i = 0; i < ping_content.size(); i++)
+        {
+            pinglun ping = new pinglun(ping_user_picture.get(i),ping_user_name.get(i),ping_create_time.get(i),ping_content.get(i), R.drawable.undianliang,"点亮","回复","查看回复");
+            pinglunList.add(ping);
+        }
         PingAdapter adapter = new PingAdapter(TieziNeirongActivity.this,R.layout.pinglun_item, pinglunList);
         listView1 = (UnScrollListView)findViewById(R.id.light_comment_list);
         listView2 = (UnScrollListView)findViewById(R.id.all_comment_list);
@@ -57,9 +76,6 @@ public class TieziNeirongActivity extends Activity {
         listView2.setAdapter(adapter);
         listView1.setFocusable(false);
         listView2.setFocusable(false);
-
-            pinglun ping = new pinglun(R.drawable.head,"不要吃一点肥肉的圣诞老人","04/02","呀，鸡腿也看番呀", R.drawable.undianliang,"点亮","回复","查看回复");
-            pinglunList.add(ping);
     }
 
     private void initContent(){
@@ -84,24 +100,26 @@ public class TieziNeirongActivity extends Activity {
         public void handleMessage(Message msg) {
             if(msg.what==0x123) {
                 initContent();
+            }
+            if(msg.what ==0x456){
                 initPing();
             }
         }
     };
 
-    public void getDatasync(){
+    public void getContent(){
         new Thread(() -> {
             try {
                 String url = "http://129.211.5.66:8080/post_content?post_id=" + post_id + "&user_id=" + Client.user_id;
                 Request request = new Request.Builder()
                         .url(url)//请求接口。如果需要传参拼接到接口后面。
                         .build();//创建Request 对象
-                Response response = Client.client.newCall(request).execute();//得到Response 对象
-                if (response.isSuccessful()) {
-                    Log.d("shequ","response.code()=="+response.code());
-                    Log.d("shequ","response.message()=="+response.message());
+                Response response = Client.client.newCall(request).execute();
+                if(response.isSuccessful()) {
+                    Log.d("getContent", "response.code()==" + response.code());
+                    Log.d("getContent", "response.message()==" + response.message());
                     String resData = response.body().string();
-                    Log.d("shequ","res=="+resData);
+                    Log.d("getContent", "res==" + resData);
                     //此时的代码执行在子线程，修改UI的操作请使用handler跳转到UI线程。
                     parseData(resData);
                 }
@@ -128,6 +146,54 @@ public class TieziNeirongActivity extends Activity {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
 
+    public void getPing(String status){
+        new Thread(() -> {
+            try {
+                String url = "http://129.211.5.66:8080/comment?compose_type=2&from_opusid=" + post_id + "&page=1&status=" + status + "&user_id=" + Client.user_id;
+                Request request = new Request.Builder()
+                        .url(url)//请求接口。如果需要传参拼接到接口后面。
+                        .build();//创建Request 对象
+                Response response = Client.client.newCall(request).execute();
+                if(response.isSuccessful()) {
+                    Log.d("getPing", "response.code()==" + response.code());
+                    Log.d("getPing", "response.message()==" + response.message());
+                    String resData = response.body().string();
+                    Log.d("getPing", "res==" + resData);
+                    //此时的代码执行在子线程，修改UI的操作请使用handler跳转到UI线程。
+                    parseData2(resData);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            handler.sendEmptyMessage(0x456);
+        }).start();
+    }
+
+    private void parseData2(String resData){
+        try{
+            JSONObject jsonObject = new JSONObject(resData);
+            JSONObject content = jsonObject.getJSONObject("content");
+            JSONArray info = content.getJSONArray("info");
+            for (int i = 0; i < info.length(); i++) {
+                JSONObject object = info.getJSONObject(i);
+                String p_content = object.optString("content");
+                String p_create_time = object.optString("create_time");
+                String p_user_name = object.optString("user_name");
+                String p_user_picture = object.optString("user_picture");
+                int p_zan_num = object.optInt("zan_num");
+                int p_reply_num = object.optInt("reply_num");
+
+                ping_content.add(p_content);
+                ping_create_time.add(p_create_time);
+                ping_user_name.add(p_user_name);
+                ping_user_picture.add(p_user_picture);
+                ping_zan_num.add(p_zan_num);
+                ping_reply_num.add(p_reply_num);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

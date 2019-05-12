@@ -34,7 +34,8 @@ public class WodeBankuaiFragment extends Fragment implements AdapterView.OnItemC
     private int[] to = {R.id.img, R.id.img_text};
 
     public static ArrayList<String> community_name_list = new ArrayList<>();
-    public static ArrayList<String> picture_list = new ArrayList<>();
+    public static ArrayList<Integer> picture_list = new ArrayList<>();
+    private SimpleAdapter simpleAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -51,11 +52,10 @@ public class WodeBankuaiFragment extends Fragment implements AdapterView.OnItemC
             map.put("text", community_name_list.get(i));
             dataList.add(map);
         }
-        SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity(), dataList, R.layout.bankuai_tupian, from, to);
+        simpleAdapter = new SimpleAdapter(getActivity(), dataList, R.layout.bankuai_tupian, from, to);
         gridView = (GridView)getView().findViewById(R.id.board_item1);
         gridView.setAdapter(simpleAdapter);
         gridView.setOnItemClickListener(this);
-        simpleAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -71,11 +71,33 @@ public class WodeBankuaiFragment extends Fragment implements AdapterView.OnItemC
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent datat) {
+        String community_name;
+        Log.d("qqqqq", String.valueOf(resultCode));
         switch(resultCode){
-            case 0:
-
+            case 1111:
+                if(datat!=null) {
+                    community_name = datat.getStringExtra("board_name");
+                    for (int i = 0; i < dataList.size(); i++)
+                    {
+                        if (dataList.get(i).get("text") == community_name){
+                            dataList.remove(i);
+                            break;
+                        }
+                    }
+                    simpleAdapter.notifyDataSetChanged();
+                    Log.d("qqqqq", community_name);
+                }
+                break;
+            case 2222:
+                community_name = datat.getStringExtra("board_name");
+                int picture = datat.getIntExtra("board_icon", -1);
+                Map<String, Object> m = new HashMap<>();
+                m.put("img", picture);
+                m.put("text", community_name);
+                dataList.add(m);
+                simpleAdapter.notifyDataSetChanged();
+                break;
         }
-
         super.onActivityResult(requestCode, resultCode, datat);
     }
 
@@ -121,9 +143,35 @@ public class WodeBankuaiFragment extends Fragment implements AdapterView.OnItemC
             for(int i = 0; i < info.length(); i++) {
                 JSONObject object = info.getJSONObject(i);
                 String community_name = object.optString("community_name");
-                String picture = object.optString("picture");
-
                 community_name_list.add(community_name);
+                int picture = 0;
+                if (community_name.equals(ZizhiFragment.name[0])){
+                    picture = ZizhiFragment.img[0];
+                }else if (community_name.equals(YuanchuangFragment.name[0])){
+                    picture = YuanchuangFragment.img[0];
+                }else{
+                    for (int j = 0; j< ManhuaFragment.name.length; j++) {
+                        for (int k = 0; k < ManhuaFragment.name[j].length; k++) {
+                            if (ManhuaFragment.name[j][k].equals(community_name)) {
+                                picture = ManhuaFragment.img[j][k];
+                            }
+                        }
+                    }
+                    for (int j = 0; j< DoutuFragment.name.length; j++) {
+                        for (int k = 0; k < DoutuFragment.name[j].length; k++) {
+                            if (DoutuFragment.name[j][k].equals(community_name)) {
+                                picture = DoutuFragment.img[j][k];
+                            }
+                        }
+                    }
+                    for (int j = 0; j< YingshiFragment.name.length; j++) {
+                        for (int k = 0; k < YingshiFragment.name[j].length; k++) {
+                            if (YingshiFragment.name[j][k].equals(community_name)) {
+                                picture = YingshiFragment.img[j][k];
+                            }
+                        }
+                    }
+                }
                 picture_list.add(picture);
             }
 

@@ -48,12 +48,15 @@ public class ShequTieziActivity extends AppCompatActivity implements RadioGroup.
     private ShequTieziViewpagerAdapter mAdapter;
     private ImageView board_icon;
     private TextView board_name;
+    private String b_name;
+    private int b_icon;
     private int code;
     public static final int PAGE_ONE = 0;
     public static final int PAGE_TWO = 1;
     public static String community_id;
     private Map<String, String>map = new HashMap<>();
-    private boolean is_follow = false;
+    private boolean is_follow1;
+    private boolean is_follow2;
 
 
     @Override
@@ -67,12 +70,12 @@ public class ShequTieziActivity extends AppCompatActivity implements RadioGroup.
         follow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(is_follow){
+                if (is_follow2) {
                     cancleFollow();
-                    is_follow = false;
-                }else{
+                    is_follow2 = false;
+                } else {
                     setFollow();
-                    is_follow = true;
+                    is_follow2 = true;
                 }
             }
         });
@@ -90,20 +93,38 @@ public class ShequTieziActivity extends AppCompatActivity implements RadioGroup.
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               finish();
+                Intent intent=new Intent(ShequTieziActivity.this, WodeBankuaiFragment.class);
+                if (is_follow1 && !is_follow2){
+                    setResult(1111,intent);
+                    intent.putExtra("board_name", b_name);
+                    Log.d("qqqqq", "7777777777777");
+                }else if(!is_follow1 && is_follow2){
+                    setResult(2222,intent);
+                    intent.putExtra("board_name", b_name);
+                    intent.putExtra("board_icon", b_icon);
+                    Log.d("qqqqq", "8888888888888");
+                }
+                else {
+                    setResult(3333,intent);
+                    Log.d("qqqqq", "999999999999");
+                }
+                finish();
             }
         });
 
-        String b_name = setBoardName();
+        setBoardName();
         for(int i = 0; i < WodeBankuaiFragment.community_name_list.size(); i++){
             if (b_name.equals(WodeBankuaiFragment.community_name_list.get(i))){
-                is_follow = true;
+                is_follow1 = true;
+                is_follow2 = true;
                 follow.setText("已关注");
                 break;
             }
-            is_follow = false;
+            is_follow1 = false;
+            is_follow2 = false;
         }
     }
+
 
     private void initView() {
 
@@ -141,13 +162,12 @@ public class ShequTieziActivity extends AppCompatActivity implements RadioGroup.
         map.put("自制总榜", "5_1");
     }
 
-    private String setBoardName(){
+    private void setBoardName(){
         Intent intent = getIntent();
         String name = intent.getStringExtra("bankuai");
         int []index = intent.getIntArrayExtra(name);
         int i = index[0];
         int j = index[1];
-        String b_name = "1_1";
         switch (name){
             case "wode":
                 Glide.with(ShequTieziActivity.this).load(WodeBankuaiFragment.picture_list.get(i)).into(board_icon);
@@ -155,28 +175,28 @@ public class ShequTieziActivity extends AppCompatActivity implements RadioGroup.
                 break;
             case "zizhi":
                 b_name = ZizhiFragment.name[0];
-                board_icon.setImageResource(ZizhiFragment.img[0]);
+                b_icon = ZizhiFragment.img[0];
                 break;
             case "yingshi":
                 b_name = YingshiFragment.name[i][j];
-                board_icon.setImageResource(YingshiFragment.img[i][j]);
+                b_icon = YingshiFragment.img[i][j];
                 break;
             case "yuanchuang":
                 b_name = YuanchuangFragment.name[0];
-                board_icon.setImageResource(YuanchuangFragment.img[0]);
+                b_icon = YuanchuangFragment.img[0];
                 break;
             case "doutu":
                 b_name = DoutuFragment.name[i][j];
-                board_icon.setImageResource(DoutuFragment.img[i][j]);
+                b_icon = DoutuFragment.img[i][j];
                 break;
             case "manhua":
                 b_name = ManhuaFragment.name[i][j];
-                board_icon.setImageResource(ManhuaFragment.img[i][j]);
+                b_icon = ManhuaFragment.img[i][j];
                 break;
         }
         board_name.setText(b_name);
+        board_icon.setImageResource(b_icon);
         community_id = map.get(b_name);
-        return b_name;
     }
 
     @Override

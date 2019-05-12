@@ -9,10 +9,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.a12525.bhplanet.R;
 
 import java.util.List;
-
+import java.util.Objects;
 
 
 public class PingAdapter extends ArrayAdapter<pinglun> {
@@ -34,7 +35,8 @@ public class PingAdapter extends ArrayAdapter<pinglun> {
         TextView Zann=(TextView) view.findViewById(R.id.zann);
         TextView Huifu=(TextView) view.findViewById(R.id.huifu);
         TextView Chakan=(TextView) view.findViewById(R.id.chakan);
-        Tou.setImageResource(pinglun.getTou());
+
+        Glide.with(getContext()).load(pinglun.getTou()).into(Tou);
         Name.setText(pinglun.getName());
         Time.setText(pinglun.getTime());
         Pneirong.setText(pinglun.getPneirong());

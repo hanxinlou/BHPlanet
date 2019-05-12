@@ -31,7 +31,7 @@ public class pinglunActivity extends AppCompatActivity {
     private ImageView shoucang;
     private ImageButton fanhui;
     private ImageButton zhuanfa;
-    private CircleImageView zuotou;
+    private ImageView zuotou;
     private Button pinglun;
     private LinearLayout relativeLayout;
     private TextView tv_confirm;
@@ -48,7 +48,7 @@ public class pinglunActivity extends AppCompatActivity {
         mLayout = (LinearLayout) findViewById(R.id.layout);
         mEdit = (EditText) findViewById(R.id.et_discuss);
 
-        zuotou=(CircleImageView)findViewById(R.id.zuotou);
+        zuotou=(ImageView)findViewById(R.id.zuotou);
         zuotou.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -174,14 +174,14 @@ public class pinglunActivity extends AppCompatActivity {
     }
     private void initPing(){
         for(int i=0;i<3;i++){
-            pinglun apple=new pinglun(R.drawable.head,"不要吃一点肥肉的圣诞老人","04/02","你看 ，你们从风起稻香，终于走到了世外蓬莱，依旧没情缘\n", R.drawable.undianliang,"点亮","回复","查看回复");
-            pinglunList.add(apple);
-            pinglun cao=new pinglun(R.drawable.head1,"小狐狸","04/01","楼上你是魔鬼吗？？？！！", R.drawable.undianliang,"点亮","回复","查看回复");
-            pinglunList.add(cao);
-            pinglun hehe=new pinglun(R.drawable.head2,"清和不浊","03/31","片头曲很好听啊", R.drawable.undianliang,"点亮","回复","查看回复");
-            pinglunList.add(hehe);
-            pinglun nima=new pinglun(R.drawable.head3,"阿豹是海豹的豹","03/31","我到现在才明白关门弟子→GM弟子啊\n", R.drawable.undianliang,"点亮","回复","查看回复");
-            pinglunList.add(nima);
+//            pinglun apple=new pinglun(R.drawable.head,"不要吃一点肥肉的圣诞老人","04/02","你看 ，你们从风起稻香，终于走到了世外蓬莱，依旧没情缘\n", R.drawable.undianliang,"点亮","回复","查看回复");
+//            pinglunList.add(apple);
+//            pinglun cao=new pinglun(R.drawable.head1,"小狐狸","04/01","楼上你是魔鬼吗？？？！！", R.drawable.undianliang,"点亮","回复","查看回复");
+//            pinglunList.add(cao);
+//            pinglun hehe=new pinglun(R.drawable.head2,"清和不浊","03/31","片头曲很好听啊", R.drawable.undianliang,"点亮","回复","查看回复");
+//            pinglunList.add(hehe);
+//            pinglun nima=new pinglun(R.drawable.head3,"阿豹是海豹的豹","03/31","我到现在才明白关门弟子→GM弟子啊\n", R.drawable.undianliang,"点亮","回复","查看回复");
+//            pinglunList.add(nima);
         }
     }
 

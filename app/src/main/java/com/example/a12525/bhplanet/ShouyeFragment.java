@@ -67,7 +67,7 @@ public class ShouyeFragment extends Fragment {
             if(msg.what==0x123) {
                 showGridview();
             }
-            if(running){
+            else if(running){
                 handler.sendEmptyMessageDelayed(0, 3000);
             }
         }
@@ -89,13 +89,10 @@ public class ShouyeFragment extends Fragment {
         imagelist = new ArrayList<>();
         showPager(view);
         sousuo = (ImageButton)view.findViewById(R.id.sousuo);
-        sousuo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        sousuo.setOnClickListener( v -> {
                 Intent intent = new Intent(getActivity(), SearchActivity.class);
                 intent.putExtra("source", "shouye");
                 startActivity(intent);
-            }
         });
         return view;
     }
@@ -240,15 +237,12 @@ public class ShouyeFragment extends Fragment {
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
             View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.shouye_tupian, viewGroup, false);;
             final ViewHolder holder = new ViewHolder(view);
-            holder.homeImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            holder.homeImageView.setOnClickListener( v -> {
                     int position = holder.getAdapterPosition();
                     HomeImage homeImage = data.get(position);
                     Intent intent = new Intent(getActivity(), pinglunActivity.class);
-                    intent.putExtra("home_img_id", homeImage.getItemId());
+                    intent.putExtra("home_opus_id", homeImage.getItemId());
                     startActivity(intent);
-                }
             });
             return holder;
         }
@@ -333,6 +327,10 @@ public class ShouyeFragment extends Fragment {
             JSONObject opus_data = jsonObject.getJSONObject("opuscontent");
             JSONArray opus_info = opus_data.getJSONArray("opusinfos");
 
+            opus_title_list.clear();
+            opus_id_list.clear();
+            picture_list.clear();
+            type_list.clear();
             for(int i = 0; i < opus_info.length(); i++) {
                 JSONObject object = opus_info.getJSONObject(i);
                 String opus_title = object.optString("opus_title");

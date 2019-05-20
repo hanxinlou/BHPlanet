@@ -35,7 +35,7 @@ public class wangjingzewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wangjingzew);
-
+        Toast.makeText(wangjingzewActivity.this, "图片加载中……", Toast.LENGTH_LONG).show();
         Intent intent = getIntent();
         gif_url = intent.getStringExtra("gif_url");
         gif = (GifImageView)findViewById(R.id.wanchengtu);
@@ -71,7 +71,6 @@ public class wangjingzewActivity extends AppCompatActivity {
                 if (this.checkSelfPermission(str) != PackageManager.PERMISSION_GRANTED) {
                     //申请权限
                     this.requestPermissions(permissions, REQUEST_CODE_CONTACT);
-                    return;
                 }
             }
         }
@@ -79,7 +78,7 @@ public class wangjingzewActivity extends AppCompatActivity {
         //下载路径，如果路径无效了，可换成你的下载路径
         final long startTime = System.currentTimeMillis();
         Log.i("DOWNLOAD","startTime="+startTime);
-
+        Toast.makeText(wangjingzewActivity.this, "保存中……", Toast.LENGTH_SHORT).show();
         Request request = new Request.Builder().url(gif_url).build();
         new OkHttpClient().newCall(request).enqueue(new Callback() {
             @Override
@@ -87,6 +86,7 @@ public class wangjingzewActivity extends AppCompatActivity {
                 // 下载失败
                 e.printStackTrace();
                 Log.i("DOWNLOAD","download failed");
+                Toast.makeText(wangjingzewActivity.this, "保存失败！请重试", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
@@ -106,7 +106,7 @@ public class wangjingzewActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.i("DOWNLOAD","download failed");
-                    Toast.makeText(wangjingzewActivity.this, "保存失败！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(wangjingzewActivity.this, "保存失败！请重试", Toast.LENGTH_SHORT).show();
                 } finally {
                     if(bufferedSink != null){
                         bufferedSink.close();

@@ -67,9 +67,7 @@ public class ShequTieziActivity extends AppCompatActivity implements RadioGroup.
         initView();
 
         follow = (Button)findViewById(R.id.follow);
-        follow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        follow.setOnClickListener( v->{
                 if (is_follow2) {
                     cancleFollow();
                     is_follow2 = false;
@@ -77,40 +75,17 @@ public class ShequTieziActivity extends AppCompatActivity implements RadioGroup.
                     setFollow();
                     is_follow2 = true;
                 }
-            }
         });
 
         fatie = (Button)findViewById(R.id.new_post_button);
-        fatie.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        fatie.setOnClickListener(v->{
                 Intent intent = new Intent(ShequTieziActivity.this, FatieActivity.class);
+                intent.putExtra("community_id", community_id);
                 startActivity(intent);
-            }
         });
 
         fanhui = (ImageButton) findViewById(R.id.fanhui);
-        fanhui.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(ShequTieziActivity.this, WodeBankuaiFragment.class);
-                if (is_follow1 && !is_follow2){
-                    setResult(1111,intent);
-                    intent.putExtra("board_name", b_name);
-                    Log.d("qqqqq", "7777777777777");
-                }else if(!is_follow1 && is_follow2){
-                    setResult(2222,intent);
-                    intent.putExtra("board_name", b_name);
-                    intent.putExtra("board_icon", b_icon);
-                    Log.d("qqqqq", "8888888888888");
-                }
-                else {
-                    setResult(3333,intent);
-                    Log.d("qqqqq", "999999999999");
-                }
-                finish();
-            }
-        });
+        fanhui.setOnClickListener( v-> finish() );
 
         setBoardName();
         for(int i = 0; i < WodeBankuaiFragment.community_name_list.size(); i++){

@@ -47,7 +47,10 @@ public class wangjingzeActivity extends AppCompatActivity {
         editText4 = (EditText) findViewById(R.id.four);
 
         ImageView wancheng = (ImageView) findViewById(R.id.wancheng);
-        wancheng.setOnClickListener(v-> getDatasync());
+        wancheng.setOnClickListener(v-> {
+            Toast.makeText(wangjingzeActivity.this, "图片生成中……", Toast.LENGTH_LONG).show();
+            getDatasync();
+        });
         ImageButton fanhui = (ImageButton) findViewById(R.id.fanhui);
         fanhui.setOnClickListener(v -> finish());
     }
@@ -59,7 +62,6 @@ public class wangjingzeActivity extends AppCompatActivity {
             if(msg.what==0x123) {
                 Intent intent = new Intent(wangjingzeActivity.this,wangjingzewActivity.class);
                 intent.putExtra("gif_url", "https://sorry.xuty.tk" + resData);
-                Toast.makeText(wangjingzeActivity.this, "图片生成中……", Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         }

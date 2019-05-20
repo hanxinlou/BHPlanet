@@ -40,8 +40,13 @@ public class WodeBankuaiFragment extends Fragment implements AdapterView.OnItemC
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.shequ_wode, container, false);
-        getDatasync();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getDatasync();
     }
 
     private void getData() {
@@ -53,6 +58,7 @@ public class WodeBankuaiFragment extends Fragment implements AdapterView.OnItemC
             dataList.add(map);
         }
         simpleAdapter = new SimpleAdapter(getActivity(), dataList, R.layout.bankuai_tupian, from, to);
+        simpleAdapter.notifyDataSetChanged();
         gridView = (GridView)getView().findViewById(R.id.board_item1);
         gridView.setAdapter(simpleAdapter);
         gridView.setOnItemClickListener(this);
@@ -66,39 +72,7 @@ public class WodeBankuaiFragment extends Fragment implements AdapterView.OnItemC
         Intent intent = new Intent(getActivity(), ShequTieziActivity.class);
         intent.putExtra("bankuai", "wode");
         intent.putExtra("wode", index);
-        startActivityForResult(intent, 1000);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent datat) {
-        String community_name;
-        Log.d("qqqqq", String.valueOf(resultCode));
-        switch(resultCode){
-            case 1111:
-                if(datat!=null) {
-                    community_name = datat.getStringExtra("board_name");
-                    for (int i = 0; i < dataList.size(); i++)
-                    {
-                        if (dataList.get(i).get("text") == community_name){
-                            dataList.remove(i);
-                            break;
-                        }
-                    }
-                    simpleAdapter.notifyDataSetChanged();
-                    Log.d("qqqqq", community_name);
-                }
-                break;
-            case 2222:
-                community_name = datat.getStringExtra("board_name");
-                int picture = datat.getIntExtra("board_icon", -1);
-                Map<String, Object> m = new HashMap<>();
-                m.put("img", picture);
-                m.put("text", community_name);
-                dataList.add(m);
-                simpleAdapter.notifyDataSetChanged();
-                break;
-        }
-        super.onActivityResult(requestCode, resultCode, datat);
+        startActivity(intent);
     }
 
     @SuppressLint("HandlerLeak")
@@ -139,7 +113,8 @@ public class WodeBankuaiFragment extends Fragment implements AdapterView.OnItemC
             JSONObject jsonObject = new JSONObject(resData);
             JSONObject data = jsonObject.getJSONObject("content");
             JSONArray info = data.getJSONArray("info");
-
+            community_name_list.clear();
+            picture_list.clear();
             for(int i = 0; i < info.length(); i++) {
                 JSONObject object = info.getJSONObject(i);
                 String community_name = object.optString("community_name");

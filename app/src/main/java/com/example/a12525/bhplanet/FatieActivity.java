@@ -43,9 +43,8 @@ import okhttp3.Response;
 public class FatieActivity extends Activity {
     private EditText editText1, editText2;
     private Button fabiao;
-    private ImageButton insert_img;
+    private Button insert_img;
     private ImageView inserted_img;
-    private Uri img_uri;
     private static final int CHOOSE_PHOTO = 2;
 
     private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
@@ -60,7 +59,7 @@ public class FatieActivity extends Activity {
         setContentView(R.layout.activity_fatie);
         editText1 = (EditText)findViewById(R.id.editText);
         editText2 = (EditText)findViewById(R.id.editText2);
-        insert_img = (ImageButton)findViewById(R.id.insert_img);
+        insert_img = (Button)findViewById(R.id.insert_img);
         inserted_img = (ImageView)findViewById(R.id.inserted_img);
         fabiao = (Button)findViewById(R.id.fabiao);
         community_id = getIntent().getStringExtra("community_id");

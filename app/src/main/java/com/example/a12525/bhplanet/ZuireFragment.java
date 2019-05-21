@@ -38,12 +38,17 @@ public class ZuireFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.shequ_tiezi_liebiao, container, false);
-
-        getDatasync();
         return view;
     }
 
+    @Override
+    public void onResume() {
+        getDatasync();
+        super.onResume();
+    }
+
     private void initPosts(){
+        postsList.clear();
         for (int i = 0; i < post_title_list.size(); i++){
             Posts post = new Posts(community_name_list.get(i), post_title_list.get(i), user_name_list.get(i),
                     zan_num_list.get(i), comment_num_list.get(i), picture_list.get(i));
@@ -82,6 +87,14 @@ public class ZuireFragment extends Fragment {
             JSONObject content = jsonObject.getJSONObject("content");
             JSONArray Info = content.getJSONArray("info");
 
+            post_id_list.clear();
+            post_title_list.clear();
+            community_name_list.clear();
+            user_name_list.clear();
+            user_id_list.clear();
+            picture_list.clear();
+            zan_num_list.clear();
+            comment_num_list.clear();
             for(int i = 0; i < Info.length(); i++) {
                 JSONObject object = Info.getJSONObject(i);
                 String post_id = object.optString("post_id");
@@ -113,7 +126,7 @@ public class ZuireFragment extends Fragment {
     private Handler handler = new Handler(){
         //每隔5秒自动实现vp的position加1
         public void handleMessage(Message msg) {
-            if(msg.what==0x123) {
+            if(msg.what == 0x123) {
                 initPosts();
                 TieziAdapter adapter = new TieziAdapter(getActivity(), R.layout.shequ_tiezi, postsList);
                 ListView listView = (ListView)getView().findViewById(R.id.posts_list_view);

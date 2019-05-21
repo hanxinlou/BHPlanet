@@ -1,20 +1,20 @@
 package com.example.a12525.bhplanet;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.widget.ListView;
 
-public class UnScrollListView extends ListView {
+public class UnScrollRecyclerView extends RecyclerView {
 
-    public UnScrollListView(Context context, AttributeSet attrs, int defStyle) {
+    public UnScrollRecyclerView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         // TODO Auto-generated constructor stub
     }
-    public UnScrollListView(Context context, AttributeSet attrs) {
+    public UnScrollRecyclerView(Context context, AttributeSet attrs) {
         super(context, attrs);
         // TODO Auto-generated constructor stub
     }
-    public UnScrollListView(Context context) {
+    public UnScrollRecyclerView(Context context) {
         super(context);
         // TODO Auto-generated constructor stub
     }

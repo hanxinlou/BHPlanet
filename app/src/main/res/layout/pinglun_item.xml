@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,11 +26,11 @@
 
         <TextView
             android:id="@+id/time"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
             android:textColor="#505050"
             android:textSize="15sp" />
 
@@ -49,15 +51,25 @@
 
         <ImageView
             android:id="@+id/zan"
-            android:background="@drawable/button_view_style"
             android:layout_width="30dp"
-            android:layout_height="30dp" />
+            android:layout_height="30dp"
+            android:background="@drawable/button_view_style" />
 
         <TextView
             android:id="@+id/zann"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:text="点亮"
+            android:textColor="#505050"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/zan_num"
+            android:layout_width="53dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
             android:textColor="#505050"
             android:textSize="15sp" />
 
@@ -66,17 +78,17 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:textColor="#505050"
-            android:textSize="15sp" />
-        <TextView
-            android:id="@+id/chakan"
-            android:layout_width="146dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:text="回复"
             android:textColor="#505050"
             android:textSize="15sp" />
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="?android:attr/listDivider" />
 
 
 </LinearLayout>

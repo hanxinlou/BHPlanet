@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:id="@+id/relativeLayout"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
     tools:context="com.example.a12525.bhplanet.pinglunActivity"
+    android:fillViewport="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+<LinearLayout
+    android:orientation="vertical"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -32,22 +38,16 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-
     <ImageView
         android:id="@+id/opus_picture"
         android:layout_width="match_parent"
         android:layout_height="170dp"
         android:src="@color/bg_white" />
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="71dp"
-        android:layout_marginLeft="3dp"
+        android:layout_margin="8dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -93,6 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -129,8 +130,8 @@
             android:id="@+id/shoucang"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:contentDescription="@string/app_name"
-            android:background="@drawable/unshoucang" />
+            android:background="@drawable/unshoucang"
+            android:contentDescription="@string/app_name" />
 
         <TextView
             android:id="@+id/collect_num"
@@ -157,53 +158,53 @@
 
     </LinearLayout>
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
     <LinearLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         android:background="#ffffff"
+        android:focusable="true"
         android:gravity="bottom"
         android:orientation="horizontal"
-        android:layout_gravity="bottom"
-        android:visibility="gone" >
+        android:visibility="gone">
 
         <EditText
             android:id="@+id/et_discuss"
             android:layout_width="0dp"
             android:layout_height="30dp"
-            android:layout_weight="1"
-            android:hint="说点什么"
-            android:textSize="14sp"
-            android:textColor="#666666"
-            android:singleLine="true"
-            android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:paddingLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
             android:background="#ffffff"
-            />
+            android:hint="说点什么"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
         <TextView
             android:id="@+id/tv_confirm"
-            android:text="发送"
-            android:textSize="14sp"
-            android:textColor="#666666"
-            android:layout_marginRight="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            >
-        </TextView>
+            android:layout_marginRight="10dp"
+            android:text="发送"
+            android:textColor="#666666"
+            android:textSize="14sp" />
     </LinearLayout>
 
 
-<ListView
-    android:id="@+id/list_view"
-    android:layout_width="wrap_content"
-    android:layout_marginLeft="5dp"
-    android:layout_height="wrap_content">
-
-</ListView>
-
 </LinearLayout>
-
-
-</LinearLayout>
+</android.support.v4.widget.NestedScrollView>

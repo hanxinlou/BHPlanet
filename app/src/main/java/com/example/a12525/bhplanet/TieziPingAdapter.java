@@ -1,30 +1,25 @@
 package com.example.a12525.bhplanet;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.view.View;
-import android.widget.ImageButton;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.a12525.bhplanet.R;
 
 import java.util.List;
-import java.util.Objects;
+
+import okhttp3.Response;
 
 
-public class PingAdapter extends RecyclerView.Adapter<PingAdapter.ViewHolder>{
+public class TieziPingAdapter extends RecyclerView.Adapter<TieziPingAdapter.ViewHolder>{
 
     private List<pinglun> pingList;
-    private pinglunActivity context;
+    private TieziNeirongActivity context;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView Tou, Zan;
@@ -43,7 +38,7 @@ public class PingAdapter extends RecyclerView.Adapter<PingAdapter.ViewHolder>{
         }
     }
 
-    public PingAdapter(List<pinglun> pingList, pinglunActivity context){
+    public TieziPingAdapter(List<pinglun> pingList, TieziNeirongActivity context){
         this.context = context;
         this.pingList = pingList;
     }
@@ -78,7 +73,6 @@ public class PingAdapter extends RecyclerView.Adapter<PingAdapter.ViewHolder>{
             }
         });
 
-
         holder.Huifu.setOnClickListener( v -> {
             int position = holder.getAdapterPosition();
             pinglun ping = pingList.get(position);
@@ -102,4 +96,5 @@ public class PingAdapter extends RecyclerView.Adapter<PingAdapter.ViewHolder>{
     public int getItemCount() {
         return pingList.size();
     }
+
 }

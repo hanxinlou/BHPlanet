@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollView"
     android:layout_width="match_parent"
@@ -8,7 +8,7 @@
     <LinearLayout
         android:id="@+id/outLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
@@ -123,6 +123,7 @@
                 android:id="@+id/zan"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_marginLeft="30dp"
                 android:background="@drawable/unzan"
                 android:contentDescription="@string/app_name" />
 
@@ -153,48 +154,13 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/light_comment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="亮评"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <com.example.a12525.bhplanet.UnScrollListView
-            android:id="@+id/light_comment_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp" />
-
-        <View
-            android:id="@+id/divider7"
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="?android:attr/listDivider" />
-
-        <TextView
-            android:id="@+id/all_comment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="全部评论"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <com.example.a12525.bhplanet.UnScrollListView
-            android:id="@+id/all_comment_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp" />
-
         <LinearLayout
             android:id="@+id/mlayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="#ffffff"
+            android:focusable="true"
             android:gravity="bottom"
             android:orientation="horizontal"
             android:visibility="gone">
@@ -220,10 +186,50 @@
                 android:layout_marginRight="10dp"
                 android:text="发送"
                 android:textColor="#666666"
-                android:textSize="14sp"
-
-                ></TextView>
+                android:textSize="14sp" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/light_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="亮评"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/light_comment_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/all_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="全部评论"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/all_comment_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp" />
+        </RelativeLayout>
+
     </LinearLayout>
-</ScrollView>
+</android.support.v4.widget.NestedScrollView>

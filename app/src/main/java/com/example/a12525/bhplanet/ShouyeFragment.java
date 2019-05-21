@@ -64,7 +64,7 @@ public class ShouyeFragment extends Fragment {
         public void handleMessage(Message msg) {
             vp.setCurrentItem(vp.getCurrentItem()+1);
             System.out.println(vp.getCurrentItem());
-            if(msg.what==0x123) {
+            if(msg.what == 0x123) {
                 showGridview();
             }
             else if(running){

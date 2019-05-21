@@ -6,43 +6,35 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.Resource;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.ResourceBundle;
 
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.Request;
 import okhttp3.Response;
 
 public class TieziNeirongActivity extends Activity {
-    private boolean flag = false;
     private boolean is_hide = true;
-    private UnScrollListView listView1;
-    private UnScrollListView listView2;
+    private RecyclerView recyclerView1, recyclerView2;
     private TextView _post_content, _post_title, _create_time, _user_name, _zan_num, _comment_num;
     private ImageView _picture, _content_picture, dianZan;
     private Button commentButton;
@@ -52,22 +44,26 @@ public class TieziNeirongActivity extends Activity {
     private LinearLayout mLayout;
     private LinearLayout outLayout;
 
-
     private String post_id;
     private String post_title;
     private String post_content;
     private String picture;
     private String content_picture;
     private String user_name;
+    private String user_id;
     private String create_time;
+    private int is_ok;
     private int zan_num;
     private int comment_num;
 
     private ArrayList<String> ping_content = new ArrayList<>();
     private ArrayList<String> ping_create_time = new ArrayList<>();
     private ArrayList<String> ping_user_name = new ArrayList<>();
+    private ArrayList<String> ping_user_id = new ArrayList<>();
     private ArrayList<String> ping_user_picture = new ArrayList<>();
+    public  ArrayList<String> ping_compose_id = new ArrayList<>();
     private ArrayList<Integer> ping_zan_num = new ArrayList<>();
+    private ArrayList<Integer> ping_is_ok = new ArrayList<>();
     private ArrayList<Integer> ping_reply_num = new ArrayList<>();
 
 
@@ -82,28 +78,25 @@ public class TieziNeirongActivity extends Activity {
         getPing("0");
 
         dianZan.setOnClickListener( v -> {
-            if(!flag){
-                dianZan.setImageDrawable(getResources().getDrawable(R.drawable.zan));
-                flag=true;
+            if(is_ok == 0){
+                setDianZan(post_id,"4", "1", user_id);
             }
-            else
-            {
-                dianZan.setImageDrawable(getResources().getDrawable(R.drawable.unzan));
-                flag=false;
+            else if(is_ok == 1){
+                setDianZan(post_id,"4", "0", user_id);
             }
         });
 
-        commentButton.setOnClickListener( v-> ShowKeyboard() );
+        commentButton.setOnClickListener( v-> ShowKeyboard("") );
         comment_send.setOnClickListener( v -> postComment() );
         outLayout.setOnClickListener( v -> hideKeyboard() );
 
     }
 
     private void initView(){
-        listView1 = (UnScrollListView)findViewById(R.id.light_comment_list);
-        listView2 = (UnScrollListView)findViewById(R.id.all_comment_list);
-        listView1.setFocusable(false);
-        listView2.setFocusable(false);
+        recyclerView1 = findViewById(R.id.light_comment_list);
+        recyclerView2 = findViewById(R.id.all_comment_list);
+        recyclerView1.setFocusable(false);
+        recyclerView2.setFocusable(false);
 
         _post_title = (TextView)findViewById(R.id.post_title);
         _post_content = (TextView)findViewById(R.id.content_text);
@@ -128,14 +121,29 @@ public class TieziNeirongActivity extends Activity {
         pinglunList.clear();
         for(int i = 0; i < ping_content.size(); i++)
         {
-            pinglun ping = new pinglun(ping_user_picture.get(i),ping_user_name.get(i),ping_create_time.get(i),ping_content.get(i), R.drawable.undianliang,"点亮","回复","查看回复");
-            pinglunList.add(ping);
+            if (ping_is_ok.get(i) == 1){
+                pinglun ping = new pinglun(ping_user_picture.get(i), ping_user_name.get(i), ping_user_id.get(i),
+                        ping_create_time.get(i), ping_content.get(i), R.drawable.dianliang,
+                        ping_zan_num.get(i), ping_compose_id.get(i), ping_is_ok.get(i));
+                pinglunList.add(ping);
+            }else if (ping_is_ok.get(i) == 0){
+                pinglun ping = new pinglun(ping_user_picture.get(i), ping_user_name.get(i), ping_user_id.get(i),
+                        ping_create_time.get(i), ping_content.get(i), R.drawable.undianliang,
+                        ping_zan_num.get(i), ping_compose_id.get(i), ping_is_ok.get(i));
+                pinglunList.add(ping);
+            }
         }
-        PingAdapter adapter = new PingAdapter(TieziNeirongActivity.this,R.layout.pinglun_item, pinglunList);
-        adapter.notifyDataSetInvalidated();
-        listView1.setAdapter(adapter);
-        listView2.setAdapter(adapter);
 
+        LinearLayoutManager layoutManager1 = new LinearLayoutManager(this);
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(this);
+        recyclerView1.setLayoutManager(layoutManager1);
+        recyclerView2.setLayoutManager(layoutManager2);
+        ViewCompat.setNestedScrollingEnabled(recyclerView1, false);
+        ViewCompat.setNestedScrollingEnabled(recyclerView2, false);
+
+        TieziPingAdapter adapter = new TieziPingAdapter(pinglunList, this);
+        recyclerView1.setAdapter(adapter);
+        recyclerView2.setAdapter(adapter);
 
     }
 
@@ -149,20 +157,25 @@ public class TieziNeirongActivity extends Activity {
 
         Glide.with(this).load(picture).into(_picture);
         Glide.with(this).load(content_picture).into(_content_picture);
+        if (is_ok == 1){
+            dianZan.setImageDrawable(getResources().getDrawable(R.drawable.zan));
+        }else if (is_ok == 0){
+            dianZan.setImageDrawable(getResources().getDrawable(R.drawable.unzan));
+        }
+
     }
 
-    //显示布局与键盘
-    private void ShowKeyboard(){
-        is_hide = false;
-        mLayout.setVisibility(View.VISIBLE);//显示布局
+    public void ShowKeyboard(String msg){
+        comment_text.setText(msg);
+        mLayout.setVisibility(View.VISIBLE);
+        mLayout.requestFocus();
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
     }
-    //隐藏键盘与布局
+
     private void hideKeyboard(){
-        is_hide = true;
-        mLayout.setVisibility(View.GONE);//隐藏布局
-        comment_text.setText("");//清空输入
+        mLayout.setVisibility(View.GONE);
+        comment_text.setText("");
         View view = getWindow().peekDecorView();
         if (view != null) {
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -174,10 +187,7 @@ public class TieziNeirongActivity extends Activity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         //隐藏键盘与布局
-        if (!is_hide){
-            hideKeyboard();
-            return true;
-        }
+        hideKeyboard();
         return super.onKeyDown(keyCode, event);
     }
 
@@ -194,6 +204,12 @@ public class TieziNeirongActivity extends Activity {
                 hideKeyboard();
                 getPing("0");
                 Toast.makeText(TieziNeirongActivity.this, "评论成功", Toast.LENGTH_SHORT).show();
+            }
+            else if(msg.what == 0x444){
+                getContent();
+            }
+            else if(msg.what == 0x222){
+                getPing("0");
             }
         }
     };
@@ -230,9 +246,11 @@ public class TieziNeirongActivity extends Activity {
             picture = content.optString("picture");
             content_picture = content.optString("content_picture");
             user_name = content.optString("user_name");
+            user_id = content.optString("user_id");
             create_time = content.optString("create_time");
             zan_num = content.optInt("zan_num");
             comment_num = content.optInt("comment_num");
+            is_ok = content.optInt("is_ok");
 
         } catch (Exception e){
             e.printStackTrace();
@@ -244,8 +262,8 @@ public class TieziNeirongActivity extends Activity {
             try {
                 String url = "http://129.211.5.66:8080/comment?compose_type=2&from_opusid=" + post_id + "&page=1&status=" + status + "&user_id=" + Client.user_id;
                 Request request = new Request.Builder()
-                        .url(url)//请求接口。如果需要传参拼接到接口后面。
-                        .build();//创建Request 对象
+                        .url(url)
+                        .build();
                 Response response = Client.client.newCall(request).execute();
                 if(response.isSuccessful()) {
                     Log.d("getPing", "response.code()==" + response.code());
@@ -270,24 +288,33 @@ public class TieziNeirongActivity extends Activity {
             ping_content.clear();
             ping_create_time.clear();
             ping_user_name.clear();
+            ping_user_id.clear();
             ping_user_picture.clear();
             ping_zan_num.clear();
             ping_reply_num.clear();
+            ping_compose_id.clear();
+            ping_is_ok.clear();
             for (int i = 0; i < info.length(); i++) {
                 JSONObject object = info.getJSONObject(i);
                 String p_content = object.optString("content");
                 String p_create_time = object.optString("create_time");
                 String p_user_name = object.optString("user_name");
+                String p_user_id = object.optString("from_userid");
                 String p_user_picture = object.optString("user_picture");
+                String p_compose_id = object.optString("compose_id");
                 int p_zan_num = object.optInt("zan_num");
                 int p_reply_num = object.optInt("reply_num");
+                int p_is_ok = object.optInt("is_ok");
 
                 ping_content.add(p_content);
                 ping_create_time.add(p_create_time);
                 ping_user_name.add(p_user_name);
+                ping_user_id.add(p_user_id);
                 ping_user_picture.add(p_user_picture);
                 ping_zan_num.add(p_zan_num);
                 ping_reply_num.add(p_reply_num);
+                ping_compose_id.add(p_compose_id);
+                ping_is_ok.add(p_is_ok);
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -321,6 +348,42 @@ public class TieziNeirongActivity extends Activity {
                 e.printStackTrace();
             }
             handler.sendEmptyMessage(0x789);
+        }).start();
+    }
+
+    public void setDianZan(String type_id, String type, String status, String to_userid){
+        new Thread(() -> {
+            try {
+                String url = "http://129.211.5.66:8080/zan";
+                FormBody.Builder formBody = new FormBody.Builder();
+                formBody.add("type_id", type_id)
+                        .add("type", type)
+                        .add("user_id", Client.user_id)
+                        .add("status", status)
+                        .add("to_userid", to_userid);
+
+                Request request = new Request.Builder()
+                        .url(url)//请求接口。如果需要传参拼接到接口后面。
+                        .post(formBody.build())
+                        .build();//创建Request 对象
+
+                Response response = Client.client.newCall(request).execute();
+                if(response.isSuccessful()) {
+                    Log.d("setDianZan", "response.code()==" + response.code());
+                    Log.d("setDianZan", "response.message()==" + response.message());
+                    String resData = response.body().string();
+                    Log.d("setDianZan", "res==" + resData);
+                    //此时的代码执行在子线程，修改UI的操作请使用handler跳转到UI线程。
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (type.equals("4")){
+                handler.sendEmptyMessage(0x444);
+            }else if (type.equals("2")){
+                handler.sendEmptyMessage(0x222);
+            }
+
         }).start();
     }
 }

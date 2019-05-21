@@ -5,8 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,12 +20,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import android.widget.AdapterView;
 
 import com.bumptech.glide.Glide;
 
@@ -30,9 +30,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
+import okhttp3.FormBody;
 import okhttp3.Request;
 import okhttp3.Response;
 
@@ -50,7 +49,7 @@ public class pinglunActivity extends AppCompatActivity {
     private TextView tv_confirm;
     private LinearLayout mLayout;
     private EditText mEdit;
-    private ListView listView;
+    private RecyclerView recyclerView;
 
     private TextView zan_num_ui, comment_num_ui, transmit_num_ui, collect_num_ui;
     private TextView opus_title_ui, opus_content_ui, user_name_ui;
@@ -68,13 +67,17 @@ public class pinglunActivity extends AppCompatActivity {
     private int comment_num;
     private int transmit_num;
     private int collect_num;
-    private int zan;
+    private int is_ok;
+
 
     private ArrayList<String> ping_content = new ArrayList<>();
     private ArrayList<String> ping_create_time = new ArrayList<>();
     private ArrayList<String> ping_user_name = new ArrayList<>();
     private ArrayList<String> ping_user_picture = new ArrayList<>();
+    private ArrayList<String> ping_user_id = new ArrayList<>();
+    public  ArrayList<String> ping_compose_id = new ArrayList<>();
     private ArrayList<Integer> ping_zan_num = new ArrayList<>();
+    private ArrayList<Integer> ping_is_ok = new ArrayList<>();
     private ArrayList<Integer> ping_reply_num = new ArrayList<>();
 
     @Override
@@ -94,38 +97,34 @@ public class pinglunActivity extends AppCompatActivity {
                 Intent intent=new Intent(pinglunActivity.this,ZhuanActivity.class);
                 startActivity(intent);
         });
+
         dianzan.setOnClickListener( v -> {
-                if(!flag1){
-                    dianzan.setImageDrawable(getResources().getDrawable(R.drawable.zan));
-                    flag1=true;
-                }
-                else
-                {
-                    dianzan.setImageDrawable(getResources().getDrawable(R.drawable.unzan));
-                    flag1=false;
-                }
+            if(is_ok == 0){
+                setDianZan(opus_id,"1", "1", user_id);
+            }
+            else if(is_ok == 1){
+                setDianZan(opus_id,"1", "0", user_id);
+            }
         });
+
         shoucang.setOnClickListener( v -> {
                 if(!flag) {
                     shoucang.setImageDrawable(getResources().getDrawable(R.drawable.shoucang));
-                    flag=true;
+                    flag = true;
                 } else {
                     shoucang.setImageDrawable(getResources().getDrawable(R.drawable.unshoucang));
-                    flag=false;
+                    flag = false;
                 }
         });
-        pinglun.setOnClickListener( v-> ShowKeyboard() );
-        tv_confirm.setOnClickListener( v -> {
-                hideKeyboard();
-                Toast.makeText(pinglunActivity.this, "评论成功", Toast.LENGTH_SHORT).show();
-        });
+        pinglun.setOnClickListener( v-> ShowKeyboard("") );
+        tv_confirm.setOnClickListener( v -> postComment() );
         relativeLayout.setOnClickListener( v -> hideKeyboard() );
 
     }
 
     void initView(){
         opus_id = getIntent().getStringExtra("home_opus_id");
-        listView = findViewById(R.id.list_view);
+        recyclerView = findViewById(R.id.recyclerView);
         zan_num_ui = findViewById(R.id.zan_num);
         comment_num_ui = findViewById(R.id.comment_num);
         transmit_num_ui = findViewById(R.id.transmit_num);
@@ -149,7 +148,7 @@ public class pinglunActivity extends AppCompatActivity {
 
     }
 
-    void setData(){
+    void initContent(){
         zan_num_ui.setText(String.valueOf(zan_num));
         comment_num_ui.setText(String.valueOf(comment_num));
         transmit_num_ui.setText(String.valueOf(transmit_num));
@@ -159,15 +158,21 @@ public class pinglunActivity extends AppCompatActivity {
         user_name_ui.setText(user_name);
         Glide.with(this).load(user_picture).into(user_picture_ui);
         Glide.with(this).load(opus_picture).into(opus_picture_ui);
+        if (is_ok == 1){
+            dianzan.setImageDrawable(getResources().getDrawable(R.drawable.zan));
+        }else if (is_ok == 0){
+            dianzan.setImageDrawable(getResources().getDrawable(R.drawable.unzan));
+        }
     }
 
-    //显示布局与键盘
-    private void ShowKeyboard(){
+    public void ShowKeyboard(String msg){
+        mEdit.setText(msg);
         mLayout.setVisibility(View.VISIBLE);//显示布局
+        mLayout.requestFocus();
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
     }
-    //隐藏键盘与布局
+
     private void hideKeyboard(){
         mLayout.setVisibility(View.GONE);//隐藏布局
         mEdit.setText("");//清空输入
@@ -181,28 +186,33 @@ public class pinglunActivity extends AppCompatActivity {
     // 捕获返回键的方法
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        //隐藏键盘与布局
         hideKeyboard();
-        return true;
+        return super.onKeyDown(keyCode, event);
     }
 
     private void initPing(){
+        pinglunList.clear();
         for(int i = 0; i < ping_content.size(); i++)
         {
-            pinglun ping = new pinglun(ping_user_picture.get(i),ping_user_name.get(i),ping_create_time.get(i),ping_content.get(i), R.drawable.undianliang,"点亮","回复","查看回复");
-            pinglunList.add(ping);
-        }
-        PingAdapter adapter = new PingAdapter(pinglunActivity.this,R.layout.pinglun_item, pinglunList);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                pinglun pinglun = pinglunList.get(position);
-                Intent intent1 = new Intent(pinglunActivity.this, chakanActivity.class);
-                startActivity(intent1);
+            if (ping_is_ok.get(i) == 1){
+                pinglun ping = new pinglun(ping_user_picture.get(i), ping_user_name.get(i), ping_user_id.get(i),
+                        ping_create_time.get(i), ping_content.get(i), R.drawable.dianliang,
+                        ping_zan_num.get(i), ping_compose_id.get(i), ping_is_ok.get(i));
+                pinglunList.add(ping);
+            }else if (ping_is_ok.get(i) == 0){
+                pinglun ping = new pinglun(ping_user_picture.get(i), ping_user_name.get(i), ping_user_id.get(i),
+                        ping_create_time.get(i), ping_content.get(i), R.drawable.undianliang,
+                        ping_zan_num.get(i), ping_compose_id.get(i), ping_is_ok.get(i));
+                pinglunList.add(ping);
             }
-        });
-        listView.setFocusable(false);
+        }
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        //recyclerView.setNestedScrollingEnabled(false);
+        ViewCompat.setNestedScrollingEnabled(recyclerView, false);
+        PingAdapter adapter = new PingAdapter(pinglunList, this);
+        recyclerView.setAdapter(adapter);
     }
 
     public void getDatasync(){
@@ -211,15 +221,14 @@ public class pinglunActivity extends AppCompatActivity {
                 String url = "http://129.211.5.66:8080/detail?opus_id=" + opus_id +
                         "&currpage=1" + "&user_id=" + Client.user_id;
                 Request request = new Request.Builder()
-                        .url(url)//请求接口。如果需要传参拼接到接口后面。
-                        .build();//创建Request 对象
-                Response response = null;
-                response = Client.client.newCall(request).execute();//得到Response 对象
+                        .url(url)
+                        .build();
+                Response response = Client.client.newCall(request).execute();
                 if (response.isSuccessful()) {
-                    Log.d("shouye","response.code()=="+response.code());
+                    Log.d("shouye","response.code()==" + response.code());
                     Log.d("shouye","response.message()=="+response.message());
                     String resData = response.body().string();
-                    Log.d("shouye","res=="+resData);
+                    Log.d("shouye","res==" + resData);
                     //此时的代码执行在子线程，修改UI的操作请使用handler跳转到UI线程。
                     parseData(resData);
                 }
@@ -234,9 +243,9 @@ public class pinglunActivity extends AppCompatActivity {
         try{
             JSONObject object = new JSONObject(resData);
             JSONObject data = object.getJSONObject("content");
-
             opus_title = data.optString("opus_title");
             opus_content = data.optString("opus_content");
+            user_id = data.optString("user_id");
             user_name = data.optString("user_name");
             user_picture = data.optString("user_picture");
             opus_picture = data.optString("opus_picture");
@@ -245,7 +254,7 @@ public class pinglunActivity extends AppCompatActivity {
             comment_num = data.optInt("comment_num");
             transmit_num = data.optInt("transmit_num");
             collect_num = data.optInt("collect_num");
-
+            is_ok = data.optInt("is_ok");
 
         }catch (Exception e){
             e.printStackTrace();
@@ -258,15 +267,14 @@ public class pinglunActivity extends AppCompatActivity {
             try {
                 String url = "http://129.211.5.66:8080/comment?compose_type=1&from_opusid=" + opus_id + "&page=1&status=0&user_id=" + Client.user_id;
                 Request request = new Request.Builder()
-                        .url(url)//请求接口。如果需要传参拼接到接口后面。
-                        .build();//创建Request 对象
+                        .url(url)
+                        .build();
                 Response response = Client.client.newCall(request).execute();
                 if(response.isSuccessful()) {
                     Log.d("getPing", "response.code()==" + response.code());
                     Log.d("getPing", "response.message()==" + response.message());
                     String resData = response.body().string();
                     Log.d("getPing", "res==" + resData);
-                    //此时的代码执行在子线程，修改UI的操作请使用handler跳转到UI线程。
                     parseData2(resData);
                 }
             } catch (Exception e) {
@@ -281,25 +289,106 @@ public class pinglunActivity extends AppCompatActivity {
             JSONObject jsonObject = new JSONObject(resData);
             JSONObject content = jsonObject.getJSONObject("content");
             JSONArray info = content.getJSONArray("info");
+            ping_content.clear();
+            ping_create_time.clear();
+            ping_user_name.clear();
+            ping_user_id.clear();
+            ping_user_picture.clear();
+            ping_zan_num.clear();
+            ping_reply_num.clear();
+            ping_compose_id.clear();
+            ping_is_ok.clear();
             for (int i = 0; i < info.length(); i++) {
                 JSONObject object = info.getJSONObject(i);
                 String p_content = object.optString("content");
                 String p_create_time = object.optString("create_time");
                 String p_user_name = object.optString("user_name");
+                String p_user_id = object.optString("from_userid");
                 String p_user_picture = object.optString("user_picture");
+                String p_compose_id = object.optString("compose_id");
                 int p_zan_num = object.optInt("zan_num");
                 int p_reply_num = object.optInt("reply_num");
+                int p_is_ok = object.optInt("is_ok");
 
                 ping_content.add(p_content);
                 ping_create_time.add(p_create_time);
                 ping_user_name.add(p_user_name);
+                ping_user_id.add(p_user_id);
                 ping_user_picture.add(p_user_picture);
                 ping_zan_num.add(p_zan_num);
                 ping_reply_num.add(p_reply_num);
+                ping_compose_id.add(p_compose_id);
+                ping_is_ok.add(p_is_ok);
             }
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void setDianZan(String type_id, String type, String status, String to_userid){
+        new Thread(() -> {
+            try {
+                String url = "http://129.211.5.66:8080/zan";
+                FormBody.Builder formBody = new FormBody.Builder();
+                formBody.add("type_id", type_id)
+                        .add("type", type)
+                        .add("user_id", Client.user_id)
+                        .add("status", status)
+                        .add("to_userid", to_userid);
+
+                Request request = new Request.Builder()
+                        .url(url)//请求接口。如果需要传参拼接到接口后面。
+                        .post(formBody.build())
+                        .build();//创建Request 对象
+
+                Response response = Client.client.newCall(request).execute();
+                if(response.isSuccessful()) {
+                    Log.d("setDianZan", "response.code()==" + response.code());
+                    Log.d("setDianZan", "response.message()==" + response.message());
+                    String resData = response.body().string();
+                    Log.d("setDianZan", "res==" + resData);
+                    //此时的代码执行在子线程，修改UI的操作请使用handler跳转到UI线程。
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (type.equals("1")){
+                handler.sendEmptyMessage(0x111);
+            }else if (type.equals("2")){
+                handler.sendEmptyMessage(0x222);
+            }
+
+        }).start();
+    }
+
+    private void postComment(){
+        new Thread(() -> {
+            try {
+                String url = "http://129.211.5.66:8080/comment";
+                FormBody.Builder formBody = new FormBody.Builder();
+                formBody.add("compose_type", "1") //1 = 作品评论
+                        .add("content", mEdit.getText().toString())
+                        .add("from_userid", Client.user_id)
+                        .add("from_opusid", opus_id);
+
+                Request request = new Request.Builder()
+                        .url(url)//请求接口。如果需要传参拼接到接口后面。
+                        .post(formBody.build())
+                        .build();//创建Request 对象
+
+                Response response = Client.client.newCall(request).execute();
+                if(response.isSuccessful()) {
+                    Log.d("postComment", "response.code()==" + response.code());
+                    Log.d("postComment", "response.message()==" + response.message());
+                    String resData = response.body().string();
+                    Log.d("postComment", "res==" + resData);
+                    //此时的代码执行在子线程，修改UI的操作请使用handler跳转到UI线程。
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            handler.sendEmptyMessage(0x789);
+        }).start();
     }
 
     @SuppressLint("HandlerLeak")
@@ -307,14 +396,22 @@ public class pinglunActivity extends AppCompatActivity {
         //每隔5秒自动实现vp的position加1
         public void handleMessage(Message msg) {
             if(msg.what == 0x123) {
-                setData();
+                initContent();
             }
-            if(msg.what ==0x456){
+            else if(msg.what == 0x456){
                 initPing();
+            }
+            else if(msg.what == 0x789){
+                hideKeyboard();
+                getPing();
+                Toast.makeText(pinglunActivity.this, "评论成功", Toast.LENGTH_SHORT).show();
+            }
+            else if(msg.what == 0x111){
+                getDatasync();
+            }
+            else if(msg.what == 0x222){
+                getPing();
             }
         }
     };
-
-
 }
-

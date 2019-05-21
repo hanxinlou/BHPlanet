@@ -60,14 +60,36 @@ public class pinglunActivity extends AppCompatActivity {
     private ArrayList<String> opus_content_list=new ArrayList<>();
     private ArrayList<String> user_name_list=new ArrayList<>();
 
+    Handler handler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            if (msg.what == 0x123) {
+                initPing();                 //初始化水果数据
+//                pinglunActivity.PingAdapter adapter = new pinglunActivity.PingAdapter(pinglunActivity.this, R.layout.pinglun_item, pinglunList);
 
+                //      ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, data);
+                ListView listview = (ListView) findViewById(R.id.list_view);
+//                listview.setAdapter(adapter);
+
+//                nickname.setText(mydata.get("user_name"));
+//                uid.setText(mydata.get("user_id"));
+//                sexx.setText(mydata.get("birthday"));
+//                birthh.setText(mydata.get("sex"));
+//                qianmingg.setText(mydata.get("introduce"));
+                //picture.setImageResource(Integer.parseInt(mydata.get("picture")));
+
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pinglun);
+
+
         Intent intent = getIntent();
         String home_img_id = intent.getStringExtra("home_img_id");
-
+        String id =Client.user_id;
+//        getDatasync(home_img_id);
         mLayout = (LinearLayout) findViewById(R.id.layout);
         mEdit = (EditText) findViewById(R.id.et_discuss);
 

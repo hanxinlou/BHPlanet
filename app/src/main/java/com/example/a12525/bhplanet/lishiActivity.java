@@ -105,7 +105,7 @@ public class lishiActivity extends AppCompatActivity {
             try {
                 OkHttpClient client = Client.client;//创建OkHttpClient对象
                 Request request = new Request.Builder()
-                        .url("http://129.211.5.66:8080/user/collect?user_id=" + id + "&currpage=1")//请求接口。如果需要传参拼接到接 口后面。
+                        .url("http://129.211.5.66:8080/user/history?user_id=" + id + "&currpage=1")//请求接口。如果需要传参拼接到接 口后面。
                         .build();//创建Request 对象
                 Call call = client.newCall(request);
                 Response response = call.execute();//得到Response 对象
@@ -183,9 +183,7 @@ public class lishiActivity extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent){
             lishi lishi=getItem(position);           //获取当前项的实例
-
             //Liuzuopin.setImageResource(lishi.getLiuzuopin());
-
             View view;
             lishiActivity.LiAdapter.ViewHolder viewHolder;
             if (convertView == null) {

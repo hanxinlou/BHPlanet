@@ -1,5 +1,6 @@
 package com.example.a12525.bhplanet;
 
+import android.app.Activity;
 import android.content.Context;
 
 import android.os.Handler;
@@ -31,14 +32,14 @@ import okhttp3.Response;
 
 public class shoucangActivity extends AppCompatActivity {
     private List<shoucang> shoucangList=new ArrayList<>();
-//    private List<guanzhu> guanzhuList = new ArrayList<>();
+
     private ImageView shouzuopin;
     private TextView shouname;
 
     private String opus_id;//作品id
     private String opus_type;//作品类型
     private String picture;//作品图片
-    private ArrayList<String> shou_name_list=new ArrayList<>();
+    private ArrayList<String> opus_id_list=new ArrayList<>();
     private ArrayList<String> picture_list=new ArrayList<>();
     private ArrayList<String> type_list=new ArrayList<>();
     Handler handler = new Handler() {
@@ -76,16 +77,18 @@ public class shoucangActivity extends AppCompatActivity {
                 finish();
             }
         });
-        initShou();                 //初始化水果数据
-        ShouAdapter adapter=new ShouAdapter(shoucangActivity.this,R.layout.shoucang_item,shoucangList);
+//        initShou();                 //初始化水果数据
+//        ShouAdapter adapter=new ShouAdapter(shoucangActivity.this,R.layout.shoucang_item,shoucangList);
 
         //      ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, data);
-        ListView listview = (ListView) findViewById(R.id.list_view);
-        listview.setAdapter(adapter);
+//        ListView listview = (ListView) findViewById(R.id.list_view);
+//        listview.setAdapter(adapter);
     }
     private void initShou(){
-        for(int i=0;i<shou_name_list.size();i++){
-            shoucang apple=new shoucang(picture_list.get(i),shou_name_list.get(i));
+        for(int i=0;i<opus_id_list.size();i++){
+            Log.d("picture",picture_list.get(i));
+            Log.d("picture",opus_id_list.get(i));
+            shoucang apple=new shoucang(picture_list.get(i),opus_id_list.get(i));
             shoucangList.add(apple);
 //            shoucang cao=new shoucang(R.drawable.song1,"收藏夹1");
 //            shoucangList.add(cao);
@@ -133,7 +136,7 @@ public class shoucangActivity extends AppCompatActivity {
                 opus_type=object.optString("opus_type");
                 picture = object.optString("picture");
 
-                shou_name_list.add(opus_id);
+                opus_id_list.add(opus_id);
                 type_list.add(opus_type);
                 picture_list.add(picture);
             }
@@ -187,15 +190,15 @@ public class shoucangActivity extends AppCompatActivity {
 //            TextView shouname=(TextView) view.findViewById(R.id.shouname);
 //            shouzuopin.setImageResource(shoucang.getShouzuopin());
             Log.d("shou",shoucang.getShouzuopin() );
+            Log.d("shouname",shoucang.getShouname());
+            viewHolder.shouname.setText(shoucang.getShouname());
             Glide.with(getContext()).load(shoucang.getShouzuopin()).into(viewHolder.shouzuopin);
-            shouname.setText(shoucang.getShouname());
+
             return view;
         }
         class ViewHolder {
-            TextView shouname;
             ImageView shouzuopin;
+            TextView shouname;
         }
     }
-
-
 }

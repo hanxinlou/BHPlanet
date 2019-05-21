@@ -1,7 +1,7 @@
 package com.example.a12525.bhplanet;
 
 import android.content.Context;
-import android.content.Intent;
+
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,13 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.a12525.bhplanet.R;
+import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -32,7 +32,7 @@ import okhttp3.Response;
 public class shoucangActivity extends AppCompatActivity {
     private List<shoucang> shoucangList=new ArrayList<>();
 //    private List<guanzhu> guanzhuList = new ArrayList<>();
-    private ImageView shoucang_picture;
+    private ImageView shouzuopin;
     private TextView shouname;
 
     private String opus_id;//作品id
@@ -66,6 +66,8 @@ public class shoucangActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shoucang);
         String id = Client.user_id;
+        shouzuopin=(ImageView)findViewById(R.id.shouzuopin);
+        shouname=(TextView)findViewById(R.id.shouname);
         getDatasync(id);
         ImageButton fanhui=(ImageButton)findViewById(R.id.fanhui);
         fanhui.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +85,7 @@ public class shoucangActivity extends AppCompatActivity {
     }
     private void initShou(){
         for(int i=0;i<shou_name_list.size();i++){
-            shoucang apple=new shoucang(R.drawable.song,shou_name_list.get(i));
+            shoucang apple=new shoucang(picture_list.get(i),shou_name_list.get(i));
             shoucangList.add(apple);
 //            shoucang cao=new shoucang(R.drawable.song1,"收藏夹1");
 //            shoucangList.add(cao);
@@ -103,8 +105,8 @@ public class shoucangActivity extends AppCompatActivity {
                 Call call = client.newCall(request);
                 Response response = call.execute();//得到Response 对象
                 if (response.isSuccessful()) {
-                    Log.d("ndxq", "response.code()==" + response.code());
-                    Log.d("ndxq", "response.message()==" + response.message());
+                    Log.d("shou", "response.code()==" + response.code());
+                    Log.d("shou", "response.message()==" + response.message());
                     String resData = response.body().string();
                     Log.d("ndxq", "res==" + resData);
                     //此时的代码执行在子线程，修改UI的操作请使用handler跳转到UI线程。
@@ -169,12 +171,29 @@ public class shoucangActivity extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent){
             shoucang shoucang=getItem(position);           //获取当前项的实例
-            View view= LayoutInflater.from(getContext()).inflate(resourceId,parent,false);
-            ImageView shouzuopin=(ImageView)view.findViewById(R.id.shouzuopin);
-            TextView shouname=(TextView) view.findViewById(R.id.shouname);
-            shouzuopin.setImageResource(shoucang.getShouzuopin());
+            View view;
+            ViewHolder viewHolder;
+            if (convertView == null) {
+                view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
+                viewHolder = new ViewHolder();
+                viewHolder.shouname = (TextView) view.findViewById(R.id.shouname);
+                viewHolder.shouzuopin = (ImageView) view.findViewById(R.id.shouzuopin);
+                view.setTag(viewHolder);
+            } else {
+                view = convertView;
+                viewHolder = (ViewHolder) view.getTag();
+            }
+//            ImageView shouzuopin=(ImageView)view.findViewById(R.id.shouzuopin);
+//            TextView shouname=(TextView) view.findViewById(R.id.shouname);
+//            shouzuopin.setImageResource(shoucang.getShouzuopin());
+            Log.d("shou",shoucang.getShouzuopin() );
+            Glide.with(getContext()).load(shoucang.getShouzuopin()).into(viewHolder.shouzuopin);
             shouname.setText(shoucang.getShouname());
             return view;
+        }
+        class ViewHolder {
+            TextView shouname;
+            ImageView shouzuopin;
         }
     }
 

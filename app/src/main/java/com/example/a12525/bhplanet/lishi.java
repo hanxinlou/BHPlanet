@@ -1,19 +1,19 @@
 package com.example.a12525.bhplanet;
 
 public class lishi {
-    private int liuzuopin;
+    private String liuzuopin;
     private String liuming;
     private String liuid;
     private String liutime;
 
-    public lishi(int liuzuopin,String liuming,String liuid,String liutime){
+    public lishi(String liuzuopin,String liuming,String liuid,String liutime){
         this.liuzuopin=liuzuopin;
         this.liuming=liuming;
         this.liuid=liuid;
         this.liutime=liutime;
     }
 
-    public int getLiuzuopin() {
+    public String getLiuzuopin() {
         return liuzuopin;
     }
 

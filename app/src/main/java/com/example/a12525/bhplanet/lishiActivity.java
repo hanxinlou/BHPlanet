@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.a12525.bhplanet.R;
 
 import org.json.JSONArray;
@@ -69,7 +70,8 @@ public class lishiActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lishi);
-
+        String id =Client.user_id;
+        getDatasync(id);
         ImageButton fanhui=(ImageButton)findViewById(R.id.fanhui);
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +90,7 @@ public class lishiActivity extends AppCompatActivity {
 
     private void initLi(){
         for(int i=0;i<author_name_list.size();i++){
-            lishi apple=new lishi(R.drawable.song,opus_title_list.get(i),author_name_list.get(i),create_time_list.get(i));
+            lishi apple=new lishi(picture_list.get(i),opus_title_list.get(i),author_name_list.get(i),create_time_list.get(i));
             lishiList.add(apple);
 //            lishi cao=new lishi(R.drawable.song1,"咦我的头呢","小狐狸","2小时前");
 //            lishiList.add(cao);
@@ -181,18 +183,38 @@ public class lishiActivity extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent){
             lishi lishi=getItem(position);           //获取当前项的实例
-            View view= LayoutInflater.from(getContext()).inflate(resourceId,parent,false);
-            ImageView Liuzuopin=(ImageView)view.findViewById(R.id.liuzuopin);
-            TextView Liuming=(TextView) view.findViewById(R.id.liuming);
-            TextView Liuid=(TextView) view.findViewById(R.id.liuid);
-            TextView Liutime=(TextView) view.findViewById(R.id.liutime);
 
-            Liuzuopin.setImageResource(lishi.getLiuzuopin());
-            Liuming.setText(lishi.getLiuming());
-            Liuid.setText(lishi.getLiuid());
-            Liutime.setText(lishi.getLiutime());
+            //Liuzuopin.setImageResource(lishi.getLiuzuopin());
+
+            View view;
+            lishiActivity.LiAdapter.ViewHolder viewHolder;
+            if (convertView == null) {
+                view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
+                viewHolder = new lishiActivity.LiAdapter.ViewHolder();
+                viewHolder.Liuzuopin=(ImageView)view.findViewById(R.id.liuzuopin);
+               viewHolder.Liuming=(TextView) view.findViewById(R.id.liuming);
+                viewHolder.Liuid=(TextView) view.findViewById(R.id.liuid);
+                viewHolder.Liutime=(TextView) view.findViewById(R.id.liutime);
+                view.setTag(viewHolder);
+            } else {
+                view = convertView;
+                viewHolder = (lishiActivity.LiAdapter.ViewHolder) view.getTag();
+            }
+//            viewHolder.gnicheng.setText(lishi.());
+            Glide.with(getContext()).load(lishi.getLiuzuopin()).into(viewHolder.Liuzuopin);
+            viewHolder.Liuming.setText(lishi.getLiuming());//作品名称
+            viewHolder.Liuid.setText(lishi.getLiuid());//作者ID
+            viewHolder.Liutime.setText(lishi.getLiutime());//观看时间
 
             return view;
+
         }
+        class ViewHolder {
+            ImageView Liuzuopin;
+            TextView Liuming;
+            TextView Liuid;
+            TextView Liutime;
+        }
+
     }
 }

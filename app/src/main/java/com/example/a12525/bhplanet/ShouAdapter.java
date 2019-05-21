@@ -21,13 +21,13 @@ public class ShouAdapter extends ArrayAdapter<shoucang> {
         super(context,textViewResourceId,objects);
         resourceId=textViewResourceId;
     }
-    @Override
+   @Override
     public View getView(int position,View convertView,ViewGroup parent){
         shoucang shoucang=getItem(position);           //获取当前项的实例
         View view= LayoutInflater.from(getContext()).inflate(resourceId,parent,false);
         ImageView shouzuopin=(ImageView)view.findViewById(R.id.shouzuopin);
         TextView shouname=(TextView) view.findViewById(R.id.shouname);
-        shouzuopin.setImageResource(shoucang.getShouzuopin());
+        //shouzuopin.setImageResource(shoucang.getShouzuopin());
         shouname.setText(shoucang.getShouname());
         return view;
     }

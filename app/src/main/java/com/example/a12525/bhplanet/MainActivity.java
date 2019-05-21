@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.a12525.bhplanet.R;
 
@@ -43,14 +44,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        Button zuopin=(Button)findViewById(R.id.zuopin);
-        zuopin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,guanliActivity.class);
-                startActivity(intent);
-            }
-        });
+//     Button zuopin=(Button)findViewById(R.id.zuopin);
+//        zuopin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=new Intent(MainActivity.this,guanliActivity.class);
+//                startActivity(intent);
+//            }
+//        });
         Button fensi=(Button)findViewById(R.id.fensi);
         fensi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,14 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        Button xiazai=(Button)findViewById(R.id.xiazai);
-        xiazai.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,xiazaiActivity.class);
-                startActivity(intent);
-            }
-        });
+
         Button lishi=(Button)findViewById(R.id.lishi);
         lishi.setOnClickListener(new View.OnClickListener() {
             @Override

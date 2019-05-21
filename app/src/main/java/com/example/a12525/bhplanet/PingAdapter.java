@@ -43,7 +43,22 @@ public class PingAdapter extends ArrayAdapter<pinglun> {
         Zan.setImageResource(pinglun.getZan());
         Zann.setText(pinglun.getZann());
         Huifu.setText(pinglun.getHuifu());
+        Huifu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnItemDeleteListener.onDeleteClick();
+            }
+        });
         Chakan.setText(pinglun.getChakan());
         return view;
+    }
+    public interface onItemDeleteListener {
+        void onDeleteClick();
+    }
+
+    private onItemDeleteListener mOnItemDeleteListener;
+
+    public void setOnItemDeleteClickListener(onItemDeleteListener mOnItemDeleteListener) {
+        this.mOnItemDeleteListener = mOnItemDeleteListener;
     }
 }

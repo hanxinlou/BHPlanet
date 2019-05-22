@@ -38,6 +38,7 @@ public class fensi extends AppCompatActivity {
     private String picture;
     private ArrayList<String> fan_name_list = new ArrayList<>();
     private ArrayList<String> picture_list = new ArrayList<>();
+    String id =Client.user_id;
     Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             if (msg.what == 0x123) {
@@ -64,6 +65,8 @@ public class fensi extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fensi);
+        ftouxiang=(ImageView)findViewById(R.id.fruit_image) ;
+        fnicheng=(TextView)findViewById(R.id.fruit_name);
         ImageButton fanhui = (ImageButton) findViewById(R.id.fanhui);
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,11 +74,12 @@ public class fensi extends AppCompatActivity {
                 finish();
             }
         });
+        getDatasync(id);
     }
 
     private void initFruits() {
         for (int i = 0; i < fan_name_list.size(); i++) {
-            Fruit apple = new Fruit(fan_name_list.get(i), R.drawable.head);
+            Fruit apple = new Fruit(fan_name_list.get(i), picture_list.get(i));
             fruitList.add(apple);
         }
     }
@@ -139,12 +143,26 @@ public class fensi extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             Fruit fruit = getItem(position);           //获取当前项的实例
-            View view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
-            ImageView fruitImage = (ImageView) view.findViewById(R.id.fruit_image);
-            TextView fruitName = (TextView) view.findViewById(R.id.fruit_name);
-            fruitImage.setImageResource(fruit.getImageId());
-            fruitName.setText(fruit.getName());
+            View view;
+            fensi.FruitAdapter.ViewHolder viewHolder;
+            if (convertView == null) {
+                view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
+                viewHolder = new fensi.FruitAdapter.ViewHolder();
+                viewHolder.fnicheng = (TextView) view.findViewById(R.id.fruit_name);
+                viewHolder.ftouxiang = (ImageView) view.findViewById(R.id.fruit_image);
+                view.setTag(viewHolder);
+            } else {
+                view = convertView;
+                viewHolder = (fensi.FruitAdapter.ViewHolder) view.getTag();
+            }
+            viewHolder.fnicheng.setText(fruit.getName());
+            Glide.with(getContext()).load(fruit.getImageId()).into(viewHolder.ftouxiang);
             return view;
+        }
+
+        class ViewHolder {
+            TextView fnicheng;
+            ImageView ftouxiang;
         }
     }
 }

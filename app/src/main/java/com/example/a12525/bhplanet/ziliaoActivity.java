@@ -69,8 +69,8 @@ public class ziliaoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ziliao);
         Intent intent = getIntent();
-        String id = intent.getStringExtra("id");
-        getDatasync(id);
+        String id = Client.user_id;
+        getDatasync(id );
 
         nickname = (TextView)findViewById(R.id.nickname);
         uid = (TextView)findViewById(R.id.uid);
@@ -132,7 +132,7 @@ public class ziliaoActivity extends AppCompatActivity {
             try {
                 OkHttpClient client = new OkHttpClient();//创建OkHttpClient对象
                 Request request = new Request.Builder()
-                        .url("http://192.168.43.98:8080/user/information?user_id=" + id)//请求接口。如果需要传参拼接到接 口后面。
+                        .url("http://129.211.5.66:8080/user/information?user_id=" +id )//请求接口。如果需要传参拼接到接 口后面。
                         .build();//创建Request 对象
                 Call call = client.newCall(request);
                 Response response = call.execute();//得到Response 对象

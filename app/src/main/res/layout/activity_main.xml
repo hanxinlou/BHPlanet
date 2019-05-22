@@ -94,18 +94,20 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="#f2f2f2"
         android:layout_gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
 
         <Button
             android:id="@+id/shoucang"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="1dp"
             android:layout_weight="1"
+            android:paddingLeft="5dp"
+
             android:drawableStart="@drawable/shou"
             android:drawableLeft="@drawable/shou"
             android:background="@android:color/background_light"
@@ -113,9 +115,9 @@
 
         <Button
             android:id="@+id/lishi"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="1dp"
+            android:paddingLeft="5dp"
             android:layout_marginTop="5dp"
 
             android:layout_weight="1"
@@ -124,27 +126,19 @@
             android:background="@android:color/background_light"
             android:text="历史" />
 
-        <Button
-            android:id="@+id/xiazai"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="1dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:drawableStart="@drawable/xiazai"
-            android:drawableLeft="@drawable/xiazai"
-            android:background="@android:color/background_light"
-            android:text="下载" />
+        <!--<Button-->
+            <!--android:id="@+id/zuopin"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingLeft="1dp"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:drawableStart="@drawable/zuopin"-->
+            <!--android:drawableLeft="@drawable/zuopin"-->
+            <!--android:background="@android:color/background_light"-->
+            <!--android:text="作品" />-->
     </LinearLayout>
-    <Button
-        android:id="@+id/zuopin"
-        android:layout_width="137dp"
-        android:paddingLeft="4dp"
-        android:layout_height="wrap_content"
-        android:drawableStart="@drawable/zuopin"
-        android:drawableLeft="@drawable/zuopin"
-        android:background="@android:color/background_light"
-        android:text="作品" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
@@ -162,7 +156,7 @@
 
         <Button
             android:id="@+id/xitong"
-            android:layout_width="137dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="1dp"
             android:layout_marginTop="5dp"

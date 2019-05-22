@@ -33,7 +33,7 @@ public class LiAdapter extends ArrayAdapter<lishi> {
         TextView Liuid=(TextView) view.findViewById(R.id.liuid);
         TextView Liutime=(TextView) view.findViewById(R.id.liutime);
 
-        Liuzuopin.setImageResource(lishi.getLiuzuopin());
+        //Liuzuopin.setImageResource(lishi.getLiuzuopin());
         Liuming.setText(lishi.getLiuming());
         Liuid.setText(lishi.getLiuid());
         Liutime.setText(lishi.getLiutime());

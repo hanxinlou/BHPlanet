@@ -9,15 +9,15 @@
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/btn_open_camera"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="70dp"
-            android:background="@drawable/baocun"
-            android:gravity="center"
-            android:src="@drawable/baocun"
-            android:textSize="18sp" />
+        <!--<Button-->
+            <!--android:id="@+id/btn_open_camera"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_marginLeft="70dp"-->
+            <!--android:background="@drawable/baocun"-->
+            <!--android:gravity="center"-->
+            <!--android:src="@drawable/baocun"-->
+            <!--android:textSize="18sp" />-->
         <TextView
             android:text="保存"
             android:layout_marginLeft="80dp"
@@ -29,15 +29,15 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content">
 
-        <Button
-            android:id="@+id/btn_choose_img"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:layout_marginLeft="30dp"
-            android:background="@drawable/fabu"
-            android:src="@drawable/dongtu"
-            android:textSize="18sp" />
+        <!--<Button-->
+            <!--android:id="@+id/btn_choose_img"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_marginLeft="30dp"-->
+            <!--android:background="@drawable/fabu"-->
+            <!--android:src="@drawable/dongtu"-->
+            <!--android:textSize="18sp" />-->
         <TextView
             android:text="发布"
             android:layout_alignParentLeft="true"
@@ -45,26 +45,26 @@
             android:layout_marginLeft="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <Button
-            android:id="@+id/quxiao1"
-            android:layout_marginTop="60dp"
-            android:background="@drawable/quxiao"
-            android:layout_marginLeft="40dp"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
+        <!--<Button-->
+            <!--android:id="@+id/quxiao1"-->
+            <!--android:layout_marginTop="60dp"-->
+            <!--android:background="@drawable/quxiao"-->
+            <!--android:layout_marginLeft="40dp"-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp" />-->
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/btn_cancel"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:background="@drawable/fenxiang"
-            android:gravity="center"
-            android:textSize="18sp" />
+        <!--<Button-->
+            <!--android:id="@+id/btn_cancel"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_marginLeft="30dp"-->
+            <!--android:background="@drawable/fenxiang"-->
+            <!--android:gravity="center"-->
+            <!--android:textSize="18sp" />-->
 
         <TextView
             android:text="分享"

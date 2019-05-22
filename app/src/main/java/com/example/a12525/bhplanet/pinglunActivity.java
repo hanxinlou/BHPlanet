@@ -110,9 +110,11 @@ public class pinglunActivity extends AppCompatActivity {
         shoucang.setOnClickListener( v -> {
                 if(!flag) {
                     shoucang.setImageDrawable(getResources().getDrawable(R.drawable.shoucang));
+                    setShouCang(opus_id,"1", "1", user_id);
                     flag = true;
                 } else {
                     shoucang.setImageDrawable(getResources().getDrawable(R.drawable.unshoucang));
+                    setShouCang(opus_id,"1", "0", user_id);
                     flag = false;
                 }
         });
@@ -325,6 +327,42 @@ public class pinglunActivity extends AppCompatActivity {
         }
     }
 
+    public void setShouCang(String type_id, String type, String status, String to_userid){
+        new Thread(() -> {
+            try {
+                String url = "http://129.211.5.66:8080/collect";
+                FormBody.Builder formBody = new FormBody.Builder();
+                formBody.add("type_id", type_id)
+                        .add("type", type)
+                        .add("user_id", Client.user_id)
+                        .add("status", status)
+                        .add("to_userid", to_userid);
+
+                Request request = new Request.Builder()
+                        .url(url)//请求接口。如果需要传参拼接到接口后面。
+                        .post(formBody.build())
+                        .build();//创建Request 对象
+
+                Response response = Client.client.newCall(request).execute();
+                if(response.isSuccessful()) {
+                    Log.d("setShouCang", "response.code()==" + response.code());
+                    Log.d("setShouCang", "response.message()==" + response.message());
+                    String resData = response.body().string();
+                    Log.d("setDianZan", "res==" + resData);
+                    //此时的代码执行在子线程，修改UI的操作请使用handler跳转到UI线程。
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (type.equals("1")){
+                handler.sendEmptyMessage(0x111);
+            }else if (type.equals("2")){
+                handler.sendEmptyMessage(0x222);
+            }
+
+        }).start();
+    }
+
     public void setDianZan(String type_id, String type, String status, String to_userid){
         new Thread(() -> {
             try {
@@ -412,6 +450,9 @@ public class pinglunActivity extends AppCompatActivity {
             else if(msg.what == 0x222){
                 getPing();
             }
+    //            else if(msg.what ==0x333){
+    //
+    //            }
         }
     };
 }

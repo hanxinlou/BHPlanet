@@ -23,6 +23,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -71,15 +72,47 @@ public class tupianActivity extends AppCompatActivity{
                 finish();
             }
         });
-        Button wancheng = (Button) findViewById(R.id.wancheng);
-        wancheng.setOnClickListener(new View.OnClickListener() {
+//        Button wancheng = (Button) findViewById(R.id.wancheng);
+//        wancheng.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(tupianActivity.this, tupianwActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+        Button quxiao=(Button) findViewById(R.id.quxiao1);
+        quxiao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(tupianActivity.this, tupianwActivity.class);
+                finish();
+            }
+        });
+        Button fenxiang=(Button)findViewById(R.id.btn_fenxiang);
+        fenxiang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(tupianActivity.this,fenxiang2Activity.class);
                 startActivity(intent);
             }
         });
-
+        Button baocun=(Button)findViewById(R.id.btn_baocun);
+        baocun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final long startTime = System.currentTimeMillis();
+//                Log.i("DOWNLOAD","startTime="+startTime);
+                Toast.makeText(tupianActivity.this, "保存中……", Toast.LENGTH_SHORT).show();
+                confirm(v);
+//                Toast.makeText(tupianActivity.this, "保存成功", Toast.LENGTH_SHORT).show();
+            }
+        });
+        Button fabu=(Button)findViewById(R.id.btn_fabu);
+        fabu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(tupianActivity.this, "发布成功", Toast.LENGTH_SHORT).show();
+            }
+        });
         imageView = (ImageView) findViewById(R.id.writeText_img);
         EditText editText = (EditText) findViewById(R.id.writeText_et);
         tvInImage = (TextView) findViewById(R.id.writeText_image_tv);
@@ -170,6 +203,7 @@ public class tupianActivity extends AppCompatActivity{
     public void confirm(View view) {
         Bitmap bm = loadBitmapFromView(containerView);
         String filePath = Environment.getExternalStorageDirectory() + File.separator + "image_with_text.jpg";
+
         try {
             bm.compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(filePath));
             Toast.makeText(this, "图片已保存至：SD卡根目录/image_with_text.jpg", Toast.LENGTH_LONG).show();

@@ -66,7 +66,7 @@ public class DaohangActivity extends AppCompatActivity implements RadioGroup.OnC
         root.findViewById(R.id.btn_choose_img).setOnClickListener(this);
         root.findViewById(R.id.btn_open_camera).setOnClickListener(this);
         root.findViewById(R.id.btn_cancel).setOnClickListener(this);
-        root.findViewById(R.id.quxiao).setOnClickListener(this);
+//        root.findViewById(R.id.quxiao).setOnClickListener(this);
         mCameraDialog.setContentView(root);
         Window dialogWindow = mCameraDialog.getWindow();
         dialogWindow.setGravity(Gravity.BOTTOM);
@@ -157,9 +157,7 @@ public class DaohangActivity extends AppCompatActivity implements RadioGroup.OnC
                 Intent intent2=new Intent(DaohangActivity.this,manhuaActivity.class);
                 startActivity(intent2);
                 break;
-            case R.id.quxiao:
-                finish();
-                break;
+
         }
     }
 

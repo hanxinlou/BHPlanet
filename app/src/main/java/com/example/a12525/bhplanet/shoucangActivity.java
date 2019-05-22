@@ -36,28 +36,23 @@ public class shoucangActivity extends AppCompatActivity {
     private ImageView shouzuopin;
     private TextView shouname;
 
-    private String opus_id;//作品id
+    private String opus_title;//作品id
     private String opus_type;//作品类型
     private String picture;//作品图片
-    private ArrayList<String> opus_id_list=new ArrayList<>();
+    private ArrayList<String> opus_title_list=new ArrayList<>();
     private ArrayList<String> picture_list=new ArrayList<>();
     private ArrayList<String> type_list=new ArrayList<>();
     Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             if (msg.what == 0x123) {
                 initShou();                 //初始化水果数据
-                shoucangActivity.ShouAdapter adapter = new shoucangActivity.ShouAdapter(shoucangActivity.this, R.layout.guanzhu_item, shoucangList);
+                shoucangActivity.ShouAdapter adapter = new shoucangActivity.ShouAdapter(shoucangActivity.this, R.layout.shoucang_item, shoucangList);
 
-                //      ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, data);
+
                 ListView listview = (ListView) findViewById(R.id.list_view);
                 listview.setAdapter(adapter);
 
-//                nickname.setText(mydata.get("user_name"));
-//                uid.setText(mydata.get("user_id"));
-//                sexx.setText(mydata.get("birthday"));
-//                birthh.setText(mydata.get("sex"));
-//                qianmingg.setText(mydata.get("introduce"));
-                //picture.setImageResource(Integer.parseInt(mydata.get("picture")));
+
 
             }
         }
@@ -77,25 +72,15 @@ public class shoucangActivity extends AppCompatActivity {
                 finish();
             }
         });
-//        initShou();                 //初始化水果数据
-//        ShouAdapter adapter=new ShouAdapter(shoucangActivity.this,R.layout.shoucang_item,shoucangList);
 
-        //      ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, data);
-//        ListView listview = (ListView) findViewById(R.id.list_view);
-//        listview.setAdapter(adapter);
     }
     private void initShou(){
-        for(int i=0;i<opus_id_list.size();i++){
+        for(int i = 0; i < opus_title_list.size();  i++){
             Log.d("picture",picture_list.get(i));
-            Log.d("picture",opus_id_list.get(i));
-            shoucang apple=new shoucang(picture_list.get(i),opus_id_list.get(i));
+            Log.d("picture",opus_title_list.get(i));
+            shoucang apple=new shoucang(picture_list.get(i),opus_title_list.get(i));
             shoucangList.add(apple);
-//            shoucang cao=new shoucang(R.drawable.song1,"收藏夹1");
-//            shoucangList.add(cao);
-//            shoucang hehe=new shoucang(R.drawable.xiongmao,"收藏夹2");
-//            shoucangList.add(hehe);
-//            shoucang nima=new shoucang(R.drawable.head3,"收藏夹3");
-//            shoucangList.add(nima);
+
         }
     }
     public void getDatasync(String id) {
@@ -118,7 +103,7 @@ public class shoucangActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            handler.sendEmptyMessage(0x123);
+         handler.sendEmptyMessage(0x123);
         }).start();
     }
     private void parseData(String resData) {
@@ -128,36 +113,18 @@ public class shoucangActivity extends AppCompatActivity {
 
             JSONArray info = data.getJSONArray("info");
 
-//            author_name_list = new ArrayList<String>();
-//            picture_list = new ArrayList<String>();
+
             for (int i = 0; i < info.length(); i++) {
                 JSONObject object = info.getJSONObject(i);
-                opus_id = object.optString("opus_id");
+                opus_title = object.optString("opus_title");
                 opus_type=object.optString("opus_type");
                 picture = object.optString("picture");
 
-                opus_id_list.add(opus_id);
+                opus_title_list.add(opus_title);
                 type_list.add(opus_type);
                 picture_list.add(picture);
             }
 
-//            for(int i = 0; i < jsonArray.length(); i++) {
-//                JSONObject object = jsonArray.getJSONObject(i);
-//                author_name = object.optString("author_name");
-////                String picture = object.optString("picture");
-//                Log.d("ndxq", "reply_id==" + reply_id);
-            // getres = "compose_id==" + compose_id;
-
-            //mydata.clear();
-//            mydata.put("user_name", dataObject.optString("user_name"));
-//            mydata.put("author_id",dataObject.optString("author_id"));
-            //mydata.put("author_name",jsonObject2.optString("author_name"));
-//            mydata.put("author_name",jsonObject2.optString("author_name"));
-//            mydata.put("picture", jsonObject2.optString("picture"));
-//            mydata.put("birthday", dataObject.optString("birthday"));
-//            mydata.put("sex", dataObject.optString("sex"));
-//            mydata.put("introduce", dataObject.optString("introduce"));
-//            mydata.put("picture", dataObject.optString("picture"));
 
         } catch (Exception e) {
             e.printStackTrace();

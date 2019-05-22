@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#fff"
-    android:paddingBottom="20dp"
+    android:paddingBottom="50dp"
+
     android:orientation="vertical">
 <LinearLayout
     android:orientation="horizontal"
@@ -78,14 +79,14 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
-    <Button
-        android:id="@+id/quxiao"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/quxiao"
-       android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal" />
+    <!--<Button-->
+        <!--android:id="@+id/quxiao"-->
+        <!--android:layout_width="30dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_marginTop="60dp"-->
+        <!--android:background="@drawable/quxiao"-->
+       <!--android:layout_centerHorizontal="true"-->
+        <!--android:gravity="center_horizontal" />-->
 
 </RelativeLayout>
     </LinearLayout>

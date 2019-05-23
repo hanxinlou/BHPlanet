@@ -88,7 +88,7 @@ public class WodeBankuaiFragment extends Fragment implements AdapterView.OnItemC
     public void getDatasync(){
         new Thread(() -> {
             try {
-                String url = "http://129.211.5.66:8080/community/mypart?user_id=" + Client.user_id;
+                String url = "http://129.211.5.66:8080/ThePlanet/community/mypart?user_id=" + Client.user_id;
                 Request request = new Request.Builder()
                         .url(url)//请求接口。如果需要传参拼接到接口后面。
                         .build();//创建Request 对象

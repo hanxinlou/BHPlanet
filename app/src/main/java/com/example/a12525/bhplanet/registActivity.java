@@ -57,7 +57,7 @@ public class registActivity extends AppCompatActivity {
     private void postRegist(String user_id,String user_passwd){
         new Thread(() -> {
             try {
-                String url = "http://129.211.5.66:8080/user/regist";
+                String url = "http://129.211.5.66:8080/ThePlanet/user/regist";
                 FormBody.Builder formBody = new FormBody.Builder();
                 formBody.add("user_id", user_id)
                         .add("user_passwd", user_passwd);

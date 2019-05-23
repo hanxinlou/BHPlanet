@@ -38,8 +38,8 @@ import okhttp3.Response;
 
 public class pinglunActivity extends AppCompatActivity {
     private ArrayList<pinglun> pinglunList = new ArrayList<>();
-    private boolean flag = false;
-    private boolean flag1 = false;
+//    private boolean flag = false;
+//    private boolean flag1 = false;
     private ImageView dianzan;
     private ImageView shoucang;
     private ImageButton fanhui;
@@ -68,6 +68,7 @@ public class pinglunActivity extends AppCompatActivity {
     private int transmit_num;
     private int collect_num;
     private int is_ok;
+    private int is_collect;
 
 
     private ArrayList<String> ping_content = new ArrayList<>();
@@ -108,16 +109,14 @@ public class pinglunActivity extends AppCompatActivity {
         });
 
         shoucang.setOnClickListener( v -> {
-                if(!flag) {
-                    shoucang.setImageDrawable(getResources().getDrawable(R.drawable.shoucang));
-                    setShouCang(opus_id,"1", "1", user_id);
-                    flag = true;
-                } else {
-                    shoucang.setImageDrawable(getResources().getDrawable(R.drawable.unshoucang));
-                    setShouCang(opus_id,"1", "0", user_id);
-                    flag = false;
+                Log.d("is_collect",String.valueOf(is_collect));
+                if(is_collect == 0) {
+                    setShouCang(opus_id,"1");
+                } else if(is_collect == 1){
+                    setShouCang(opus_id,"2");
                 }
         });
+
         pinglun.setOnClickListener( v-> ShowKeyboard("") );
         tv_confirm.setOnClickListener( v -> postComment() );
         relativeLayout.setOnClickListener( v -> hideKeyboard() );
@@ -164,6 +163,12 @@ public class pinglunActivity extends AppCompatActivity {
             dianzan.setImageDrawable(getResources().getDrawable(R.drawable.zan));
         }else if (is_ok == 0){
             dianzan.setImageDrawable(getResources().getDrawable(R.drawable.unzan));
+        }
+        if(is_collect == 1){
+            shoucang.setImageDrawable(getResources().getDrawable(R.drawable.shoucang));
+        }
+        else if(is_collect == 0){
+            shoucang.setImageDrawable(getResources().getDrawable(R.drawable.unshoucang));
         }
     }
 
@@ -220,7 +225,7 @@ public class pinglunActivity extends AppCompatActivity {
     public void getDatasync(){
         new Thread(() -> {
             try {
-                String url = "http://129.211.5.66:8080/detail?opus_id=" + opus_id +
+                String url = "http://129.211.5.66:8080/ThePlanet/detail?opus_id=" + opus_id +
                         "&currpage=1" + "&user_id=" + Client.user_id;
                 Request request = new Request.Builder()
                         .url(url)
@@ -257,6 +262,7 @@ public class pinglunActivity extends AppCompatActivity {
             transmit_num = data.optInt("transmit_num");
             collect_num = data.optInt("collect_num");
             is_ok = data.optInt("is_ok");
+            is_collect = data.optInt("is_collect");
 
         }catch (Exception e){
             e.printStackTrace();
@@ -267,7 +273,7 @@ public class pinglunActivity extends AppCompatActivity {
     public void getPing(){
         new Thread(() -> {
             try {
-                String url = "http://129.211.5.66:8080/comment?compose_type=1&from_opusid=" + opus_id + "&page=1&status=0&user_id=" + Client.user_id;
+                String url = "http://129.211.5.66:8080/ThePlanet/comment?compose_type=1&from_opusid=" + opus_id + "&page=1&status=0&user_id=" + Client.user_id;
                 Request request = new Request.Builder()
                         .url(url)
                         .build();
@@ -327,16 +333,14 @@ public class pinglunActivity extends AppCompatActivity {
         }
     }
 
-    public void setShouCang(String type_id, String type, String status, String to_userid){
+    public void setShouCang(String opus_id, String type){
         new Thread(() -> {
             try {
-                String url = "http://129.211.5.66:8080/collect";
+                String url = "http://129.211.5.66:8080/ThePlanet/collect";
                 FormBody.Builder formBody = new FormBody.Builder();
-                formBody.add("type_id", type_id)
+                formBody.add("opus_id", opus_id)
                         .add("type", type)
-                        .add("user_id", Client.user_id)
-                        .add("status", status)
-                        .add("to_userid", to_userid);
+                        .add("user_id", Client.user_id);
 
                 Request request = new Request.Builder()
                         .url(url)//请求接口。如果需要传参拼接到接口后面。
@@ -348,17 +352,13 @@ public class pinglunActivity extends AppCompatActivity {
                     Log.d("setShouCang", "response.code()==" + response.code());
                     Log.d("setShouCang", "response.message()==" + response.message());
                     String resData = response.body().string();
-                    Log.d("setDianZan", "res==" + resData);
+                    Log.d("setShouCang", "res==" + resData);
                     //此时的代码执行在子线程，修改UI的操作请使用handler跳转到UI线程。
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            if (type.equals("1")){
                 handler.sendEmptyMessage(0x111);
-            }else if (type.equals("2")){
-                handler.sendEmptyMessage(0x222);
-            }
 
         }).start();
     }
@@ -366,7 +366,7 @@ public class pinglunActivity extends AppCompatActivity {
     public void setDianZan(String type_id, String type, String status, String to_userid){
         new Thread(() -> {
             try {
-                String url = "http://129.211.5.66:8080/zan";
+                String url = "http://129.211.5.66:8080/ThePlanet/zan";
                 FormBody.Builder formBody = new FormBody.Builder();
                 formBody.add("type_id", type_id)
                         .add("type", type)
@@ -402,7 +402,7 @@ public class pinglunActivity extends AppCompatActivity {
     private void postComment(){
         new Thread(() -> {
             try {
-                String url = "http://129.211.5.66:8080/comment";
+                String url = "http://129.211.5.66:8080/ThePlanet/comment";
                 FormBody.Builder formBody = new FormBody.Builder();
                 formBody.add("compose_type", "1") //1 = 作品评论
                         .add("content", mEdit.getText().toString())
@@ -450,9 +450,6 @@ public class pinglunActivity extends AppCompatActivity {
             else if(msg.what == 0x222){
                 getPing();
             }
-    //            else if(msg.what ==0x333){
-    //
-    //            }
         }
     };
 }

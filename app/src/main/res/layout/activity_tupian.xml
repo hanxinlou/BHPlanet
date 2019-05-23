@@ -79,12 +79,12 @@
         android:background="@drawable/shape_edit"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="confirm"
-        android:background="@android:color/white"
-        android:text="生成图片" />
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:onClick="confirm"-->
+        <!--android:background="@android:color/white"-->
+        <!--android:text="生成图片" />-->
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#fff"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="350dp"
             android:paddingBottom="20dp"
             android:orientation="horizontal">
             <LinearLayout

@@ -60,7 +60,7 @@ public class ZuireFragment extends Fragment {
         new Thread(() -> {
             try {
                 String community_id = ShequTieziActivity.community_id;
-                String url = "http://129.211.5.66:8080/community/posts?community_id=" + community_id + "&status=1&page=1";
+                String url = "http://129.211.5.66:8080/ThePlanet/community/posts?community_id=" + community_id + "&status=1&page=1";
                 Request request = new Request.Builder()
                         .url(url)//请求接口。如果需要传参拼接到接口后面。
                         .build();//创建Request 对象

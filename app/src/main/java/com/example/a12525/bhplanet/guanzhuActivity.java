@@ -78,7 +78,7 @@ public class guanzhuActivity extends AppCompatActivity {
         new Thread(() -> {
             try {
                 Request request = new Request.Builder()
-                        .url("http://129.211.5.66:8080/user/concern?user_id=" + Client.user_id + "&currpage=1")//请求接口。如果需要传参拼接到接 口后面。
+                        .url("http://129.211.5.66:8080/ThePlanet/user/concern?user_id=" + Client.user_id + "&currpage=1")//请求接口。如果需要传参拼接到接 口后面。
                         .build();//创建Request 对象
                 Call call = Client.client.newCall(request);
                 Response response = call.execute();//得到Response 对象

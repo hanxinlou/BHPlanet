@@ -300,7 +300,7 @@ public class ShouyeFragment extends Fragment {
     public void getDatasync(){
         new Thread(() -> {
             try {
-                String url = "http://129.211.5.66:8080/home/list?user_id=" + Client.user_id + "&currpage=0";
+                String url = "http://129.211.5.66:8080/ThePlanet/home/list?user_id=" + Client.user_id + "&currpage=0";
                 Request request = new Request.Builder()
                             .url(url)//请求接口。如果需要传参拼接到接口后面。
                         .build();//创建Request 对象

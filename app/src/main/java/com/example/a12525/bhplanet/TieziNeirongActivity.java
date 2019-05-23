@@ -217,7 +217,7 @@ public class TieziNeirongActivity extends Activity {
     public void getContent(){
         new Thread(() -> {
             try {
-                String url = "http://129.211.5.66:8080/post_content?post_id=" + post_id + "&user_id=" + Client.user_id;
+                String url = "http://129.211.5.66:8080/ThePlanet/post_content?post_id=" + post_id + "&user_id=" + Client.user_id;
                 Request request = new Request.Builder()
                         .url(url)//请求接口。如果需要传参拼接到接口后面。
                         .build();//创建Request 对象
@@ -260,7 +260,7 @@ public class TieziNeirongActivity extends Activity {
     public void getPing(String status){
         new Thread(() -> {
             try {
-                String url = "http://129.211.5.66:8080/comment?compose_type=2&from_opusid=" + post_id + "&page=1&status=" + status + "&user_id=" + Client.user_id;
+                String url = "http://129.211.5.66:8080/ThePlanet/comment?compose_type=2&from_opusid=" + post_id + "&page=1&status=" + status + "&user_id=" + Client.user_id;
                 Request request = new Request.Builder()
                         .url(url)
                         .build();
@@ -324,7 +324,7 @@ public class TieziNeirongActivity extends Activity {
     private void postComment(){
         new Thread(() -> {
             try {
-                String url = "http://129.211.5.66:8080/comment";
+                String url = "http://129.211.5.66:8080/ThePlanet/comment";
                 FormBody.Builder formBody = new FormBody.Builder();
                 formBody.add("compose_type", "2")
                         .add("content", comment_text.getText().toString())
@@ -354,7 +354,7 @@ public class TieziNeirongActivity extends Activity {
     public void setDianZan(String type_id, String type, String status, String to_userid){
         new Thread(() -> {
             try {
-                String url = "http://129.211.5.66:8080/zan";
+                String url = "http://129.211.5.66:8080/ThePlanet/zan";
                 FormBody.Builder formBody = new FormBody.Builder();
                 formBody.add("type_id", type_id)
                         .add("type", type)

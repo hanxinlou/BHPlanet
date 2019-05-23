@@ -229,7 +229,7 @@ public class ShequTieziActivity extends AppCompatActivity implements RadioGroup.
     private void setFollow(){
         new Thread(() -> {
             try {
-                String url = "http://129.211.5.66:8080/community/followcommunity";
+                String url = "http://129.211.5.66:8080/ThePlanet/community/followcommunity";
                 FormBody.Builder formBody = new FormBody.Builder();
                 formBody.add("user_id", Client.user_id)
                         .add("community_id", community_id);
@@ -268,7 +268,7 @@ public class ShequTieziActivity extends AppCompatActivity implements RadioGroup.
     private void cancleFollow(){
         new Thread(() -> {
             try {
-                String url = "http://129.211.5.66:8080/community/cancelfollow";
+                String url = "http://129.211.5.66:8080/ThePlanet/community/cancelfollow";
                 FormBody.Builder formBody = new FormBody.Builder();
                 formBody.add("user_id", Client.user_id)
                         .add("community_id", community_id);

@@ -39,13 +39,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.Dialog;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class tupianActivity extends AppCompatActivity{
+public class tupianActivity extends AppCompatActivity implements View.OnClickListener{
     //图片组件
     private ImageView imageView;
     //位于图片中的文本组件
@@ -59,6 +60,15 @@ public class tupianActivity extends AppCompatActivity{
 
     private Uri imageUri;
     public static final int CHOOSE_PHOTO=2;
+    private View inflate;
+    private TextView sharedongtai;
+    private TextView shareQQ;
+    private TextView sharewechat;
+    private Dialog dialog;
+    private ImageView fdongtai;
+    private ImageView qq;
+    private ImageView weixin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,14 +97,15 @@ public class tupianActivity extends AppCompatActivity{
                 finish();
             }
         });
-        Button fenxiang=(Button)findViewById(R.id.btn_fenxiang);
-        fenxiang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(tupianActivity.this,fenxiang2Activity.class);
-                startActivity(intent);
-            }
-        });
+//        Button fenxiang=(Button)findViewById(R.id.btn_fenxiang);
+//      fenxiang.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                 showdailog(v);
+//                Intent intent = new Intent(tupianActivity.this,fenxiang2Activity.class);
+//                startActivity(intent);
+//            }
+//        });
         Button baocun=(Button)findViewById(R.id.btn_baocun);
         baocun.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -357,4 +368,70 @@ public class tupianActivity extends AppCompatActivity{
             Toast.makeText(this,"failed to get image",Toast.LENGTH_SHORT).show();
         }
     }
+    private void showdailog(View view){
+        dialog = new Dialog(this,R.style.ActionSheetDialogStyle);
+        //填充对话框的布局
+        inflate = LayoutInflater.from(this).inflate(R.layout.activity_share, null);
+        //初始化控件
+        fdongtai = (ImageView)findViewById(R.id.fdongtai);
+        qq = (ImageView) findViewById(R.id.qq);
+        weixin=(ImageView)findViewById(R.id.weixin);
+      fdongtai.setOnClickListener(this);
+      qq.setOnClickListener(this);
+      weixin.setOnClickListener(this);
+        //将布局设置给Dialog
+        dialog.setContentView(inflate);
+        //获取当前Activity所在的窗体
+        Window dialogWindow = dialog.getWindow();
+        //设置Dialog从窗体底部弹出
+        dialogWindow.setGravity( Gravity.BOTTOM);
+        //获得窗体的属性
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.y = 20;//设置Dialog距离底部的距离
+//       将属性设置给窗体
+        dialogWindow.setAttributes(lp);
+        dialog.show();//显示对话框
+    }
+    public void show(View view){
+        dialog = new Dialog(this,R.style.ActionSheetDialogStyle);
+        //填充对话框的布局
+        inflate = LayoutInflater.from(this).inflate(R.layout.activity_share, null);
+        //初始化控件
+        sharedongtai = (TextView) inflate.findViewById(R.id.sharedongtai);
+        shareQQ = (TextView) inflate.findViewById(R.id.shareQQ);
+        sharewechat = (TextView) inflate.findViewById(R.id.sharewechat);
+        sharedongtai.setOnClickListener(this);
+
+        shareQQ.setOnClickListener(this);
+        sharewechat.setOnClickListener(this);
+        //将布局设置给Dialog
+        dialog.setContentView(inflate);
+        //获取当前Activity所在的窗体
+        Window dialogWindow = dialog.getWindow();
+        //设置Dialog从窗体底部弹出
+        dialogWindow.setGravity( Gravity.BOTTOM);
+        //获得窗体的属性
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.y = 20;//设置Dialog距离底部的距离
+//       将属性设置给窗体
+        dialogWindow.setAttributes(lp);
+        dialog.show();//显示对话框
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.sharedongtai:
+                Toast.makeText(this,"已分享到动态", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.shareQQ:
+                Toast.makeText(this,"已分享到QQ",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.sharewechat:
+                Toast.makeText(this,"已分享到微信",Toast.LENGTH_SHORT).show();
+                break;
+        }
+        dialog.dismiss();
+    }
+
 }

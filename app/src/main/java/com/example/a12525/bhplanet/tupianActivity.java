@@ -65,9 +65,6 @@ public class tupianActivity extends AppCompatActivity implements View.OnClickLis
     private TextView shareQQ;
     private TextView sharewechat;
     private Dialog dialog;
-    private ImageView fdongtai;
-    private ImageView qq;
-    private ImageView weixin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -367,30 +364,6 @@ public class tupianActivity extends AppCompatActivity implements View.OnClickLis
         }else{
             Toast.makeText(this,"failed to get image",Toast.LENGTH_SHORT).show();
         }
-    }
-    private void showdailog(View view){
-        dialog = new Dialog(this,R.style.ActionSheetDialogStyle);
-        //填充对话框的布局
-        inflate = LayoutInflater.from(this).inflate(R.layout.activity_share, null);
-        //初始化控件
-        fdongtai = (ImageView)findViewById(R.id.fdongtai);
-        qq = (ImageView) findViewById(R.id.qq);
-        weixin=(ImageView)findViewById(R.id.weixin);
-      fdongtai.setOnClickListener(this);
-      qq.setOnClickListener(this);
-      weixin.setOnClickListener(this);
-        //将布局设置给Dialog
-        dialog.setContentView(inflate);
-        //获取当前Activity所在的窗体
-        Window dialogWindow = dialog.getWindow();
-        //设置Dialog从窗体底部弹出
-        dialogWindow.setGravity( Gravity.BOTTOM);
-        //获得窗体的属性
-        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-        lp.y = 20;//设置Dialog距离底部的距离
-//       将属性设置给窗体
-        dialogWindow.setAttributes(lp);
-        dialog.show();//显示对话框
     }
     public void show(View view){
         dialog = new Dialog(this,R.style.ActionSheetDialogStyle);

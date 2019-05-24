@@ -106,6 +106,7 @@
             android:layout_marginBottom="90dp"
             android:background="@drawable/fenxiang"
             android:gravity="center"
+            android:onClick="show2"
             android:textSize="18sp" />
 
         <TextView

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -21,9 +22,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,9 +49,11 @@ public class ziliaoActivity extends AppCompatActivity {
     private ImageView picture;
     private Uri imageUri;
     public static final int CHOOSE_PHOTO=2;
-    private TextView nickname, uid, sexx, birthh, qianmingg;
+    private EditText nickname, uid, sexx, birthh, qianmingg;
     private Map<String, String> mydata = new HashMap<>();
-
+    private ImageButton gaitou, gainame, gaiid, gaisex, gaibirth, gaiqian;
+    private LinearLayout mLayout;
+    private Button exit;
     @SuppressLint("HandlerLeak")
     Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
@@ -70,47 +76,38 @@ public class ziliaoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ziliao);
         Intent intent = getIntent();
         String id = Client.user_id;
-        getDatasync(id );
+        getDatasync(id);
 
-        nickname = (TextView)findViewById(R.id.nickname);
-        uid = (TextView)findViewById(R.id.uid);
-        sexx = (TextView)findViewById(R.id.sexx);
-        birthh = (TextView)findViewById(R.id.birthh);
-        qianmingg = (TextView)findViewById(R.id.qianmingg);
+        nickname = (EditText) findViewById(R.id.nickname);
+        uid = (EditText)findViewById(R.id.uid);
+        sexx = (EditText)findViewById(R.id.sexx);
+        birthh = (EditText)findViewById(R.id.birthh);
+        qianmingg = (EditText)findViewById(R.id.qianmingg);
         picture = (ImageView) findViewById(R.id.picture);
 
         ImageButton choose =(ImageButton)findViewById(R.id.gaitou);
         ImageButton fanhui=(ImageButton)findViewById(R.id.fanhui);
+        gaitou = (ImageButton)findViewById(R.id.gaitou);
+        gainame = (ImageButton)findViewById(R.id.gainame);
+       gaiid = (ImageButton)findViewById(R.id.gaiid);
+       gaisex = (ImageButton)findViewById(R.id.gaisex);
+       gaibirth = (ImageButton)findViewById(R.id.gaibirth);
+       gaiqian = (ImageButton)findViewById(R.id.gaiqian);
+        mLayout = (LinearLayout) findViewById(R.id.layout);
+        exit = (Button)findViewById(R.id.exit);
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
-
-        /*take.setOnClickListener(new View.OnClickListener() {
+        exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File outputImage=new File(getExternalCacheDir(),"output_image.jpg");
-                try{
-                    if(outputImage.exists()){
-                        outputImage.delete();
-                    }
-                    outputImage.createNewFile();
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
-                if(Build.VERSION.SDK_INT>=24){
-                    imageUri=FileProvider.getUriForFile(tupianActivity.this,"com.example.yy.dongtai.fileprovider",outputImage);
-                }else{
-                    imageUri=Uri.fromFile(outputImage);
-                }
-                Intent intent=new Intent("android.media.action.IMAGE_CAPTURE");
-                intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
-                startActivityForResult(intent,TAKE_PHOTO);
+                Intent intent=new Intent(ziliaoActivity.this,loginActivity.class);
+                startActivity(intent);
             }
-        });*/
+        });
         choose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,9 +121,31 @@ public class ziliaoActivity extends AppCompatActivity {
                 }
             }
         });
-
+//        gaitou.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//               setTouXiang(Client.user_id,)
+//            }
+//        });
+//        gainame.setOnClickListener( v-> ShowKeyboard("",nickname) );
     }
 
+//    public void ShowKeyboard(String msg,TextView mEdit){
+//        mEdit.setText(msg);
+//        mLayout.setVisibility(View.VISIBLE);//显示布局
+//        mLayout.requestFocus();
+//        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+//    }
+//    private void hideKeyboard(EditText mEdit){
+//        mLayout.setVisibility(View.GONE);//隐藏布局
+//        mEdit.setText("");//清空输入
+//        View view = getWindow().peekDecorView();
+//        if (view != null) {
+//            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+//        }
+//    }
     public void getDatasync(String id){
         new Thread(() -> {
             try {

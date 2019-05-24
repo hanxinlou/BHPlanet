@@ -45,31 +45,32 @@
         android:src="@drawable/dagong"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-<TextView
-    android:id="@+id/diyiju"
-    android:text="第一句"
-    android:layout_marginTop="5dp"
-    android:paddingLeft="3dip"
-    android:textColor="#000000"
-    android:textSize="20dp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
-     <EditText
-        android:id="@+id/one"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:paddingLeft="3dip"
-         android:layout_marginTop="2dp"
-        android:hint="没有钱啊，肯定要做的啊"
-        android:textSize="20sp"
-        android:background="@drawable/shape_edit"  />
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider" />
+        <TextView
+            android:id="@+id/diyiju"
+            android:text="第一句"
+            android:padding="3dp"
+            android:textColor="#000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/one"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingLeft="3dip"
+            android:layout_marginTop="2dp"
+            android:hint="没有钱啊，肯定要做的啊"
+            android:textSize="20sp"
+            android:background="@drawable/shape_edit"  />
         <TextView
             android:id="@+id/dierju"
             android:text="第二句"
-            android:layout_marginTop="5dp"
-            android:paddingLeft="3dip"
+            android:padding="3dp"
             android:textColor="#000000"
-            android:textSize="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -86,10 +87,8 @@
         <TextView
             android:id="@+id/disanju"
             android:text="第三句"
-            android:layout_marginTop="5dp"
-            android:paddingLeft="3dip"
+            android:padding="3dp"
             android:textColor="#000000"
-            android:textSize="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -106,10 +105,8 @@
         <TextView
             android:id="@+id/disiju"
             android:text="第四句"
-            android:layout_marginTop="5dp"
-            android:paddingLeft="3dip"
+            android:padding="3dp"
             android:textColor="#000000"
-            android:textSize="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -126,10 +123,8 @@
         <TextView
             android:id="@+id/diwuju"
             android:text="第五句"
-            android:layout_marginTop="5dp"
-            android:paddingLeft="3dip"
+            android:padding="3dp"
             android:textColor="#000000"
-            android:textSize="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -145,10 +140,9 @@
         <TextView
             android:id="@+id/diliuju"
             android:text="第六句"
-            android:layout_marginTop="5dp"
-            android:paddingLeft="3dip"
+            android:padding="3dp"
             android:textColor="#000000"
-            android:textSize="20dp"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -166,6 +160,7 @@
             android:id="@+id/wancheng"
             android:src="@drawable/wancheng"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
             android:layout_width="50dp"
             android:layout_height="50dp" />
     </LinearLayout>

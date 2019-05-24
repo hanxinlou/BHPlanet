@@ -79,14 +79,7 @@ public class tupianActivity extends AppCompatActivity implements View.OnClickLis
                 finish();
             }
         });
-//        Button wancheng = (Button) findViewById(R.id.wancheng);
-//        wancheng.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(tupianActivity.this, tupianwActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+
         Button quxiao=(Button) findViewById(R.id.quxiao1);
         quxiao.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,15 +87,7 @@ public class tupianActivity extends AppCompatActivity implements View.OnClickLis
                 finish();
             }
         });
-//        Button fenxiang=(Button)findViewById(R.id.btn_fenxiang);
-//      fenxiang.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                 showdailog(v);
-//                Intent intent = new Intent(tupianActivity.this,fenxiang2Activity.class);
-//                startActivity(intent);
-//            }
-//        });
+
         Button baocun=(Button)findViewById(R.id.btn_baocun);
         baocun.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -69,6 +69,7 @@ public class pinglunActivity extends AppCompatActivity {
     private int collect_num;
     private int is_ok;
     private int is_collect;
+    private String content;
 
 
     private ArrayList<String> ping_content = new ArrayList<>();
@@ -95,8 +96,14 @@ public class pinglunActivity extends AppCompatActivity {
         });
         fanhui.setOnClickListener( v -> finish() );
         zhuanfa.setOnClickListener( v -> {
+
                 Intent intent=new Intent(pinglunActivity.this,ZhuanActivity.class);
+                intent.putExtra("opus_id", opus_id );
+                getDatasync();
                 startActivity(intent);
+//                content = intent.getExtras().toString();
+//                setZhuanfa(opus_id,content);
+//
         });
 
         dianzan.setOnClickListener( v -> {
@@ -398,7 +405,35 @@ public class pinglunActivity extends AppCompatActivity {
 
         }).start();
     }
+    public void setZhuanfa(String opus_id, String content){
+        new Thread(() -> {
+            try {
+                String url = "http://129.211.5.66:8080/ThePlanet/transmit";
+                FormBody.Builder formBody = new FormBody.Builder();
+                formBody.add("opus_id", opus_id)
+                        .add("content", content)
+                        .add("user_id", Client.user_id);
 
+                Request request = new Request.Builder()
+                        .url(url)//请求接口。如果需要传参拼接到接口后面。
+                        .post(formBody.build())
+                        .build();//创建Request 对象
+
+                Response response = Client.client.newCall(request).execute();
+                if(response.isSuccessful()) {
+                    Log.d("setShouCang", "response.code()==" + response.code());
+                    Log.d("setShouCang", "response.message()==" + response.message());
+                    String resData = response.body().string();
+                    Log.d("setShouCang", "res==" + resData);
+                    //此时的代码执行在子线程，修改UI的操作请使用handler跳转到UI线程。
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+//            handler.sendEmptyMessage(0x111);
+
+        }).start();
+    }
     private void postComment(){
         new Thread(() -> {
             try {

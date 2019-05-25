@@ -10,7 +10,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
+
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
@@ -21,17 +21,16 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
+
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.a12525.bhplanet.R;
 
 import org.json.JSONObject;
 
@@ -40,31 +39,36 @@ import java.util.HashMap;
 import java.util.Map;
 
 import okhttp3.Call;
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 public class ziliaoActivity extends AppCompatActivity {
     public static final int TAKE_PHOTO=1;
+    private static TextView mEdit;
     private ImageView picture;
     private Uri imageUri;
     public static final int CHOOSE_PHOTO=2;
-    private EditText nickname, uid, sexx, birthh, qianmingg;
+    private TextView nickname, uid, sexx, birthh, qianmingg,tv_finish;
     private Map<String, String> mydata = new HashMap<>();
     private ImageButton gaitou, gainame, gaiid, gaisex, gaibirth, gaiqian;
-    private LinearLayout mLayout;
+    private LinearLayout mLayout2;
     private Button exit;
+
     @SuppressLint("HandlerLeak")
     Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             if(msg.what==0x123) {
-                nickname.setText(mydata.get("user_name"));
-                uid.setText(mydata.get("user_id"));
-//                sexx.setText(mydata.get("birthday"));
-//                birthh.setText(mydata.get("sex"));
-//                qianmingg.setText(mydata.get("introduce"));
+                setziliao();
                 //picture.setImageResource(Integer.parseInt(mydata.get("picture")));
 
+            }
+            else if(msg.what == 0x456)
+            {
+                hideKeyboard();
+                getDatasync(uid.getText().toString());
+                Toast.makeText(ziliaoActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
             }
         }
     };
@@ -77,13 +81,14 @@ public class ziliaoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String id = Client.user_id;
         getDatasync(id);
-
-        nickname = (EditText) findViewById(R.id.nickname);
-        uid = (EditText)findViewById(R.id.uid);
-        sexx = (EditText)findViewById(R.id.sexx);
-        birthh = (EditText)findViewById(R.id.birthh);
-        qianmingg = (EditText)findViewById(R.id.qianmingg);
+        mLayout2 = (LinearLayout) findViewById(R.id.layout2);
+        nickname = (TextView) findViewById(R.id.nickname);
+        uid = (TextView)findViewById(R.id.uid);
+        sexx = (TextView)findViewById(R.id.sexx);
+        birthh = (TextView)findViewById(R.id.birthh);
+        qianmingg = (TextView)findViewById(R.id.qianmingg);
         picture = (ImageView) findViewById(R.id.picture);
+        tv_finish = (TextView)findViewById(R.id.tv_finish);
 
         ImageButton choose =(ImageButton)findViewById(R.id.gaitou);
         ImageButton fanhui=(ImageButton)findViewById(R.id.fanhui);
@@ -93,7 +98,7 @@ public class ziliaoActivity extends AppCompatActivity {
        gaisex = (ImageButton)findViewById(R.id.gaisex);
        gaibirth = (ImageButton)findViewById(R.id.gaibirth);
        gaiqian = (ImageButton)findViewById(R.id.gaiqian);
-        mLayout = (LinearLayout) findViewById(R.id.layout);
+
         exit = (Button)findViewById(R.id.exit);
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,24 +133,75 @@ public class ziliaoActivity extends AppCompatActivity {
 //            }
 //        });
 //        gainame.setOnClickListener( v-> ShowKeyboard("",nickname) );
+        gainame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mEdit = nickname;
+               ShowKeyboard("",nickname);
+            }
+        });
+        gaiid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mEdit = uid;
+                ShowKeyboard("",uid);
+
+            }
+        });
+        gaisex.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mEdit = sexx;
+                ShowKeyboard("",sexx);
+
+            }
+        });
+        gaibirth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mEdit = birthh;
+                ShowKeyboard("",birthh);
+
+            }
+        });
+        gaiqian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowKeyboard("",qianmingg);
+            }
+        });
+        tv_finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                postziliao();
+            }
+        });
+
     }
 
-//    public void ShowKeyboard(String msg,TextView mEdit){
-//        mEdit.setText(msg);
-//        mLayout.setVisibility(View.VISIBLE);//显示布局
-//        mLayout.requestFocus();
-//        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
-//    }
-//    private void hideKeyboard(EditText mEdit){
-//        mLayout.setVisibility(View.GONE);//隐藏布局
-//        mEdit.setText("");//清空输入
-//        View view = getWindow().peekDecorView();
-//        if (view != null) {
-//            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-//        }
-//    }
+
+    public void ShowKeyboard(String msg,TextView mEdit2){
+        mEdit2.setText(msg);
+        mLayout2.setVisibility(View.VISIBLE);//显示布局
+        mLayout2.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+    }
+    private void hideKeyboard(){
+        mLayout2.setVisibility(View.GONE);//隐藏布局
+        mEdit.setText("");//清空输入
+        View view = getWindow().peekDecorView();
+        if (view != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        hideKeyboard();
+        return super.onKeyDown(keyCode, event);
+    }
+
     public void getDatasync(String id){
         new Thread(() -> {
             try {
@@ -181,9 +237,9 @@ public class ziliaoActivity extends AppCompatActivity {
             mydata.clear();
             mydata.put("user_name", dataObject.optString("user_name"));
             mydata.put("user_id", dataObject.optString("user_id"));
-//            mydata.put("birthday", dataObject.optString("birthday"));
-//            mydata.put("sex", dataObject.optString("sex"));
-//            mydata.put("introduce", dataObject.optString("introduce"));
+            mydata.put("birthday", dataObject.optString("birthday"));
+            mydata.put("sex", dataObject.optString("sex"));
+            mydata.put("introduce", dataObject.optString("introduce"));
 //            mydata.put("picture", dataObject.optString("picture"));
 
         }catch (Exception e){
@@ -191,6 +247,52 @@ public class ziliaoActivity extends AppCompatActivity {
         }
 
     }
+
+    private void postziliao(){
+        new Thread(() -> {
+            try {
+                String url = "http://129.211.5.66:8080/ThePlanet/user/update";
+                Log.d("post",mEdit.getText().toString());
+                FormBody.Builder formBody = new FormBody.Builder();
+                if (mEdit == uid) {
+                    formBody.add("user_id", mEdit.getText().toString());
+                }
+                else if (mEdit == nickname)
+                {
+                    formBody.add("user_name", mEdit.getText().toString());
+                }
+                else if (mEdit == qianmingg)
+                {
+                    formBody.add("introduce", mEdit.getText().toString());
+                }
+                else if (mEdit == sexx)
+                {
+                    formBody.add("sex",mEdit.getText().toString());
+                }
+                else if(mEdit==birthh) {
+                    formBody.add("birthday", mEdit.getText().toString());
+                }
+
+                Request request = new Request.Builder()
+                        .url(url)//请求接口。如果需要传参拼接到接口后面。
+                        .post(formBody.build())
+                        .build();//创建Request 对象
+
+                Response response = Client.client.newCall(request).execute();
+                if(response.isSuccessful()) {
+                    Log.d("postRegist", "response.code()==" + response.code());
+                    Log.d("postRegist", "response.message()==" + response.message());
+                    String resData = response.body().string();
+                    Log.d("postRegist", "res==" + resData);
+                    //此时的代码执行在子线程，修改UI的操作请使用handler跳转到UI线程。
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            handler.sendEmptyMessage(0x456);
+        }).start();
+    }
+
 
     private void openAlbum()
     {
@@ -286,6 +388,13 @@ public class ziliaoActivity extends AppCompatActivity {
             Toast.makeText(this,"failed to get image",Toast.LENGTH_SHORT).show();
         }
     }
-
+    private void setziliao()
+    {
+        nickname.setText(mydata.get("user_name"));
+        uid.setText(mydata.get("user_id"));
+        sexx.setText(mydata.get("birthday"));
+        birthh.setText(mydata.get("sex"));
+        qianmingg.setText(mydata.get("introduce"));
+    }
 
 }

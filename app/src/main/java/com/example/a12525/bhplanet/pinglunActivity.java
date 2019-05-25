@@ -96,7 +96,6 @@ public class pinglunActivity extends AppCompatActivity {
         });
         fanhui.setOnClickListener( v -> finish() );
         zhuanfa.setOnClickListener( v -> {
-
                 Intent intent=new Intent(pinglunActivity.this,ZhuanActivity.class);
                 intent.putExtra("opus_id", opus_id );
                 getDatasync();

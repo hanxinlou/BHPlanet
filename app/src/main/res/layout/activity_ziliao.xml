@@ -76,7 +76,7 @@
             android:layout_width="60dp"
             android:layout_height="wrap_content" />
 
-        <EditText
+        <TextView
             android:id="@+id/nickname"
             android:textColor="#000000"
             android:layout_width="wrap_content"
@@ -111,7 +111,7 @@
             android:layout_centerVertical="true"
             android:layout_width="60dp"
             android:layout_height="wrap_content" />
-        <EditText
+        <TextView
             android:id="@+id/uid"
             android:background="@null"
             android:textColor="#000000"
@@ -146,7 +146,7 @@
             android:paddingLeft="5dp"
             android:text="性别"
             android:textColor="#000000" />
-        <EditText
+        <TextView
             android:id="@+id/sexx"
             android:background="@null"
             android:textColor="#000000"
@@ -179,7 +179,7 @@
             android:layout_centerVertical="true"
             android:layout_width="80dp"
             android:layout_height="wrap_content" />
-        <EditText
+        <TextView
             android:id="@+id/birthh"
             android:background="@null"
             android:textColor="#000000"
@@ -213,7 +213,7 @@
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <EditText
+        <TextView
             android:id="@+id/qianmingg"
             android:background="@null"
             android:textColor="#000000"
@@ -238,4 +238,44 @@
         android:textSize="20sp"
         android:layout_width="fill_parent"
         android:layout_height="50dp" />
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="?android:attr/listDivider" />
+    <LinearLayout
+        android:id="@+id/layout2"
+        android:layout_marginTop="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#ffffff"
+        android:focusable="true"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/et_discuss"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:hint="输入......"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="完成"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+    </LinearLayout>
 </LinearLayout>

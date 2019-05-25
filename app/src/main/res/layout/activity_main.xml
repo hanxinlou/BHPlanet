@@ -64,56 +64,83 @@
         android:orientation="vertical">
 
 
-        <Button
-            android:id="@+id/dongtai"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@android:color/background_light"
-            android:text="动态" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/guanzhu"
+            <Button
+                android:id="@+id/dongtai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_weight="1"
+                android:background="@android:color/background_light"
+                android:text="动态" />
+
+            <Button
+                android:id="@+id/guanzhu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_weight="1"
+                android:background="@android:color/background_light"
+                android:text="关注" />
+
+            <Button
+                android:id="@+id/fensi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_weight="1"
+                android:background="@android:color/background_light"
+                android:text="粉丝" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@android:color/background_light"
-            android:text="关注" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/fensi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_weight="1"
-            android:background="@android:color/background_light"
-            android:text="粉丝" />
-
-        <Button
-            android:id="@+id/shoucang"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_weight="1"
-            android:paddingLeft="5dp"
+            <Button
+                android:id="@+id/shoucang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_weight="1"
+                android:background="@android:color/background_light"
 
 
-            android:background="@android:color/background_light"
-            android:text="收藏" />
+                android:paddingLeft="5dp"
+                android:text="收藏" />
 
-        <Button
-            android:id="@+id/lishi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:layout_marginTop="3dp"
+            <Button
+                android:id="@+id/lishi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_weight="1"
 
-            android:layout_weight="1"
+                android:background="@android:color/background_light"
 
-            android:background="@android:color/background_light"
-            android:text="历史" />
+                android:paddingLeft="5dp"
+                android:text="历史" />
+
+            <Button
+                android:id="@+id/xitong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_weight="1"
+
+                android:background="@android:color/background_light"
+
+                android:paddingLeft="5dp"
+                android:text="系统通知" />
+
+        </LinearLayout>
 
         <!--<Button-->
             <!--android:id="@+id/zuopin"-->
@@ -127,34 +154,6 @@
             <!--android:background="@android:color/background_light"-->
             <!--android:text="作品" />-->
     </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
-        <ImageView
-            android:src="@drawable/tongzhi1"
-            android:layout_gravity="center_vertical"
-            android:layout_width="20dp"
-            android:layout_height="20dp" />
-    <TextView
-        android:layout_width="60dp"
-        android:text="通知"
-        android:layout_gravity="center_vertical"
-      android:layout_height="wrap_content" /></LinearLayout>
-
-        <Button
-            android:id="@+id/xitong"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="1dp"
-            android:layout_marginTop="5dp"
-
-            android:background="@android:color/background_light"
-            android:text="系统通知" />
-
-
 
 
 </LinearLayout>

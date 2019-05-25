@@ -193,6 +193,7 @@
         android:focusable="true"
         android:gravity="bottom"
         android:orientation="horizontal"
+
         android:visibility="gone">
 
         <EditText

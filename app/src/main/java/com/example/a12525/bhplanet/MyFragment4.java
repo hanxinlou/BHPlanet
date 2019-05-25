@@ -3,6 +3,7 @@ package com.example.a12525.bhplanet;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,17 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ImageButton;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 /**
  * Created by Jay on 2015/8/28 0028.
  */
@@ -29,6 +41,7 @@ public class MyFragment4 extends Fragment implements View.OnClickListener{
     private Button xiazai;
     private Button zuopin;
     private Button xitong;
+    private Map<String, String> mydata = new HashMap<>();
     public MyFragment4() {
     }
 
@@ -41,6 +54,8 @@ public class MyFragment4 extends Fragment implements View.OnClickListener{
         fensi = (Button)Activity_main.findViewById(R.id.fensi);
         shoucang = (Button)Activity_main.findViewById(R.id.shoucang);
         lishi = (Button)Activity_main.findViewById(R.id.lishi);
+        String id =Client.user_id;
+        getDatasync(id);
 //        zuopin = (Button)Activity_main.findViewById(R.id.zuopin);
         xitong = (Button)Activity_main.findViewById(R.id.xitong);
         shezhi.setOnClickListener(this);
@@ -94,7 +109,61 @@ public class MyFragment4 extends Fragment implements View.OnClickListener{
         }
 
     }
+    public void getDatasync(String id){
+        new Thread(() -> {
+            try {
+                OkHttpClient client = new OkHttpClient();//创建OkHttpClient对象
+                Request request = new Request.Builder()
+                        .url("http://129.211.5.66:8080/ThePlanet/user/center?user_id=" +id )//请求接口。如果需要传参拼接到接 口后面。
+                        .build();//创建Request 对象
+                Call call = client.newCall(request);
+                Response response = call.execute();//得到Response 对象
+                if (response.isSuccessful()) {
+                    Log.d("center","response.code()=="+response.code());
+                    Log.d("center","response.message()=="+response.message());
+                    String resData = response.body().string();
+                    Log.d("center","res=="+resData);
+                    //此时的代码执行在子线程，修改UI的操作请使用handler跳转到UI线程。
+                    parseData(resData);  //  处理对象的函数
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            handler.sendEmptyMessage(0x123);
+        }).start();
+    }
 
+
+    private void parseData(String resData){
+        try{
+            JSONObject jsonObject = new JSONObject(resData);
+            Log.d("center", "jsonObject==" + jsonObject);
+            JSONObject dataObject =jsonObject.getJSONObject("content");
+            Log.d("center", "jsonObject2==" + dataObject);
+            mydata.clear();
+            mydata.put("dynamic_num", dataObject.optString("dynamic_num"));
+            mydata.put("concern_num", dataObject.optString("concern_num"));
+            mydata.put("fan_num", dataObject.optString("fan_num"));
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+    Handler handler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            if (msg.what == 0x123) {
+                initcenter();                 //初始化个人中心数据
+            }
+        }
+    };
+    private void initcenter()
+    {
+        dongtai.setText("动态 "+mydata.get("dynamic_num"));
+        guanzhu.setText("关注 "+mydata.get("concern_num"));
+        fensi.setText("粉丝 "+mydata.get("fan_num"));
+
+    }
 
   /*  @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

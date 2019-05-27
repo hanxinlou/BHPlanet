@@ -29,7 +29,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.FormBody;
+import okhttp3.MultipartBody;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class TieziNeirongActivity extends Activity {
@@ -325,15 +327,17 @@ public class TieziNeirongActivity extends Activity {
         new Thread(() -> {
             try {
                 String url = "http://129.211.5.66:8080/ThePlanet/comment";
-                FormBody.Builder formBody = new FormBody.Builder();
-                formBody.add("compose_type", "2")
-                        .add("content", comment_text.getText().toString())
-                        .add("from_userid", Client.user_id)
-                        .add("from_opusid", post_id);
+                RequestBody requestBody = new MultipartBody.Builder()
+                        .setType(MultipartBody.FORM)
+                        .addFormDataPart("compose_type", "2")
+                        .addFormDataPart("content", comment_text.getText().toString())
+                        .addFormDataPart("from_userid", Client.user_id)
+                        .addFormDataPart("from_opusid", post_id)
+                        .build();
 
                 Request request = new Request.Builder()
                         .url(url)//请求接口。如果需要传参拼接到接口后面。
-                        .post(formBody.build())
+                        .post(requestBody)
                         .build();//创建Request 对象
 
                 Response response = Client.client.newCall(request).execute();

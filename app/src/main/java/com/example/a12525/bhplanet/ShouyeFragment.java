@@ -199,8 +199,23 @@ public class ShouyeFragment extends Fragment {
 
         dataList = new ArrayList<>();
         for (int i = 0; i< opus_title_list.size(); i++){
-            homeImage = new HomeImage(picture_list.get(i), type_list.get(i), opus_title_list.get(i), opus_id_list.get(i));
-            dataList.add(homeImage);
+            if(type_list.get(i).equals("1") ) {
+                homeImage = new HomeImage(picture_list.get(i), "影视", opus_title_list.get(i), opus_id_list.get(i));
+                dataList.add(homeImage);
+            }
+            else if(type_list.get(i).equals("2") ) {
+                homeImage = new HomeImage(picture_list.get(i), "漫画", opus_title_list.get(i), opus_id_list.get(i));
+                dataList.add(homeImage);
+            }
+            else if(type_list.get(i).equals("3") ) {
+                homeImage = new HomeImage(picture_list.get(i), "动画", opus_title_list.get(i), opus_id_list.get(i));
+                dataList.add(homeImage);
+            }
+            if(type_list.get(i).equals("4") ) {
+                homeImage = new HomeImage(picture_list.get(i), "萌宠", opus_title_list.get(i), opus_id_list.get(i));
+                dataList.add(homeImage);
+            }
+
         }
         HomeImageAdapter adapter = new HomeImageAdapter(dataList);
 

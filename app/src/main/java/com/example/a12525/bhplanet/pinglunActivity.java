@@ -98,10 +98,11 @@ public class pinglunActivity extends AppCompatActivity {
         zhuanfa.setOnClickListener( v -> {
                 Intent intent=new Intent(pinglunActivity.this,ZhuanActivity.class);
                 intent.putExtra("opus_id", opus_id );
+                content = intent.getExtras().toString();
+                setZhuanfa(opus_id,content);
                 getDatasync();
                 startActivity(intent);
-//                content = intent.getExtras().toString();
-//                setZhuanfa(opus_id,content);
+
 //
         });
 
@@ -128,7 +129,14 @@ public class pinglunActivity extends AppCompatActivity {
         relativeLayout.setOnClickListener( v -> hideKeyboard() );
 
     }
-
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        initView();
+        getDatasync();
+        getPing();
+    }
     void initView(){
         opus_id = getIntent().getStringExtra("home_opus_id");
         recyclerView = findViewById(R.id.recyclerView);

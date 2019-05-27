@@ -86,7 +86,7 @@ public class FatieActivity extends Activity {
                 Log.d("imgPath", imgPath);
                 file = new File(imgPath);
 
-                String url = "http://129.211.5.66:8080/upload";
+                String url = "http://129.211.5.66:8080/ThePlanet/upload";
                 RequestBody fileBody = RequestBody.create(MEDIA_TYPE_PNG, file);
 
                 RequestBody requestBody = new MultipartBody.Builder()

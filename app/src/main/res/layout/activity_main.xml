@@ -99,50 +99,56 @@
         </LinearLayout>
 
         <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/geren"
+                android:layout_gravity="center_vertical"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_width="60dp"
+                android:text="个人中心"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content" /></LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:background="#f2f2f2"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
 
             <Button
                 android:id="@+id/shoucang"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="1dp"
                 android:layout_weight="1"
-                android:background="@android:color/background_light"
-
-
                 android:paddingLeft="5dp"
+
+                android:drawableStart="@drawable/shou"
+                android:drawableLeft="@drawable/shou"
+                android:background="@android:color/background_light"
                 android:text="收藏" />
 
             <Button
                 android:id="@+id/lishi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_weight="1"
-
-                android:background="@android:color/background_light"
-
                 android:paddingLeft="5dp"
+                android:layout_marginTop="5dp"
+
+                android:layout_weight="1"
+                android:drawableStart="@drawable/lishi"
+                android:drawableLeft="@drawable/lishi"
+                android:background="@android:color/background_light"
                 android:text="历史" />
 
-            <Button
-                android:id="@+id/xitong"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_weight="1"
-
-                android:background="@android:color/background_light"
-
-                android:paddingLeft="5dp"
-                android:text="系统通知" />
-
-        </LinearLayout>
-
-        <!--<Button-->
+            <!--<Button-->
             <!--android:id="@+id/zuopin"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
@@ -153,8 +159,34 @@
             <!--android:drawableLeft="@drawable/zuopin"-->
             <!--android:background="@android:color/background_light"-->
             <!--android:text="作品" />-->
-    </LinearLayout>
+        </LinearLayout>
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/tongzhi1"
+                android:layout_gravity="center_vertical"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_width="60dp"
+                android:text="通知"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content" /></LinearLayout>
+
+        <Button
+            android:id="@+id/xitong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="1dp"
+            android:layout_marginTop="5dp"
+            android:drawableStart="@drawable/tongzhi"
+            android:drawableLeft="@drawable/tongzhi"
+            android:background="@android:color/background_light"
+            android:text="系统通知" />
+    </LinearLayout>
 
 </LinearLayout>
 

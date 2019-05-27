@@ -23,18 +23,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <Switch
-        android:id="@+id/guanfou"
+    <Button
+        android:id="@+id/follow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:track="@drawable/switch_track"
-        android:thumb="@drawable/switch_thumb"
-        android:switchTextAppearance="@style/My.TextAppearance"
-        android:textOff="关注"
-        android:textOn="已关注" />
+        android:layout_alignParentRight="true"
+        android:text="已关注" />
 
 </RelativeLayout>
 </LinearLayout>

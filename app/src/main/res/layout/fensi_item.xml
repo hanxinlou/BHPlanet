@@ -20,17 +20,12 @@
              android:layout_marginStart="50dp"
              android:layout_gravity="center_vertical"
              />
-    <Switch
-        android:id="@+id/guanfou"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:textOn="已关注"
-        android:textOff="关注"
-        android:track="@drawable/switch_track"
-        android:thumb="@drawable/switch_thumb"
-        android:switchTextAppearance="@style/My.TextAppearance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/follow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="+关注" />
     </RelativeLayout>
 </LinearLayout>

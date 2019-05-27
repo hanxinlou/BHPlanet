@@ -26,11 +26,14 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import org.json.JSONObject;
 
@@ -46,7 +49,7 @@ import okhttp3.Response;
 
 public class ziliaoActivity extends AppCompatActivity {
     public static final int TAKE_PHOTO=1;
-    private static TextView mEdit;
+//    private static TextView mEdit;
     private ImageView picture;
     private Uri imageUri;
     public static final int CHOOSE_PHOTO=2;
@@ -55,6 +58,8 @@ public class ziliaoActivity extends AppCompatActivity {
     private ImageButton gaitou, gainame, gaiid, gaisex, gaibirth, gaiqian;
     private LinearLayout mLayout2;
     private Button exit;
+    private EditText mEdit2;
+    private String picture1;
 
     @SuppressLint("HandlerLeak")
     Handler handler = new Handler() {
@@ -136,14 +141,14 @@ public class ziliaoActivity extends AppCompatActivity {
         gainame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mEdit = nickname;
+
                ShowKeyboard("",nickname);
             }
         });
         gaiid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mEdit = uid;
+
                 ShowKeyboard("",uid);
 
             }
@@ -151,7 +156,7 @@ public class ziliaoActivity extends AppCompatActivity {
         gaisex.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mEdit = sexx;
+
                 ShowKeyboard("",sexx);
 
             }
@@ -159,7 +164,7 @@ public class ziliaoActivity extends AppCompatActivity {
         gaibirth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mEdit = birthh;
+
                 ShowKeyboard("",birthh);
 
             }
@@ -180,8 +185,8 @@ public class ziliaoActivity extends AppCompatActivity {
     }
 
 
-    public void ShowKeyboard(String msg,TextView mEdit2){
-        mEdit2.setText(msg);
+    public void ShowKeyboard(String msg,TextView mEdit){
+        mEdit.setText(msg);
         mLayout2.setVisibility(View.VISIBLE);//显示布局
         mLayout2.requestFocus();
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -189,7 +194,7 @@ public class ziliaoActivity extends AppCompatActivity {
     }
     private void hideKeyboard(){
         mLayout2.setVisibility(View.GONE);//隐藏布局
-        mEdit.setText("");//清空输入
+//        mEdit2.setText("");//清空输入
         View view = getWindow().peekDecorView();
         if (view != null) {
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -240,6 +245,7 @@ public class ziliaoActivity extends AppCompatActivity {
             mydata.put("birthday", dataObject.optString("birthday"));
             mydata.put("sex", dataObject.optString("sex"));
             mydata.put("introduce", dataObject.optString("introduce"));
+            picture1 = dataObject.optString("picture");
 //            mydata.put("picture", dataObject.optString("picture"));
 
         }catch (Exception e){
@@ -252,26 +258,14 @@ public class ziliaoActivity extends AppCompatActivity {
         new Thread(() -> {
             try {
                 String url = "http://129.211.5.66:8080/ThePlanet/user/update";
-                Log.d("post",mEdit.getText().toString());
                 FormBody.Builder formBody = new FormBody.Builder();
-                if (mEdit == uid) {
-                    formBody.add("user_id", mEdit.getText().toString());
-                }
-                else if (mEdit == nickname)
-                {
-                    formBody.add("user_name", mEdit.getText().toString());
-                }
-                else if (mEdit == qianmingg)
-                {
-                    formBody.add("introduce", mEdit.getText().toString());
-                }
-                else if (mEdit == sexx)
-                {
-                    formBody.add("sex",mEdit.getText().toString());
-                }
-                else if(mEdit==birthh) {
-                    formBody.add("birthday", mEdit.getText().toString());
-                }
+
+                    formBody.add("user_id", uid.getText().toString())
+                            .add("user_name", nickname.getText().toString())
+                            .add("introduce", qianmingg.getText().toString())
+                            .add("sex",sexx.getText().toString())
+                            .add("birthday", birthh.getText().toString());
+
 
                 Request request = new Request.Builder()
                         .url(url)//请求接口。如果需要传参拼接到接口后面。
@@ -280,10 +274,10 @@ public class ziliaoActivity extends AppCompatActivity {
 
                 Response response = Client.client.newCall(request).execute();
                 if(response.isSuccessful()) {
-                    Log.d("postRegist", "response.code()==" + response.code());
-                    Log.d("postRegist", "response.message()==" + response.message());
+                    Log.d("postziliao", "response.code()==" + response.code());
+                    Log.d("postziliao", "response.message()==" + response.message());
                     String resData = response.body().string();
-                    Log.d("postRegist", "res==" + resData);
+                    Log.d("postziliao", "res==" + resData);
                     //此时的代码执行在子线程，修改UI的操作请使用handler跳转到UI线程。
                 }
             } catch (Exception e) {
@@ -392,9 +386,21 @@ public class ziliaoActivity extends AppCompatActivity {
     {
         nickname.setText(mydata.get("user_name"));
         uid.setText(mydata.get("user_id"));
-        sexx.setText(mydata.get("birthday"));
-        birthh.setText(mydata.get("sex"));
+        if(mydata.get("sex").equals("1"))
+        {
+            sexx.setText("男");
+        }
+        else if(mydata.get("sex").equals("2"))
+        {
+            sexx.setText("女");
+        }
+        birthh.setText(mydata.get("birthday"));
         qianmingg.setText(mydata.get("introduce"));
+        init();
     }
+    private  void init()
+    {
 
+        Glide.with(this).load(picture1).into(picture);
+    }
 }

@@ -13,9 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ImageButton;
+
+import com.bumptech.glide.Glide;
 
 import org.json.JSONObject;
 
@@ -41,7 +44,9 @@ public class MyFragment4 extends Fragment implements View.OnClickListener{
     private Button xiazai;
     private Button zuopin;
     private Button xitong;
+    private ImageView headpicture;
     private Map<String, String> mydata = new HashMap<>();
+    private String picture1;
     public MyFragment4() {
     }
 
@@ -54,8 +59,10 @@ public class MyFragment4 extends Fragment implements View.OnClickListener{
         fensi = (Button)Activity_main.findViewById(R.id.fensi);
         shoucang = (Button)Activity_main.findViewById(R.id.shoucang);
         lishi = (Button)Activity_main.findViewById(R.id.lishi);
+        headpicture = (ImageView)Activity_main.findViewById(R.id.head);
         String id =Client.user_id;
         getDatasync(id);
+        getDatasync2(id);
 //        zuopin = (Button)Activity_main.findViewById(R.id.zuopin);
         xitong = (Button)Activity_main.findViewById(R.id.xitong);
         shezhi.setOnClickListener(this);
@@ -109,6 +116,52 @@ public class MyFragment4 extends Fragment implements View.OnClickListener{
         }
 
     }
+    public void getDatasync2(String id){
+        new Thread(() -> {
+            try {
+                OkHttpClient client = new OkHttpClient();//创建OkHttpClient对象
+                Request request = new Request.Builder()
+                        .url("http://129.211.5.66:8080/ThePlanet/user/information?user_id=" +id )//请求接口。如果需要传参拼接到接 口后面。
+                        .build();//创建Request 对象
+                Call call = client.newCall(request);
+                Response response = call.execute();//得到Response 对象
+                if (response.isSuccessful()) {
+                    Log.d("ndxq","response.code()=="+response.code());
+                    Log.d("ndxq","response.message()=="+response.message());
+                    String resData = response.body().string();
+                    Log.d("ndxq","res=="+resData);
+                    //此时的代码执行在子线程，修改UI的操作请使用handler跳转到UI线程。
+                    parseData2(resData);  //  处理对象的函数
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            handler.sendEmptyMessage(0x456);
+        }).start();
+    }
+
+
+    private void parseData2(String resData){
+        try{
+            JSONObject jsonObject = new JSONObject(resData);
+            Log.d("ndxq", "jsonObject==" + jsonObject);
+            JSONObject dataObject =jsonObject.getJSONObject("content");
+            Log.d("ndxq", "jsonObject2==" + dataObject);
+
+            mydata.clear();
+            mydata.put("user_name", dataObject.optString("user_name"));
+            mydata.put("user_id", dataObject.optString("user_id"));
+            mydata.put("birthday", dataObject.optString("birthday"));
+            mydata.put("sex", dataObject.optString("sex"));
+            mydata.put("introduce", dataObject.optString("introduce"));
+            picture1 = dataObject.optString("picture");
+//            mydata.put("picture", dataObject.optString("picture"));
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
     public void getDatasync(String id){
         new Thread(() -> {
             try {
@@ -155,6 +208,10 @@ public class MyFragment4 extends Fragment implements View.OnClickListener{
             if (msg.what == 0x123) {
                 initcenter();                 //初始化个人中心数据
             }
+            else if(msg.what == 0x456)
+            {
+                inithead();;
+            }
         }
     };
     private void initcenter()
@@ -163,6 +220,11 @@ public class MyFragment4 extends Fragment implements View.OnClickListener{
         guanzhu.setText("关注 "+mydata.get("concern_num"));
         fensi.setText("粉丝 "+mydata.get("fan_num"));
 
+
+    }
+    private void  inithead()
+    {
+        Glide.with(this).load(picture1).into(headpicture);
     }
 
   /*  @Override

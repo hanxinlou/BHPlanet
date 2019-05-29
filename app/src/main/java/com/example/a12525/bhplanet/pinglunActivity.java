@@ -108,7 +108,6 @@ public class pinglunActivity extends AppCompatActivity {
 
 //
         });
-
         dianzan.setOnClickListener( v -> {
             if(is_ok == 0){
                 setDianZan(opus_id,"1", "1", user_id);
@@ -122,7 +121,7 @@ public class pinglunActivity extends AppCompatActivity {
                 Log.d("is_collect",String.valueOf(is_collect));
                 if(is_collect == 0) {
                     setShouCang(opus_id,"1");
-                } else if(is_collect == 1){
+                } else{
                     setShouCang(opus_id,"2");
                 }
         });

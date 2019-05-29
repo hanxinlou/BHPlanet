@@ -39,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:ems="10"
+        android:password="true"
         android:hint="请输入密码"
         android:inputType="number" />
     <!--<Button-->
